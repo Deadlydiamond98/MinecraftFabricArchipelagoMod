@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    {
-      "id": "mutantmonsters:mutant_enderman",
-      "required": false
-    }
-  ]
-}

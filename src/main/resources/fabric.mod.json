@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "koalalib",
+	"id": "aam",
 	"version": "${version}",
-	"name": "Koala Lib",
-	"description": "Library mod that adds various things I use in my mods",
+	"name": "Another Archery Mod",
+	"description": "Mod that upgrades archery based on a Reddit Post",
 	"authors": [
 		"Deadlydiamond98"
 	],
@@ -12,20 +12,19 @@
 		"sources": "https://github.com/Deadlydiamond98/KoalaLib"
 	},
 	"license": "Custom",
-	"icon": "assets/koalalib/icon.png",
+	"icon": "assets/aam/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.deadlydiamond98.koalalib.KoalaLib"
+			"net.deadlydiamond98.aam.AAM"
 		],
 		"client": [
-			"net.deadlydiamond98.koalalib.KoalaLibClient"
+			"net.deadlydiamond98.aam.AAMClient"
 		]
 	},
 	"mixins": [
-		"koalalib.mixins.json"
+      "aam.mixins.json"
 	],
-	"accessWidener": "koalalib.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.15.0",
 		"minecraft": "~1.20.1",
