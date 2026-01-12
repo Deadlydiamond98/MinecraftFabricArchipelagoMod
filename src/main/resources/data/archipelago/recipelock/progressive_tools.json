@@ -1,0 +1,26 @@
+{
+  "mod": "archipelago",
+  "entries": [
+    {
+      "minecraft:stone_hoe": 1,
+      "minecraft:stone_axe": 1,
+      "minecraft:stone_shovel": 1,
+
+      "minecraft:iron_hoe": 2,
+      "minecraft:iron_axe": 2,
+      "minecraft:iron_shovel": 2,
+
+      "minecraft:gold_hoe": 2,
+      "minecraft:gold_axe": 2,
+      "minecraft:gold_shovel": 2,
+
+      "minecraft:diamond_hoe": 3,
+      "minecraft:diamond_axe": 3,
+      "minecraft:diamond_shovel": 3,
+
+      "minecraft:netherite_hoe": 4,
+      "minecraft:netherite_axe": 4,
+      "minecraft:netherite_shovel": 4
+    }
+  ]
+}

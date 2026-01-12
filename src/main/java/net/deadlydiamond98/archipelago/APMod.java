@@ -3,6 +3,7 @@ package net.deadlydiamond98.archipelago;
 
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoClient;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoSlotData;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerWorldEvents;
 import net.deadlydiamond98.archipelago.events.common.APSeverCommandEvents;
@@ -22,6 +23,8 @@ public class APMod implements ModInitializer {
 
 	// Server Variable to get Current Server
 	public static @Nullable MinecraftServer server;
+	// Archipelago Slot Data
+	public static @Nullable ArchipelagoSlotData slotData;
 
 	@Override
 	public void onInitialize() {
