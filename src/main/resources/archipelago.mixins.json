@@ -1,12 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.deadlydiamond98.aam.mixin",
+  "package": "net.deadlydiamond98.archipelago.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
   ],
   "mixins": [
-    "common.FletchingTableBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

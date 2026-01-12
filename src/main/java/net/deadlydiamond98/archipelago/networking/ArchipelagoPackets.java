@@ -1,6 +1,6 @@
-package net.deadlydiamond98.aam.networking;
+package net.deadlydiamond98.archipelago.networking;
 
-public class AAMPackets {
+public class ArchipelagoPackets {
 
     public static void registerS2CPackets() {
     }

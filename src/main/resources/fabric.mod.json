@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "aam",
+	"id": "archipelago",
 	"version": "${version}",
-	"name": "Another Archery Mod",
-	"description": "Mod that upgrades archery based on a Reddit Post",
+	"name": "Fabric Archipelago Mod",
+	"description": "A Mod that allows Minecraft Fabric to work with Archipelago!",
 	"authors": [
 		"Deadlydiamond98"
 	],
@@ -12,18 +12,18 @@
 		"sources": "https://github.com/Deadlydiamond98/KoalaLib"
 	},
 	"license": "Custom",
-	"icon": "assets/aam/icon.png",
+	"icon": "assets/archipelago/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.deadlydiamond98.aam.AAM"
+			"net.deadlydiamond98.archipelago.APMod"
 		],
 		"client": [
-			"net.deadlydiamond98.aam.AAMClient"
+			"net.deadlydiamond98.archipelago.APModClient"
 		]
 	},
 	"mixins": [
-      "aam.mixins.json"
+		"archipelago.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.0",
