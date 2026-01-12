@@ -12,7 +12,13 @@ public class APServerChatEvents {
             if (sender != null && APModConfigs.Main.chatMessagesAppearInClient) {
                 ArchipelagoClient client = APMod.apClient();
                 if (client != null) {
-                    client.sendChat("<" + sender.getName().getString() + "> " + message.getContent().getString());
+                    String msg = message.getContent().getString();
+
+                    if (!msg.startsWith("!")) {
+                        msg = "<" + sender.getName().getString() + "> " + msg;
+                    }
+
+                    client.sendChat(msg);
                 }
             }
         });

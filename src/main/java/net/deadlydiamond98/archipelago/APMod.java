@@ -6,7 +6,9 @@ import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerWorldEvents;
 import net.deadlydiamond98.archipelago.events.common.APSeverCommandEvents;
+import net.deadlydiamond98.archipelago.init.APEffects;
 import net.deadlydiamond98.koalalib.config.KoalaConfigCreator;
+import net.deadlydiamond98.koalalib.updater.KoalaUpdateChecker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
@@ -24,8 +26,11 @@ public class APMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		KoalaConfigCreator.addModConfig(MOD_ID, APModConfigs.Main.class);
+		KoalaUpdateChecker.addModUpdateChecker(MOD_ID);
 		ArchipelagoReconnector.readLastConnectedServer();
 
+		// Registry
+		APEffects.register();
 
 		// Events
 		APServerWorldEvents.register();

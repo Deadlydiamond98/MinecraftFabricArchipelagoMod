@@ -3,7 +3,6 @@ package net.deadlydiamond98.archipelago.events.archipelago;
 import io.github.archipelagomw.Print.APPrint;
 import io.github.archipelagomw.Print.APPrintColor;
 import io.github.archipelagomw.Print.APPrintPart;
-import io.github.archipelagomw.Print.APPrintType;
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.PrintJSONEvent;
 import io.github.archipelagomw.flags.NetworkItem;
