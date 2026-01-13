@@ -6,9 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.common.world.APPersistentStates;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
@@ -21,22 +19,25 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import static net.deadlydiamond98.archipelago.archipelago.recipe.APRecipeChecker.*;
+
 public class APRecipeInfoLoader {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public static void load(ResourceManager manager) {
         manager.getAllNamespaces().forEach(mod -> {
-            Identifier fileLocation = new Identifier(mod, "recipelock/progressive_");
-            APRecipeChecker.PROGRESSIVE_TOOLS.putAll(loadProgressiveRecipes(manager, fileLocation.withSuffixedPath("tools")));
+            Identifier path = new Identifier(mod, "recipelock/progressive_");
+            PROGRESSIVE_TOOLS.putAll(load(manager, path, "tools"));
+            PROGRESSIVE_WEAPONS.putAll(load(manager, path, "weapons"));
         });
     }
 
-    private static Map<Item, Integer> loadProgressiveRecipes(ResourceManager manager, Identifier fileLocation) {
+    private static Map<Item, Integer> load(ResourceManager manager, Identifier path, String str) {
         Map<Item, Integer> map = new HashMap<>();
-        fileLocation = fileLocation.withSuffixedPath(".json");
-        APMod.LOGGER.info(fileLocation.toString());
+        path = path.withSuffixedPath(str + ".json");
+        APMod.LOGGER.info(path.toString());
         try {
-            Resource resource = manager.getResource(fileLocation).orElseThrow();
+            Resource resource = manager.getResource(path).orElseThrow();
             try (InputStream input = resource.getInputStream(); InputStreamReader reader = new InputStreamReader(input, StandardCharsets.UTF_8)) {
                 JsonObject json = JsonParser.parseReader(reader).getAsJsonObject();
                 if (APMod.isModLoaded(json.get("mod").getAsString())) {

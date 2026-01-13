@@ -19,6 +19,8 @@ public class ArchipelagoLocations {
         addLocation(new Identifier("husbandry/ride_a_boat_with_a_goat"));
         addLocation(new Identifier("husbandry/tame_an_animal"));
         addLocation(new Identifier("husbandry/plant_seed"));
+        // Stone
+        addLocation(new Identifier("story/upgrade_tools"));
     }
 
     private static void addLocation(Identifier id) {

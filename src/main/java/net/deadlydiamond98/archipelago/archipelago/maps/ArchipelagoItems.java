@@ -15,7 +15,8 @@ public class ArchipelagoItems {
         // Progression
         ITEMS.put("Swim", new StateModifyingAPItem((states) -> states.swim.set(true)));
         ITEMS.put("Sprint", new StateModifyingAPItem((states) -> states.sprint.set(true)));
-        ITEMS.put("Smelting", new StateModifyingAPItem((states) -> states.furnaceLevel.increment()));
+        ITEMS.put("Progressive Tools", new StateModifyingAPItem((states) -> states.toolLevel.increment()));
+        ITEMS.put("Progressive Weapons", new StateModifyingAPItem((states) -> states.weaponLevel.increment()));
 
         // Filler
         ITEMS.put("5 Experience", new ExperienceAPItem(5, 0));

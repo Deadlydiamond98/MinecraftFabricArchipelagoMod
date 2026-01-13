@@ -17,6 +17,7 @@ public class APPersistentStates extends PersistentState {
     private static final List<Long> ADVANCEMENT_IDS = new ArrayList<>();
 
     public final ProgressiveState toolLevel = new ProgressiveState(0, "toolLevel", this);
+    public final ProgressiveState weaponLevel = new ProgressiveState(0, "weaponLevel", this);
     public final ProgressiveState furnaceLevel = new ProgressiveState(0, "furnaceLevel", this);
 
     public final BooleanState swim = new BooleanState(false, "swim", this);
@@ -28,6 +29,7 @@ public class APPersistentStates extends PersistentState {
         nbt.putLongArray("ItemIndexes", ITEM_INDEXES);
 
         this.toolLevel.write(nbt);
+        this.weaponLevel.write(nbt);
         this.furnaceLevel.write(nbt);
 
         this.swim.write(nbt);
@@ -50,6 +52,7 @@ public class APPersistentStates extends PersistentState {
         }
 
         states.toolLevel.read(nbt);
+        states.weaponLevel.read(nbt);
         states.furnaceLevel.read(nbt);
 
         states.swim.read(nbt);
@@ -89,16 +92,10 @@ public class APPersistentStates extends PersistentState {
 
     public static APPersistentStates getPersistentStates() {
         MinecraftServer server = APMod.server;
-
-        PersistentStateManager manager;
         if (server == null) {
             return new APPersistentStates();
         }
-
-        manager = server.getOverworld().getPersistentStateManager();
-
-
-        String id = "archipelago:persistant_states";
-        return manager.getOrCreate(APPersistentStates::fromNbt, APPersistentStates::new, id);
+        PersistentStateManager manager = server.getOverworld().getPersistentStateManager();
+        return manager.getOrCreate(APPersistentStates::fromNbt, APPersistentStates::new, "archipelago:persistant_states");
     }
 }

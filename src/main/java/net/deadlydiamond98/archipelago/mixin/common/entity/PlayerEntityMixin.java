@@ -11,12 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class PlayerEntityMixin {
     @Inject(method = "tick", at = @At("TAIL"))
     private void archipelago$tick(CallbackInfo ci) {
-        APPersistentStates states = APPersistentStates.getPersistentStates();
         PlayerEntity player = (PlayerEntity) (Object) this;
 
-        if (!states.canSwim()) {
-            if (player.isTouchingWater()) {
-                player.damage(player.getDamageSources().drown(), player.getHealth());
+        if (!player.getWorld().isClient) {
+            APPersistentStates states = APPersistentStates.getPersistentStates();
+
+            if (!states.swim.get()) {
+                if (player.isTouchingWater()) {
+                    player.damage(player.getDamageSources().drown(), player.getHealth());
+                }
             }
         }
     }

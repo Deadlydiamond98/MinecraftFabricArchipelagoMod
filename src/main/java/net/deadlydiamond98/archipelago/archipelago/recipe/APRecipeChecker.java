@@ -10,12 +10,14 @@ import java.util.Map;
 public class APRecipeChecker {
     // Regular Crafting
     public static final Map<Item, Integer> PROGRESSIVE_TOOLS = new HashMap<>();
+    public static final Map<Item, Integer> PROGRESSIVE_WEAPONS = new HashMap<>();
 
     public static boolean allowCrafting(ItemStack stack) {
         APPersistentStates states = APPersistentStates.getPersistentStates();
-        boolean bl = checkList(stack, states.toolLevel.get(), PROGRESSIVE_TOOLS);
+        boolean tools = checkList(stack, states.toolLevel.get(), PROGRESSIVE_TOOLS);
+        boolean weapons = checkList(stack, states.weaponLevel.get(), PROGRESSIVE_WEAPONS);
 
-        if (bl) {
+        if (tools || weapons) {
             return false;
         }
 
