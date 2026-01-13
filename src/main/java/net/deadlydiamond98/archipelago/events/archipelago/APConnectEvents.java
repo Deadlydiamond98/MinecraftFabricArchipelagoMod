@@ -17,11 +17,11 @@ public class APConnectEvents {
             ArchipelagoSlotData slotData = APMod.slotData;
 
             states.syncChecks();
-            if (!states.canSwim() && slotData.randomize_swim == 0) {
-                states.setCanSwim(true);
+            if (!states.swim.get() && slotData.randomize_swim == 0) {
+                states.swim.set(true);
             }
-            if (!states.canSprint() && slotData.randomize_sprint == 0) {
-                states.setCanSprint(true);
+            if (!states.sprint.get() && slotData.randomize_sprint == 0) {
+                states.sprint.set(true);
             }
         }
     }

@@ -3,7 +3,7 @@ package net.deadlydiamond98.archipelago.events.archipelago;
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.ReceiveItemEvent;
 import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoItems;
+import net.deadlydiamond98.archipelago.archipelago.maps.ArchipelagoItems;
 import net.deadlydiamond98.archipelago.archipelago.apitem.AbstractAPItem;
 import net.deadlydiamond98.archipelago.common.world.APPersistentStates;
 import net.minecraft.server.MinecraftServer;

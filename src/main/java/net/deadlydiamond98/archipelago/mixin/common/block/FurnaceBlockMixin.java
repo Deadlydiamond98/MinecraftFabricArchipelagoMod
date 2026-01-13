@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public class FurnaceBlockMixin {
     @WrapMethod(method = "openScreen")
     private void archipelago$openScreen(World world, BlockPos pos, PlayerEntity player, Operation<Void> original) {
-        if (APPersistentStates.getPersistentStates().getSmeltLevel() > 0) {
+        if (APPersistentStates.getPersistentStates().furnaceLevel.get() > 0) {
             original.call(world, pos, player);
         }
     }

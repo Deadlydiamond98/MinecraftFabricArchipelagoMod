@@ -1,6 +1,6 @@
 package net.deadlydiamond98.archipelago.mixin.common;
 
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoLocations;
+import net.deadlydiamond98.archipelago.archipelago.maps.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentStates;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;

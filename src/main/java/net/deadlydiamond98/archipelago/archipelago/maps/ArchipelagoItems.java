@@ -1,4 +1,4 @@
-package net.deadlydiamond98.archipelago.archipelago;
+package net.deadlydiamond98.archipelago.archipelago.maps;
 
 import net.deadlydiamond98.archipelago.archipelago.apitem.*;
 import net.deadlydiamond98.archipelago.archipelago.apitem.traps.*;
@@ -13,9 +13,9 @@ public class ArchipelagoItems {
 
     static {
         // Progression
-        ITEMS.put("Swim", new StateModifyingAPItem((states) -> states.setCanSwim(true)));
-        ITEMS.put("Sprint", new StateModifyingAPItem((states) -> states.setCanSprint(true)));
-        ITEMS.put("Smelting", new StateModifyingAPItem((states) -> states.setSmeltLevel(states.getSmeltLevel() + 1)));
+        ITEMS.put("Swim", new StateModifyingAPItem((states) -> states.swim.set(true)));
+        ITEMS.put("Sprint", new StateModifyingAPItem((states) -> states.sprint.set(true)));
+        ITEMS.put("Smelting", new StateModifyingAPItem((states) -> states.furnaceLevel.increment()));
 
         // Filler
         ITEMS.put("5 Experience", new ExperienceAPItem(5, 0));

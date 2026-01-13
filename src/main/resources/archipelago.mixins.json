@@ -13,7 +13,8 @@
     "common.block.FurnaceBlockMixin",
     "common.block.SmokerFurnaceBlockMixin",
     "common.entity.LivingEntityMixin",
-    "common.entity.PlayerEntityMixin"
+    "common.entity.PlayerEntityMixin",
+    "common.handler.CraftingScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

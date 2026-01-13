@@ -11,7 +11,10 @@ import net.deadlydiamond98.archipelago.init.APEffects;
 import net.deadlydiamond98.koalalib.config.KoalaConfigCreator;
 import net.deadlydiamond98.koalalib.updater.KoalaUpdateChecker;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.PacketType;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.server.MinecraftServer;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -39,6 +42,8 @@ public class APMod implements ModInitializer {
 		APServerWorldEvents.register();
 		APSeverCommandEvents.register();
 		APServerChatEvents.register();
+
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new APReloadListener());
 	}
 
 	public static @Nullable ArchipelagoClient apClient() {

@@ -1,4 +1,4 @@
-package net.deadlydiamond98.archipelago.archipelago;
+package net.deadlydiamond98.archipelago.archipelago.maps;
 
 import net.minecraft.util.Identifier;
 

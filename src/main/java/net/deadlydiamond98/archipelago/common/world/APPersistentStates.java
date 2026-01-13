@@ -2,6 +2,8 @@ package net.deadlydiamond98.archipelago.common.world;
 
 import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoClient;
+import net.deadlydiamond98.archipelago.common.world.state.BooleanState;
+import net.deadlydiamond98.archipelago.common.world.state.ProgressiveState;
 import net.minecraft.nbt.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.PersistentState;
@@ -13,31 +15,23 @@ import java.util.List;
 public class APPersistentStates extends PersistentState {
     private static final List<Long> ITEM_INDEXES = new ArrayList<>();
     private static final List<Long> ADVANCEMENT_IDS = new ArrayList<>();
-    private boolean canSwim = false;
-    private boolean canSprint = false;
-    private int smeltLevel = 0;
 
-    public static APPersistentStates getPersistentStates() {
-        MinecraftServer server = APMod.server;
+    public final ProgressiveState toolLevel = new ProgressiveState(0, "toolLevel", this);
+    public final ProgressiveState furnaceLevel = new ProgressiveState(0, "furnaceLevel", this);
 
-        PersistentStateManager manager;
-        if (server != null) {
-            manager = server.getOverworld().getPersistentStateManager();
-        } else {
-            return new APPersistentStates();
-        }
-
-        String id = "archipelago:persistant_states";
-        return manager.getOrCreate(APPersistentStates::fromNbt, APPersistentStates::new, id);
-    }
+    public final BooleanState swim = new BooleanState(false, "swim", this);
+    public final BooleanState sprint = new BooleanState(false, "sprint", this);
 
     @Override
     public NbtCompound writeNbt(NbtCompound nbt) {
         nbt.putLongArray("AdvancementIDs", ADVANCEMENT_IDS);
         nbt.putLongArray("ItemIndexes", ITEM_INDEXES);
-        nbt.putBoolean("SwimmingEnabled", this.canSwim);
-        nbt.putBoolean("SprintingEnabled", this.canSprint);
-        nbt.putInt("SmeltLvl", this.smeltLevel);
+
+        this.toolLevel.write(nbt);
+        this.furnaceLevel.write(nbt);
+
+        this.swim.write(nbt);
+        this.sprint.write(nbt);
 
         return nbt;
     }
@@ -55,37 +49,14 @@ public class APPersistentStates extends PersistentState {
             ITEM_INDEXES.add(itemIndex);
         }
 
-        states.canSwim = nbt.getBoolean("SwimmingEnabled");
-        states.canSprint = nbt.getBoolean("SprintingEnabled");
-        states.smeltLevel = nbt.getInt("SmeltLvl");
+        states.toolLevel.read(nbt);
+        states.furnaceLevel.read(nbt);
+
+        states.swim.read(nbt);
+        states.sprint.read(nbt);
 
         return states;
     }
-
-    public int getSmeltLevel() {
-        return this.smeltLevel;
-    }
-    public boolean canSwim() {
-        return this.canSwim;
-    }
-    public boolean canSprint() {
-        return this.canSprint;
-    }
-
-
-    public void setSmeltLevel(int smeltLevel) {
-        this.smeltLevel = smeltLevel;
-        markDirty();
-    }
-    public void setCanSwim(boolean canSwim) {
-        this.canSwim = canSwim;
-        markDirty();
-    }
-    public void setCanSprint(boolean canSprint) {
-        this.canSprint = canSprint;
-        markDirty();
-    }
-
 
 
     public List<Long> getAdvancementIds() {
@@ -114,5 +85,20 @@ public class APPersistentStates extends PersistentState {
                 client.checkLocation(advancementId);
             }
         }
+    }
+
+    public static APPersistentStates getPersistentStates() {
+        MinecraftServer server = APMod.server;
+
+        PersistentStateManager manager;
+        if (server == null) {
+            return new APPersistentStates();
+        }
+
+        manager = server.getOverworld().getPersistentStateManager();
+
+
+        String id = "archipelago:persistant_states";
+        return manager.getOrCreate(APPersistentStates::fromNbt, APPersistentStates::new, id);
     }
 }
