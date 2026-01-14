@@ -1,6 +1,5 @@
 package net.deadlydiamond98.archipelago.common.world;
 
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.common.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;

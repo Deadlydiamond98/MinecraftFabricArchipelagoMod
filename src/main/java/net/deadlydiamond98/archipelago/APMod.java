@@ -3,7 +3,7 @@ package net.deadlydiamond98.archipelago;
 
 import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoReconnector;
-import net.deadlydiamond98.archipelago.common.archipelago.items.APRecipeInfoLoader;
+import net.deadlydiamond98.archipelago.common.archipelago.items.APItemDataLoader;
 import net.deadlydiamond98.archipelago.common.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerPlayConnectionEvents;
@@ -42,7 +42,7 @@ public class APMod implements ModInitializer {
 		APServerPlayConnectionEvents.register();
 
 		// Data Pack Loader
-		APRecipeInfoLoader.register();
+		APItemDataLoader.register();
 	}
 
 	public static Identifier id(String path) {

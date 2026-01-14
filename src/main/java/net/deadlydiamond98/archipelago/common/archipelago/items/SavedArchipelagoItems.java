@@ -17,13 +17,13 @@ public class SavedArchipelagoItems {
     
     public static void register() {
         // Abilities
-        register("Swim", "swim", false);
-        register("Sprint", "sprint", false);
+        register("Swim", "swim", true);
+        register("Sprint", "sprint", true);
 
         // Progressive Crafting
-        registerWithJson("Progressive Tools", "tools", true);
-        registerWithJson("Progressive Weapons", "weapons", true);
-        registerWithJson("Progressive Smelting", "smelting", true);
+        registerWithJson("Progressive Tools", "tools", false);
+        registerWithJson("Progressive Weapons", "weapons", false);
+        registerWithJson("Progressive Smelting", "smelting", false);
     }
 
     public static void registerWithJson(String name, String key, boolean isBool) {
@@ -38,9 +38,9 @@ public class SavedArchipelagoItems {
         ArchipelagoItems.ITEMS.put(name, new PersistantStateAPItem(key));
 
         if (isBool) {
-            PERSISTENT_STATE_PROGRESSIVES.add(key);
-        } else {
             PERSISTENT_STATE_BOOLEANS.add(key);
+        } else {
+            PERSISTENT_STATE_PROGRESSIVES.add(key);
         }
     }
 }

@@ -28,7 +28,7 @@ import static net.deadlydiamond98.archipelago.util.APItemUtil.*;
 /**
  * Loads Items from json for determining what items are locked behind what progressive tiers
  */
-public class APRecipeInfoLoader implements SimpleSynchronousResourceReloadListener {
+public class APItemDataLoader implements SimpleSynchronousResourceReloadListener {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
@@ -74,6 +74,6 @@ public class APRecipeInfoLoader implements SimpleSynchronousResourceReloadListen
     }
 
     public static void register() {
-        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new APRecipeInfoLoader());
+        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new APItemDataLoader());
     }
 }
