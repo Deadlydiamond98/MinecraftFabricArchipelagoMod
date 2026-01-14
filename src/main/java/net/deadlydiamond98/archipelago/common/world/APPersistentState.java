@@ -33,9 +33,6 @@ public class APPersistentState extends PersistentState {
     // Saves unlocked advancements, so they're granted to any additional players in the world
     private final List<Long> advancementIds = new ArrayList<>();
 
-    public final APState<Boolean> swim = new APState<>(false, this);
-    public final APState<Boolean> sprint = new APState<>(false, this);
-
     // ADVANCEMENT ID METHODS //////////////////////////////////////////////////////////////////////////////////////////
 
     public List<Long> getAdvancementIds() {

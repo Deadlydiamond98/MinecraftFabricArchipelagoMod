@@ -75,7 +75,7 @@ public abstract class LivingEntityMixin {
     @WrapMethod(method = "setSprinting")
     private void archipelago$setSprinting(boolean sprinting, Operation<Void> original) {
         APPersistentState states = APPersistentState.get();
-        if (states.sprint.get()) {
+        if (states.getBooleanCheckValue("sprint")) {
             original.call(sprinting);
         } else {
             original.call(false);

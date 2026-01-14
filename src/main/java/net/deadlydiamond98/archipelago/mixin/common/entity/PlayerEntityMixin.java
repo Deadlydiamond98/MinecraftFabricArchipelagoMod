@@ -24,7 +24,7 @@ public class PlayerEntityMixin {
         if (!player.getWorld().isClient) {
             APPersistentState state = APPersistentState.get();
 
-            if (!state.swim.get()) {
+            if (!state.getBooleanCheckValue("swim")) {
                 if (player.isTouchingWater()) {
                     player.damage(player.getDamageSources().drown(), player.getHealth());
                 }

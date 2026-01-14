@@ -3,7 +3,6 @@ package net.deadlydiamond98.archipelago;
 
 import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoReconnector;
-import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoSlotData;
 import net.deadlydiamond98.archipelago.common.archipelago.items.APRecipeInfoLoader;
 import net.deadlydiamond98.archipelago.common.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
@@ -23,9 +22,6 @@ import org.slf4j.LoggerFactory;
 public class APMod implements ModInitializer {
 	public static final String MOD_ID = "archipelago";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-	// Archipelago Slot Data
-	public static @Nullable ArchipelagoSlotData slotData;
 
 	@Override
 	public void onInitialize() {

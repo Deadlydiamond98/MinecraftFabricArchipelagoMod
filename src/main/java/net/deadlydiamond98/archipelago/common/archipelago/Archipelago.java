@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.common.archipelago;
 import io.github.archipelagomw.Client;
+import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.flags.ItemsHandling;
 import net.deadlydiamond98.archipelago.events.archipelago.APConnectEvents;
 import net.deadlydiamond98.archipelago.events.archipelago.APPrintJsonEvents;
@@ -13,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Consumer;
 
 public class Archipelago extends Client {
-    public static @Nullable ArchipelagoSlotData slotData;
+    public static @Nullable MCSlotData slotData;
 
     public Archipelago() {
         super();
@@ -69,6 +70,19 @@ public class Archipelago extends Client {
         return false;
     }
 
-    public record ArchipelagoSlotData(int randomize_swim, int randomize_sprint) {
+    // Slot Data Methods ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static MCSlotData initSlotData(ConnectionResultEvent event) {
+        slotData = event.getSlotData(MCSlotData.class);
+        return slotData;
+    }
+
+    public static @Nullable MCSlotData getSlotData() {
+        return slotData;
+    }
+
+    public static class MCSlotData {
+        public int randomize_swim;
+        public int randomize_sprint;
     }
 }
