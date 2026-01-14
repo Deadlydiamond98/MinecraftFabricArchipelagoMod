@@ -6,18 +6,14 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.function.Consumer;
 
 public class PersistantStateAPItem extends AbstractAPItem {
-    private final Consumer<APPersistentState> consumer;
+    private final String key;
 
     public PersistantStateAPItem(String key) {
-        this(state -> state.triggerCheck(key));
-    }
-
-    public PersistantStateAPItem(Consumer<APPersistentState> consumer) {
-        this.consumer = consumer;
+        this.key = key;
     }
 
     @Override
     public void applyReward(ServerPlayerEntity player) {
-        consumer.accept(APPersistentState.get());
+        APPersistentState.get().triggerCheck(this.key);
     }
 }

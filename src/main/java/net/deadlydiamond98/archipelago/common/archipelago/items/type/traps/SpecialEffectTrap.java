@@ -5,7 +5,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class SpecialEffectTrap extends AbstractAPItem {
+public class SpecialEffectTrap extends AbstractTrapItem {
     private final StatusEffect effect;
     private final int length;
 

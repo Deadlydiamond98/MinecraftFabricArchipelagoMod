@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class BeeTrap extends AbstractAPItem {
+public class BeeTrap extends AbstractTrapItem {
     @Override
     public void applyReward(ServerPlayerEntity player) {
         for (int i = 0; i < 6; i++) {

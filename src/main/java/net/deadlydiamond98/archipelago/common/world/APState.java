@@ -40,7 +40,7 @@ public class APState<T> {
 
     public <V> void set(V value, Class<V> type) {
         if (get(type) != null) {
-            this.currentVal = (T) value;
+            set((T) value);
         }
     }
 

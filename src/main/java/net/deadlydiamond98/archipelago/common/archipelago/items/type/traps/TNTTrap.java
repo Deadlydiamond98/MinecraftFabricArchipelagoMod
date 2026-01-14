@@ -8,7 +8,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class TNTTrap extends AbstractAPItem {
+public class TNTTrap extends AbstractTrapItem {
     @Override
     public void applyReward(ServerPlayerEntity player) {
         World world = player.getWorld();

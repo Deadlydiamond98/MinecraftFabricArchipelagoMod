@@ -6,7 +6,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class RandomEffectTrap extends AbstractAPItem {
+public class RandomEffectTrap extends AbstractTrapItem {
     // Todo: Make this actually choose a random effect
 
     @Override

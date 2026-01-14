@@ -11,7 +11,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-public class TeleportTrap extends AbstractAPItem {
+public class TeleportTrap extends AbstractTrapItem {
     @Override
     public void applyReward(ServerPlayerEntity player) {
         World world = player.getWorld();
