@@ -1,6 +1,6 @@
 package net.deadlydiamond98.archipelago.common.world;
 
-import net.deadlydiamond98.archipelago.common.archipelago.items.SavedArchipelagoItems;
+import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.nbt.*;
@@ -143,23 +143,33 @@ public class APPersistentState extends PersistentState {
         }
 
         states.progressiveLevelChecks.putAll(APState.read(nbt, "progressiveLevelChecks", states, NbtCompound::getInt));
-        for (String item : SavedArchipelagoItems.PERSISTENT_STATE_PROGRESSIVES) {
-            if (!states.progressiveLevelChecks.containsKey(item)) {
-                states.progressiveLevelChecks.put(item, new APState<>(0, states));
-            }
-        }
-
         states.toggleChecks.putAll(APState.read(nbt, "toggleChecks", states, NbtCompound::getBoolean));
-        for (String item : SavedArchipelagoItems.PERSISTENT_STATE_BOOLEANS) {
-            if (!states.toggleChecks.containsKey(item)) {
-                states.toggleChecks.put(item, new APState<>(false, states));
-            }
-        }
 
         states.allChecks.putAll(states.progressiveLevelChecks);
         states.allChecks.putAll(states.toggleChecks);
 
         return states;
+    }
+
+    /**
+     * Adds Checks that might be missing in Persistent State
+     */
+    public void addMissingChecks() {
+        for (String item : SavedArchipelagoItems.PERSISTENT_STATE_PROGRESSIVES) {
+            if (!this.progressiveLevelChecks.containsKey(item)) {
+                this.progressiveLevelChecks.put(item, new APState<>(0, this));
+            }
+        }
+
+        for (String item : SavedArchipelagoItems.PERSISTENT_STATE_BOOLEANS) {
+            if (!this.toggleChecks.containsKey(item)) {
+                this.toggleChecks.put(item, new APState<>(false, this));
+            }
+        }
+
+        this.allChecks.putAll(this.progressiveLevelChecks);
+        this.allChecks.putAll(this.toggleChecks);
+        this.markDirty();
     }
 
     /**

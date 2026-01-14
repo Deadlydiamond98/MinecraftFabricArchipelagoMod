@@ -8,20 +8,27 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class APItemUtil {
+    public static final Map<String, List<Item>> BOOLEAN_ITEMS = new HashMap<>();
     public static final Map<String, HashMap<Item, Integer>> PROGRESSIVE_ITEMS = new HashMap<>();
     public static final Set<String> PROGRESSIVE_ITEM_IDS = new HashSet<>();
+    public static final Set<String> BOOLEAN_ITEM_IDS = new HashSet<>();
 
     public static boolean allowCrafting(ItemStack stack) {
         AtomicBoolean bl = new AtomicBoolean(true);
         PROGRESSIVE_ITEMS.forEach((key, items) -> {
-            if (checkIfRecipeUnlocked(stack, APPersistentState.get().getIntCheckValue(key), items)) {
+            if (checkIfProgressiveRecipeUnlocked(stack, APPersistentState.get().getIntCheckValue(key), items)) {
+                bl.set(false);
+            }
+        });
+        BOOLEAN_ITEMS.forEach((key, items) -> {
+            if (items.contains(stack.getItem()) && !APPersistentState.get().getBooleanCheckValue(key)) {
                 bl.set(false);
             }
         });
         return bl.get();
     }
 
-    private static boolean checkIfRecipeUnlocked(ItemStack stack, int lvl, Map<Item, Integer> map) {
+    private static boolean checkIfProgressiveRecipeUnlocked(ItemStack stack, int lvl, Map<Item, Integer> map) {
         Integer tier = map.get(stack.getItem());
         return !(tier == null || lvl >= tier);
     }

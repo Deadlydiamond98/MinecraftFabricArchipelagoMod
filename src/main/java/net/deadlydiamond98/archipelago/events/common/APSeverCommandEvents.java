@@ -1,7 +1,7 @@
 package net.deadlydiamond98.archipelago.events.common;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.events.common.commands.APConnectionCommands;
 import net.deadlydiamond98.archipelago.events.common.commands.APTextClientCommands;
 import net.deadlydiamond98.archipelago.util.APServerUtil;

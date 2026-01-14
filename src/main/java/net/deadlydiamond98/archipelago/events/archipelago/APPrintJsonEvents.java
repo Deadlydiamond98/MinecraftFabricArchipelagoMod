@@ -6,7 +6,7 @@ import io.github.archipelagomw.Print.APPrintPart;
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.PrintJSONEvent;
 import io.github.archipelagomw.flags.NetworkItem;
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.deadlydiamond98.koalalib.util.ColorHelper;
 import net.minecraft.text.MutableText;

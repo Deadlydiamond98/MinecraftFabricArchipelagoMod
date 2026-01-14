@@ -1,15 +1,9 @@
 package net.deadlydiamond98.archipelago.util;
 
-import net.deadlydiamond98.archipelago.common.archipelago.locations.ArchipelagoLocations;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.MutableText;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 

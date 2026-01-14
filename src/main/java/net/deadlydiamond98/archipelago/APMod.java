@@ -1,10 +1,11 @@
 package net.deadlydiamond98.archipelago;
 
 
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
-import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoReconnector;
-import net.deadlydiamond98.archipelago.common.archipelago.items.APItemDataLoader;
-import net.deadlydiamond98.archipelago.common.archipelago.items.SavedArchipelagoItems;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
+import net.deadlydiamond98.archipelago.archipelago.items.APItemDataLoader;
+import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
+import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerPlayConnectionEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerWorldEvents;
@@ -51,7 +52,7 @@ public class APMod implements ModInitializer {
 
 	// TODO: REMOVE THIS IN FAVOR OF ARCHIPELAGO.RUN
 	public static @Nullable Archipelago apClient() {
-		return (Archipelago) Archipelago.client;
+		return Archipelago.archipelago;
 	}
 
 	public static boolean isModLoaded(String modid) {

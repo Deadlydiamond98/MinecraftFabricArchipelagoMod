@@ -3,7 +3,7 @@ package net.deadlydiamond98.archipelago.events.common.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;

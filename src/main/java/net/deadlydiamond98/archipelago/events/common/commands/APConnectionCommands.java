@@ -4,8 +4,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
-import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoReconnector;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -77,7 +77,7 @@ public class APConnectionCommands {
                 .executes(context -> {
                     Archipelago client = APMod.apClient();
                     if (client != null) {
-                        client.disconnect();
+                        client.close();
                         return 1;
                     }
                     return 0;
@@ -88,7 +88,7 @@ public class APConnectionCommands {
                 .executes(context -> {
                     Archipelago client = APMod.apClient();
                     if (client != null) {
-                        client.disconnect();
+                        client.close();
                         return 1;
                     }
                     return 0;

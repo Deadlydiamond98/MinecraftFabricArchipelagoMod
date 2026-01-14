@@ -1,7 +1,7 @@
 package net.deadlydiamond98.archipelago.util;
 
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
-import net.deadlydiamond98.archipelago.common.archipelago.locations.ArchipelagoLocations;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;

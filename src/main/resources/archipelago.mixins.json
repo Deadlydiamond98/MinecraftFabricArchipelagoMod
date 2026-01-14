@@ -10,11 +10,20 @@
   "mixins": [
     "common.advancement.PlayerAdvancementTrackerMixin",
     "common.block.BlastFurnaceBlockMixin",
+    "common.block.BrewingStandBlockMixin",
+    "common.block.EnchantingTableBlockMixin",
     "common.block.FurnaceBlockMixin",
+    "common.block.SmithingTableBlockMixin",
     "common.block.SmokerFurnaceBlockMixin",
+    "common.block.WitherSkullBlockMixin",
     "common.entity.LivingEntityMixin",
+    "common.entity.PiglinBrainMixin",
     "common.entity.PlayerEntityMixin",
-    "common.handler.CraftingScreenHandlerMixin"
+    "common.entity.VillagerEntityMixin",
+    "common.entity.WanderingTraderEntityMixin",
+    "common.entity.WitherEntityMixin",
+    "common.handler.CraftingScreenHandlerMixin",
+    "common.handler.SmithingScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

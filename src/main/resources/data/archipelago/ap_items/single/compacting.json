@@ -1,0 +1,13 @@
+{
+  "mod": "archipelago",
+  "entries": [
+    "minecraft:coal_block",
+    "minecraft:iron_block",
+    "minecraft:gold_block",
+    "minecraft:copper_block",
+    "minecraft:diamond_block",
+    "minecraft:netherite_block",
+    "minecraft:emerald_block",
+    "minecraft:redstone_block"
+  ]
+}

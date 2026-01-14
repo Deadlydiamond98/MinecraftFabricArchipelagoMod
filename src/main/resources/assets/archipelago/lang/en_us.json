@@ -4,6 +4,40 @@
   "archipelago.connection.failed": "Failed to Connect to Server, please try again!",
   "archipelago.connection.no_connection": "You aren't Currently Connected to an Archipelago Server!",
 
+  "archipelago.check.trading": "Trading hasn't been unlocked",
+  "archipelago.check.wither": "The Wither Fight hasn't been unlocked",
+
+
+
+  "advancements.legacy.root.title": "Legacy",
+  "advancements.legacy.root.description": "Root Advancement for Archipelago Advancements based off removed/legacy Minecraft Advancements",
+
+  "advancements.legacy.mine_wood.title": "Getting Wood",
+  "advancements.legacy.mine_wood.description": "Attack a tree until a block of wood pops out",
+
+  "advancements.legacy.has_crafting_table.title": "Benchmarking",
+  "advancements.legacy.has_crafting_table.description": "Craft a workbench with four blocks of planks",
+
+  "advancements.legacy.wood_pickaxe.title": "Time to Mine!",
+  "advancements.legacy.wood_pickaxe.description": "Use planks and sticks to make a pickaxe",
+
+  "advancements.legacy.has_furnace.title": "Hot Topic",
+  "advancements.legacy.has_furnace.description": "Construct a furnace out of eight cobblestone blocks",
+
+  "advancements.legacy.wood_hoe.title": "Time to Farm!",
+  "advancements.legacy.wood_hoe.description": "Use planks and sticks to make a hoe",
+
+  "advancements.legacy.get_bread.title": "Bake Bread",
+  "advancements.legacy.get_bread.description": "Turn wheat into bread",
+
+  "advancements.legacy.wood_sword.title": "Time to Strike!",
+  "advancements.legacy.wood_sword.description": "Use planks and sticks to make a sword",
+
+
+
+
+
+
   "archipelago.main.config.category": "Archipelago Mod",
 
   "archipelago.main.config.chatMessagesAppearInClient": "Send Chat Messages to Client",

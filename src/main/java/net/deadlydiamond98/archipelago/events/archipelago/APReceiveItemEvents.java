@@ -2,8 +2,8 @@ package net.deadlydiamond98.archipelago.events.archipelago;
 
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.ReceiveItemEvent;
-import net.deadlydiamond98.archipelago.common.archipelago.items.ArchipelagoItems;
-import net.deadlydiamond98.archipelago.common.archipelago.items.type.AbstractAPItem;
+import net.deadlydiamond98.archipelago.archipelago.items.ArchipelagoItems;
+import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 

@@ -3,7 +3,7 @@ package net.deadlydiamond98.archipelago.events.archipelago;
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.network.ConnectionResult;
-import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 
@@ -21,7 +21,7 @@ public class APConnectEvents {
     }
 
     public void triggerSlotDataCheck(String id, int slotValue) {
-        if (slotValue != 0) {
+        if (slotValue == 0) {
             APPersistentState.get().triggerCheck(id);
         }
     }
