@@ -6,9 +6,8 @@ import io.github.archipelagomw.Print.APPrintPart;
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.PrintJSONEvent;
 import io.github.archipelagomw.flags.NetworkItem;
-import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoClient;
-import net.deadlydiamond98.archipelago.util.APMessageUtil;
+import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.deadlydiamond98.koalalib.util.ColorHelper;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
@@ -31,14 +30,14 @@ public class APPrintJsonEvents {
 
     @ArchipelagoEventListener
     public void sendTextClientMessages(PrintJSONEvent event) {
-        ArchipelagoClient client = APMod.apClient();
-
-        if (client != null && event.apPrint.slot != client.getSlot()) {
-            APMessageUtil.sendMessage(getText(client, event.apPrint));
-        }
+        Archipelago.run(archipelago -> {
+            if (event.apPrint.slot != archipelago.getSlot()) {
+                APServerUtil.sendMessage(getText(archipelago, event.apPrint));
+            }
+        });
     }
 
-    private static MutableText getText(ArchipelagoClient client, APPrint apPrint) {
+    private static MutableText getText(Archipelago client, APPrint apPrint) {
         MutableText message = Text.empty();
 
         for (APPrintPart part : apPrint.parts) {
@@ -55,7 +54,7 @@ public class APPrintJsonEvents {
         return message;
     }
 
-    private static int getTextColor(ArchipelagoClient client, APPrintPart part) {
+    private static int getTextColor(Archipelago client, APPrintPart part) {
         if (part.color == APPrintColor.none && part.type != null) {
             return switch (part.type) {
                 case playerID -> client.getMyName().equals(part.text) ? 0xEE00EE : 0xFAFAD2;

@@ -4,8 +4,8 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.deadlydiamond98.archipelago.common.effects.UnremovableEffect;
-import net.deadlydiamond98.archipelago.common.world.APPersistentStates;
+import net.deadlydiamond98.archipelago.common.effects.UnremovableStatusEffect;
+import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
@@ -24,6 +24,15 @@ import java.util.List;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
+    /*
+
+    This Mixin is used for doing various things on the Living Entity
+        - Prevents all effects that are un-removable from being removed, so milk can't be used to bypass them
+        - Makes all blocks Slippery when under the Frost Footed Effect
+        - Disables the ability to Sprint if the check isn't received!
+
+     */
+
     // Prevents Certain Effects from Being Removed with things like Milk ///////////////////////////////////////////////
 
     @Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
@@ -31,7 +40,7 @@ public abstract class LivingEntityMixin {
 
     @WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;onStatusEffectRemoved(Lnet/minecraft/entity/effect/StatusEffectInstance;)V"))
     private boolean archipelago$clearStatusEffects(LivingEntity instance, StatusEffectInstance effect) {
-        if (effect.getEffectType() instanceof UnremovableEffect) {
+        if (effect.getEffectType() instanceof UnremovableStatusEffect) {
             archipelago$removedPersistentEffects.add(effect);
         }
         return true;
@@ -65,7 +74,7 @@ public abstract class LivingEntityMixin {
 
     @WrapMethod(method = "setSprinting")
     private void archipelago$setSprinting(boolean sprinting, Operation<Void> original) {
-        APPersistentStates states = APPersistentStates.getPersistentStates();
+        APPersistentState states = APPersistentState.get();
         if (states.sprint.get()) {
             original.call(sprinting);
         } else {

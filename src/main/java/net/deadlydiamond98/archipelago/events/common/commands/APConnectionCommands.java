@@ -4,9 +4,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoClient;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
-import net.deadlydiamond98.archipelago.util.APMessageUtil;
+import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoReconnector;
+import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -75,7 +75,7 @@ public class APConnectionCommands {
         // Disconnect Command //////////////////////////////////////////////////////////////////////////////////////////
         dispatcher.register(start.then(CommandManager.literal("disconnect")
                 .executes(context -> {
-                    ArchipelagoClient client = APMod.apClient();
+                    Archipelago client = APMod.apClient();
                     if (client != null) {
                         client.disconnect();
                         return 1;
@@ -86,7 +86,7 @@ public class APConnectionCommands {
 
         dispatcher.register(CommandManager.literal("disconnect")
                 .executes(context -> {
-                    ArchipelagoClient client = APMod.apClient();
+                    Archipelago client = APMod.apClient();
                     if (client != null) {
                         client.disconnect();
                         return 1;
@@ -144,7 +144,7 @@ public class APConnectionCommands {
 
 
     public static int connectToArchipelago(String apServer, String player, String password) {
-        ArchipelagoClient client = APMod.apClient();
+        Archipelago client = APMod.apClient();
 
         if (client != null) {
             client.setName(player);
@@ -154,7 +154,7 @@ public class APConnectionCommands {
                     client.connect(apServer);
                     ArchipelagoReconnector.updateLastConnectedServer(apServer);
                 } else {
-                    APMessageUtil.sendMessage(Text.translatable("archipelago.connection.failed"));
+                    APServerUtil.sendMessage(Text.translatable("archipelago.connection.failed"));
                     return 0;
                 }
             } catch (URISyntaxException e) {

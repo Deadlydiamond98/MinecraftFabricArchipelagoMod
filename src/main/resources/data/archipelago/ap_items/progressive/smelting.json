@@ -1,0 +1,8 @@
+{
+  "mod": "archipelago",
+  "entries": {
+    "minecraft:furnace": 1,
+    "minecraft:blast_furnace": 2,
+    "minecraft:smoker": 2
+  }
+}

@@ -2,32 +2,27 @@ package net.deadlydiamond98.archipelago.events.archipelago;
 
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.ReceiveItemEvent;
-import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.archipelago.maps.ArchipelagoItems;
-import net.deadlydiamond98.archipelago.archipelago.apitem.AbstractAPItem;
-import net.deadlydiamond98.archipelago.common.world.APPersistentStates;
-import net.minecraft.server.MinecraftServer;
+import net.deadlydiamond98.archipelago.common.archipelago.items.ArchipelagoItems;
+import net.deadlydiamond98.archipelago.common.archipelago.items.type.AbstractAPItem;
+import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.util.APServerUtil;
 
 public class APReceiveItemEvents {
 
     @ArchipelagoEventListener
     public void receiveItem(ReceiveItemEvent event) {
-        MinecraftServer server = APMod.server;
-
-        if (server != null) {
-            server.execute(() -> {
-                server.getPlayerManager().getPlayerList().forEach(serverPlayer -> {
-                    AbstractAPItem item = ArchipelagoItems.ITEMS.get(event.getItemName());
-                    if (item != null) {
-                        APPersistentStates states = APPersistentStates.getPersistentStates();
-                        long index = event.getIndex();
-                        if (!states.getItemIndexes().contains(index)) {
-                            item.applyReward(serverPlayer);
-                            states.putItemIndex(index);
-                        }
+        APServerUtil.runOnServer(server -> {
+            server.getPlayerManager().getPlayerList().forEach(serverPlayer -> {
+                AbstractAPItem item = ArchipelagoItems.ITEMS.get(event.getItemName());
+                if (item != null) {
+                    APPersistentState states = APPersistentState.get();
+                    long index = event.getIndex();
+                    if (!states.getItemIndexes().contains(index)) {
+                        item.applyReward(serverPlayer);
+                        states.putItemIndex(index);
                     }
-                });
+                }
             });
-        }
+        });
     }
 }

@@ -1,21 +1,21 @@
 package net.deadlydiamond98.archipelago;
 
 
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoClient;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoSlotData;
+import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoReconnector;
+import net.deadlydiamond98.archipelago.common.archipelago.ArchipelagoSlotData;
+import net.deadlydiamond98.archipelago.common.archipelago.items.APRecipeInfoLoader;
+import net.deadlydiamond98.archipelago.common.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
+import net.deadlydiamond98.archipelago.events.common.APServerPlayConnectionEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerWorldEvents;
 import net.deadlydiamond98.archipelago.events.common.APSeverCommandEvents;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.deadlydiamond98.koalalib.config.KoalaConfigCreator;
 import net.deadlydiamond98.koalalib.updater.KoalaUpdateChecker;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.networking.v1.PacketType;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +24,6 @@ public class APMod implements ModInitializer {
 	public static final String MOD_ID = "archipelago";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	// Server Variable to get Current Server
-	public static @Nullable MinecraftServer server;
 	// Archipelago Slot Data
 	public static @Nullable ArchipelagoSlotData slotData;
 
@@ -33,7 +31,10 @@ public class APMod implements ModInitializer {
 	public void onInitialize() {
 		KoalaConfigCreator.addModConfig(MOD_ID, APModConfigs.Main.class);
 		KoalaUpdateChecker.addModUpdateChecker(MOD_ID);
-		ArchipelagoReconnector.readLastConnectedServer();
+		ArchipelagoReconnector.readLastConnectedServer(); // TODO: MIGHT REMOVE THIS IN FAVOR OF TYING A SERVER TO A WORLD
+
+		// Register Persistent State Items
+		SavedArchipelagoItems.register();
 
 		// Registry
 		APEffects.register();
@@ -42,12 +43,19 @@ public class APMod implements ModInitializer {
 		APServerWorldEvents.register();
 		APSeverCommandEvents.register();
 		APServerChatEvents.register();
+		APServerPlayConnectionEvents.register();
 
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new APReloadListener());
+		// Data Pack Loader
+		APRecipeInfoLoader.register();
 	}
 
-	public static @Nullable ArchipelagoClient apClient() {
-		return (ArchipelagoClient) ArchipelagoClient.client;
+	public static Identifier id(String path) {
+		return new Identifier(MOD_ID, path);
+	}
+
+	// TODO: REMOVE THIS IN FAVOR OF ARCHIPELAGO.RUN
+	public static @Nullable Archipelago apClient() {
+		return (Archipelago) Archipelago.client;
 	}
 
 	public static boolean isModLoaded(String modid) {

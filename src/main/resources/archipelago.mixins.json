@@ -8,7 +8,7 @@
     "client.controls.MouseMixin"
   ],
   "mixins": [
-    "common.ConditionsContainerMixin",
+    "common.advancement.ConditionsContainerMixin",
     "common.block.BlastFurnaceBlockMixin",
     "common.block.FurnaceBlockMixin",
     "common.block.SmokerFurnaceBlockMixin",

@@ -3,8 +3,8 @@ package net.deadlydiamond98.archipelago.events.common.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoClient;
-import net.deadlydiamond98.archipelago.util.APMessageUtil;
+import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -47,12 +47,12 @@ public class APTextClientCommands {
         dispatcher.register(CommandManager.literal("archipelago").then(CommandManager.literal(command)
                 .then(CommandManager.argument(parameter, StringArgumentType.string())
                         .executes(context -> {
-                            ArchipelagoClient client = APMod.apClient();
+                            Archipelago client = APMod.apClient();
                             if (client != null && client.isConnected()) {
                                 client.sendChat("!" + command + " " + StringArgumentType.getString(context, parameter));
                                 return 1;
                             }
-                            APMessageUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
+                            APServerUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
                             return 0;
                         })
                 )
@@ -65,12 +65,12 @@ public class APTextClientCommands {
     private static void registerAPCommand(CommandDispatcher<ServerCommandSource> dispatcher, String command) {
         dispatcher.register(CommandManager.literal("archipelago").then(CommandManager.literal(command)
                 .executes(context -> {
-                    ArchipelagoClient client = APMod.apClient();
+                    Archipelago client = APMod.apClient();
                     if (client != null && client.isConnected()) {
                         client.sendChat("!" + command);
                         return 1;
                     }
-                    APMessageUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
+                    APServerUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
                     return 0;
                 })
         ));
@@ -83,12 +83,12 @@ public class APTextClientCommands {
         dispatcher.register(CommandManager.literal(command)
                 .then(CommandManager.argument(parameter, StringArgumentType.string())
                         .executes(context -> {
-                            ArchipelagoClient client = APMod.apClient();
+                            Archipelago client = APMod.apClient();
                             if (client != null && client.isConnected()) {
                                 client.sendChat("!" + command + " " + StringArgumentType.getString(context, parameter));
                                 return 1;
                             }
-                            APMessageUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
+                            APServerUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
                             return 0;
                         })
                 )
@@ -101,12 +101,12 @@ public class APTextClientCommands {
     private static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher, String command) {
         dispatcher.register(CommandManager.literal(command)
                 .executes(context -> {
-                    ArchipelagoClient client = APMod.apClient();
+                    Archipelago client = APMod.apClient();
                     if (client != null && client.isConnected()) {
                         client.sendChat("!" + command);
                         return 1;
                     }
-                    APMessageUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
+                    APServerUtil.sendMessage(Text.translatable("archipelago.connection.no_connection"));
                     return 0;
                 })
         );

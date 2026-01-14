@@ -1,4 +1,6 @@
 {
+  "archipelago.connection.error": "Connection Error: %s",
+  "archipelago.connection.reconnecting": "Reconnecting in %s Seconds!",
   "archipelago.connection.failed": "Failed to Connect to Server, please try again!",
   "archipelago.connection.no_connection": "You aren't Currently Connected to an Archipelago Server!",
 

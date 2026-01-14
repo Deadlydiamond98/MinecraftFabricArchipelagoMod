@@ -14,6 +14,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Mouse.class)
 public abstract class MouseMixin {
+
+    /*
+
+    This Mixin is used for changing effect of mouse movement when under certain effects
+        - Reverses Mouse Direction when under Disorientation Effect
+        - Stops Mouse Movement when under Stun Effect
+
+     */
+
     @Shadow @Final private MinecraftClient client;
     @Shadow private double cursorDeltaX;
     @Shadow private double cursorDeltaY;

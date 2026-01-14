@@ -15,6 +15,15 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(KeyBinding.class)
 public abstract class KeybindingMixin implements IKeybindSwap {
+
+    /*
+
+    This Mixin is used for changing controls with certain effects
+        - Reverses Input when under Confusion Effect
+        - Stops Gameplay and Movement inputs when under Stun Effect
+
+     */
+
     @Shadow public abstract String getTranslationKey();
     @Shadow @Final public static String GAMEPLAY_CATEGORY;
     @Shadow @Final public static String MOVEMENT_CATEGORY;
