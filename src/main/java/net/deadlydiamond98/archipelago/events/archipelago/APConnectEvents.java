@@ -21,7 +21,7 @@ public class APConnectEvents {
     }
 
     public void triggerSlotDataCheck(String id, int slotValue) {
-        if (slotValue == 0) {
+        if (slotValue != 0) {
             APPersistentState.get().triggerCheck(id);
         }
     }

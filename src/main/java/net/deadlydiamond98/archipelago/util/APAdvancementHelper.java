@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.util;
 
+import net.deadlydiamond98.archipelago.common.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.common.archipelago.locations.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.advancement.Advancement;
@@ -26,6 +27,10 @@ public class APAdvancementHelper {
             return;
         }
 
+        Archipelago.run(archipelago -> {
+            archipelago.checkLocation(id);
+        });
+
         APServerUtil.runOnServer(server -> {
             for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
                 Advancement advancement = server.getAdvancementLoader().get(advancementID);
@@ -36,7 +41,6 @@ public class APAdvancementHelper {
                     });
                 }
             }
-
         });
     }
 }
