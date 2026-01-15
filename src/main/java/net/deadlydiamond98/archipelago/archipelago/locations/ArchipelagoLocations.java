@@ -11,6 +11,7 @@ public class ArchipelagoLocations {
 
     static {
         addVanillaAdvancements();
+        addLegacyAdvancements();
     }
 
     private static void addVanillaAdvancements() {
@@ -128,7 +129,9 @@ public class ArchipelagoLocations {
         addLocation(new Identifier("minecraft:end/respawn_dragon"));
         addLocation(new Identifier("minecraft:end/elytra"));
         addLocation(new Identifier("minecraft:end/dragon_breath"));
+    }
 
+    private static void addLegacyAdvancements() {
         // Custom Archipelago Advancements
         addLocation(APMod.id("legacy/getting_wood"));
         addLocation(APMod.id("legacy/has_crafting_table"));
@@ -139,6 +142,12 @@ public class ArchipelagoLocations {
         addLocation(APMod.id("legacy/wood_sword"));
         addLocation(APMod.id("legacy/the_lie"));
         addLocation(APMod.id("legacy/get_fish"));
+        addLocation(APMod.id("legacy/kill_cow"));
+        addLocation(APMod.id("legacy/on_a_rail"));
+        addLocation(APMod.id("legacy/overkill"));
+        addLocation(APMod.id("legacy/get_bookshelf"));
+        addLocation(APMod.id("legacy/eat_golden_apple"));
+        addLocation(APMod.id("legacy/when_pigs_fly"));
     }
 
     private static void addLocation(Identifier id) {

@@ -1,0 +1,23 @@
+{
+  "parent": "archipelago:legacy/wood_pickaxe",
+  "criteria": {
+    "requirement": {
+      "trigger": "archipelago:eat_golden_apple"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    "title": {
+      "translate": "advancements.legacy.eat_gapple.title"
+    },
+    "description": {
+      "translate": "advancements.legacy.eat_gapple.description"
+    },
+    "announce_to_chat": true,
+    "frame": "task",
+    "hidden": false,
+    "show_toast": true
+  }
+}

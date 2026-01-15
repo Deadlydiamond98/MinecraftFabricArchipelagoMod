@@ -1,0 +1,23 @@
+{
+  "parent": "archipelago:legacy/kill_cow",
+  "criteria": {
+    "requirement": {
+      "trigger": "archipelago:falling_with_pig"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:saddle"
+    },
+    "title": {
+      "translate": "advancements.legacy.when_pigs_fly.title"
+    },
+    "description": {
+      "translate": "advancements.legacy.when_pigs_fly.description"
+    },
+    "announce_to_chat": true,
+    "frame": "task",
+    "hidden": false,
+    "show_toast": true
+  }
+}

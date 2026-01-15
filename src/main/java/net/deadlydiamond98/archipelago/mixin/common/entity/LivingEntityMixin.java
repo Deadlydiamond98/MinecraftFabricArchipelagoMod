@@ -6,16 +6,21 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.deadlydiamond98.archipelago.common.effects.UnremovableStatusEffect;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
@@ -79,6 +84,15 @@ public abstract class LivingEntityMixin {
             original.call(sprinting);
         } else {
             original.call(false);
+        }
+    }
+
+    // Overpowered Advancement Trigger /////////////////////////////////////////////////////////////////////////////////
+
+    @Inject(method = "applyFoodEffects", at = @At("HEAD"))
+    private void archipelago$applyFoodEffects(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
+        if (stack.isOf(Items.ENCHANTED_GOLDEN_APPLE) && targetEntity instanceof PlayerEntity player) {
+            APAdvancements.EAT_GOLDEN_APPLE.trigger(player);
         }
     }
 }

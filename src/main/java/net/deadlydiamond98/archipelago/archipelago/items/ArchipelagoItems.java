@@ -79,7 +79,10 @@ public class ArchipelagoItems {
         ITEMS.put("Warped Planks", new ItemstackAPItem(Blocks.WARPED_PLANKS, 16));
         ITEMS.put("Bamboo Planks", new ItemstackAPItem(Blocks.BAMBOO_PLANKS, 16));
 
-        ITEMS.put("Cobblestone", new ItemstackAPItem(Blocks.COBBLESTONE, 64));
+        ITEMS.put("Stone", new ItemstackAPItem(Blocks.STONE, 64));
+        ITEMS.put("Andesite", new ItemstackAPItem(Blocks.ANDESITE, 16));
+        ITEMS.put("Diorite", new ItemstackAPItem(Blocks.DIORITE, 16));
+        ITEMS.put("Granite", new ItemstackAPItem(Blocks.GRANITE, 16));
 
         // Misc
         ITEMS.put("Saddle", new ItemstackAPItem(Items.SADDLE, 1));

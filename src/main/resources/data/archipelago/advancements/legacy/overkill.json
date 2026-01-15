@@ -1,0 +1,30 @@
+{
+  "parent": "archipelago:legacy/has_furnace",
+  "criteria": {
+    "requirement": {
+      "conditions": {
+        "damage": {
+          "dealt": {
+            "min": 18
+          }
+        }
+      },
+      "trigger": "minecraft:player_hurt_entity"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_sword"
+    },
+    "title": {
+      "translate": "advancements.legacy.overkill.title"
+    },
+    "description": {
+      "translate": "advancements.legacy.overkill.description"
+    },
+    "announce_to_chat": true,
+    "frame": "task",
+    "hidden": false,
+    "show_toast": true
+  }
+}

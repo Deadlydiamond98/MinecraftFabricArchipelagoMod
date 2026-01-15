@@ -1,0 +1,23 @@
+{
+  "parent": "archipelago:legacy/has_furnace",
+  "criteria": {
+    "requirement": {
+      "trigger": "archipelago:on_a_rail"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "minecraft:rail"
+    },
+    "title": {
+      "translate": "advancements.legacy.on_a_rail.title"
+    },
+    "description": {
+      "translate": "advancements.legacy.on_a_rail.description"
+    },
+    "announce_to_chat": true,
+    "frame": "task",
+    "hidden": false,
+    "show_toast": true
+  }
+}

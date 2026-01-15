@@ -9,8 +9,8 @@
 
 
 
-  "advancements.legacy.root.title": "Legacy",
-  "advancements.legacy.root.description": "Root Advancement for Archipelago Advancements based off removed/legacy Minecraft Advancements",
+  "advancements.legacy.root.title": "Legacy and Bedrock",
+  "advancements.legacy.root.description": "Root Advancement for Archipelago Advancements based off 1.12 Achievements and Bedrock Achievements",
 
   "advancements.legacy.mine_wood.title": "Getting Wood",
   "advancements.legacy.mine_wood.description": "Attack a tree until a block of wood pops out",
@@ -38,6 +38,24 @@
 
   "advancements.legacy.get_fish.title": "Delicious Fish",
   "advancements.legacy.get_fish.description": "Catch and cook fish!",
+
+  "advancements.legacy.kill_cow.title": "Cow Tipper",
+  "advancements.legacy.kill_cow.description": "Harvest some leather",
+
+  "advancements.legacy.on_a_rail.title": "On A Rail",
+  "advancements.legacy.on_a_rail.description": "Travel by minecart at least 1 km from where you started",
+
+  "advancements.legacy.overkill.title": "Overkill",
+  "advancements.legacy.overkill.description": "Deal nine hearts of damage in a single hit",
+
+  "advancements.legacy.get_bookshelf.title": "Librarian",
+  "advancements.legacy.get_bookshelf.description": "Build some bookshelves to improve your enchantment table",
+
+  "advancements.legacy.eat_gapple.title": "Overpowered",
+  "advancements.legacy.eat_gapple.description": "Build/Eat a Notch apple",
+
+  "advancements.legacy.when_pigs_fly.title": "When Pigs Fly",
+  "advancements.legacy.when_pigs_fly.description": "Fly a pig off a cliff",
 
 
 

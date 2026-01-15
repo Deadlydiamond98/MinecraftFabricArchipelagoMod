@@ -16,6 +16,7 @@
     "common.block.SmithingTableBlockMixin",
     "common.block.SmokerFurnaceBlockMixin",
     "common.block.WitherSkullBlockMixin",
+    "common.entity.EntityMixin",
     "common.entity.LivingEntityMixin",
     "common.entity.PiglinBrainMixin",
     "common.entity.PlayerEntityMixin",
