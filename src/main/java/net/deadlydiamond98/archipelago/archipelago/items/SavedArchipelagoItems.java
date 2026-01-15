@@ -19,30 +19,33 @@ public class SavedArchipelagoItems {
         // Abilities
         register("Swim", "swim", true);
         register("Sprint", "sprint", true);
-        register("Villager Trading", "trading", true);
-        register("Piglin Bartering", "bartering", true);
-        register("Wither Summoning", "wither_summoning", true);
 
         registerWithJson("Sleeping", "spawn_point", true);
+        register("Wither Summoning", "wither_summoning", true);
+        register("Villager Trading", "trading", true);
+        register("Piglin Bartering", "bartering", true);
+
+        registerWithJson("Brewing", "brewing", true);
+        registerWithJson("Enchanting", "enchanting", true);
+        registerWithJson("Smithing", "smithing", true);
 
         // Single Use Recipes
         registerWithJson("Bucket Recipes", "bucket", true);
         registerWithJson("Flint and Steel Recipes", "igniter", true);
+        registerWithJson("Minecart Recipes", "minecarts", true);
         registerWithJson("Brush Recipes", "brush", true);
         registerWithJson("Spyglass Recipes", "spyglass", true);
         registerWithJson("Shear Recipes", "shears", true);
         registerWithJson("Eye of Ender Recipes", "ender_eye", true);
-        registerWithJson("Minecart Recipes", "minecarts", true);
+        registerWithJson("Fishing Rod Recipes", "fishing", true);
         registerWithJson("Glass Bottle Recipes", "bottles", true);
         registerWithJson("Resource Compacting Recipes", "compacting", true);
 
-        registerWithJson("Enchanting", "enchanting", true);
-        registerWithJson("Brewing", "brewing", true);
-        registerWithJson("Smithing", "smithing", true);
 
         // Progressive Crafting
         registerWithJson("Progressive Tools", "tools", false);
         registerWithJson("Progressive Weapons", "weapons", false);
+        registerWithJson("Progressive Archery", "archery", false);
         registerWithJson("Progressive Smelting", "smelting", false);
         registerWithJson("Progressive Armor", "armor", false);
     }

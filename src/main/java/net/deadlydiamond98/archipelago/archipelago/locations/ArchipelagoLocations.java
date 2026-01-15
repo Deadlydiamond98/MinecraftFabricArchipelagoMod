@@ -2,6 +2,7 @@ package net.deadlydiamond98.archipelago.archipelago.locations;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import net.deadlydiamond98.archipelago.APMod;
 import net.minecraft.util.Identifier;
 
 public class ArchipelagoLocations {
@@ -127,6 +128,17 @@ public class ArchipelagoLocations {
         addLocation(new Identifier("minecraft:end/respawn_dragon"));
         addLocation(new Identifier("minecraft:end/elytra"));
         addLocation(new Identifier("minecraft:end/dragon_breath"));
+
+        // Custom Archipelago Advancements
+        addLocation(APMod.id("legacy/getting_wood"));
+        addLocation(APMod.id("legacy/has_crafting_table"));
+        addLocation(APMod.id("legacy/wood_pickaxe"));
+        addLocation(APMod.id("legacy/has_furnace"));
+        addLocation(APMod.id("legacy/wood_hoe"));
+        addLocation(APMod.id("legacy/get_bread"));
+        addLocation(APMod.id("legacy/wood_sword"));
+        addLocation(APMod.id("legacy/the_lie"));
+        addLocation(APMod.id("legacy/get_fish"));
     }
 
     private static void addLocation(Identifier id) {

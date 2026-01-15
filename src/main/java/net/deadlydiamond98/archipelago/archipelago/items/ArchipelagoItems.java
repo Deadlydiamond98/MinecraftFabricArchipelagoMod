@@ -16,31 +16,75 @@ public class ArchipelagoItems {
     public static final Map<String, AbstractAPItem> ITEMS = new HashMap<>();
 
     static {
-        // Filler
+        // Filler //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Experience
         ITEMS.put("5 Experience", new ExperienceAPItem(5, 0));
         ITEMS.put("10 Experience", new ExperienceAPItem(10, 0));
         ITEMS.put("1 Experience Level", new ExperienceAPItem(0, 1));
         ITEMS.put("2 Experience Levels", new ExperienceAPItem(0, 2));
         ITEMS.put("5 Experience Levels", new ExperienceAPItem(0, 5));
 
-        ITEMS.put("4 Emeralds", new ItemstackAPItem(Items.EMERALD, 4));
-        ITEMS.put("8 Emeralds", new ItemstackAPItem(Items.EMERALD, 8));
-
+        // Arrows
         ITEMS.put("1 Arrow", new ItemstackAPItem(Items.ARROW, 1));
         ITEMS.put("8 Arrows", new ItemstackAPItem(Items.ARROW, 8));
         ITEMS.put("16 Arrows", new ItemstackAPItem(Items.ARROW, 16));
         ITEMS.put("32 Arrows", new ItemstackAPItem(Items.ARROW, 32));
 
-        ITEMS.put("1 Netherite Scrap", new ItemstackAPItem(Items.NETHERITE_SCRAP, 1));
-        ITEMS.put("2 Netherite Scrap", new ItemstackAPItem(Items.NETHERITE_SCRAP, 2));
-
+        // Materials
+        ITEMS.put("4 Emeralds", new ItemstackAPItem(Items.EMERALD, 4));
+        ITEMS.put("8 Emeralds", new ItemstackAPItem(Items.EMERALD, 8));
+        ITEMS.put("Netherite Scrap", new ItemstackAPItem(Items.NETHERITE_SCRAP, 2));
         ITEMS.put("Redstone Dust", new ItemstackAPItem(Items.REDSTONE, 8));
-        ITEMS.put("Rotten Flesh", new ItemstackAPItem(Items.ROTTEN_FLESH, 8));
+        ITEMS.put("Lapis Lazuli", new ItemstackAPItem(Items.LAPIS_LAZULI, 8));
 
+        // Ores
+        ITEMS.put("Coal Ore Vein", new ItemstackAPItem(Blocks.IRON_ORE, 6));
+        ITEMS.put("Iron Ore Vein", new ItemstackAPItem(Blocks.IRON_ORE, 4));
+        ITEMS.put("Gold Ore Vein", new ItemstackAPItem(Blocks.GOLD_ORE, 4));
+        ITEMS.put("Diamond Ore Vein", new ItemstackAPItem(Blocks.DIAMOND_ORE, 4));
+        ITEMS.put("Emerald Ore Vein", new ItemstackAPItem(Blocks.EMERALD_ORE, 1));
+
+        ITEMS.put("Large Coal Ore Vein", new ItemstackAPItem(Blocks.IRON_ORE, 12));
+        ITEMS.put("Large Iron Ore Vein", new ItemstackAPItem(Blocks.IRON_ORE, 8));
+        ITEMS.put("Large Gold Ore Vein", new ItemstackAPItem(Blocks.GOLD_ORE, 8));
+        ITEMS.put("Large Diamond Ore Vein", new ItemstackAPItem(Blocks.DIAMOND_ORE, 8));
+        ITEMS.put("Large Emerald Ore Vein", new ItemstackAPItem(Blocks.EMERALD_ORE, 2));
+
+        // Foods
+        ITEMS.put("Apples", new ItemstackAPItem(Items.APPLE, 16));
+        ITEMS.put("Golden Carrot", new ItemstackAPItem(Items.APPLE, 16));
+        ITEMS.put("Baked Potato", new ItemstackAPItem(Items.BAKED_POTATO, 16));
+        ITEMS.put("Cookies", new ItemstackAPItem(Items.COOKIE, 16));
+
+        ITEMS.put("Steak", new ItemstackAPItem(Items.COOKED_BEEF, 16));
+        ITEMS.put("Porkchops", new ItemstackAPItem(Items.COOKED_PORKCHOP, 16));
+        ITEMS.put("Chicken", new ItemstackAPItem(Items.COOKED_CHICKEN, 16));
+        ITEMS.put("Mutton", new ItemstackAPItem(Items.COOKED_MUTTON, 16));
+
+        ITEMS.put("Rotten Flesh", new ItemstackAPItem(Items.ROTTEN_FLESH, 8));
+        ITEMS.put("Tropical Fish", new ItemstackAPItem(Items.TROPICAL_FISH, 16));
+        ITEMS.put("Puffer Fish", new ItemstackAPItem(Items.PUFFERFISH, 1));
+        ITEMS.put("Poisonous Potato", new ItemstackAPItem(Items.POISONOUS_POTATO, 16));
         ITEMS.put("Suspicious Stew", new SuspiciousStewAPItem());
 
+        // Blocks
+        ITEMS.put("Oak Planks", new ItemstackAPItem(Blocks.OAK_PLANKS, 16));
+        ITEMS.put("Birch Planks", new ItemstackAPItem(Blocks.BIRCH_PLANKS, 16));
+        ITEMS.put("Spruce Planks", new ItemstackAPItem(Blocks.SPRUCE_PLANKS, 16));
+        ITEMS.put("Jungle Planks", new ItemstackAPItem(Blocks.JUNGLE_PLANKS, 16));
+        ITEMS.put("Acacia Planks", new ItemstackAPItem(Blocks.ACACIA_PLANKS, 16));
+        ITEMS.put("Dark Oak Planks", new ItemstackAPItem(Blocks.DARK_OAK_PLANKS, 16));
+        ITEMS.put("Cherry Planks", new ItemstackAPItem(Blocks.CHERRY_PLANKS, 16));
+        ITEMS.put("Crimson Planks", new ItemstackAPItem(Blocks.CRIMSON_PLANKS, 16));
+        ITEMS.put("Warped Planks", new ItemstackAPItem(Blocks.WARPED_PLANKS, 16));
+        ITEMS.put("Bamboo Planks", new ItemstackAPItem(Blocks.BAMBOO_PLANKS, 16));
 
-        // Traps
+        ITEMS.put("Cobblestone", new ItemstackAPItem(Blocks.COBBLESTONE, 64));
+
+        // Misc
+        ITEMS.put("Saddle", new ItemstackAPItem(Items.SADDLE, 1));
+
+        // Traps ///////////////////////////////////////////////////////////////////////////////////////////////////////
         ITEMS.put("Reverse Controls Trap", new SpecialEffectTrap(APEffects.CONFUSION, 1200));
         ITEMS.put("Inverted Mouse Trap", new SpecialEffectTrap(APEffects.DISORIENTATION, 1200));
         ITEMS.put("Ice Trap", new SpecialEffectTrap(APEffects.FROST_FOOTED, 1200));

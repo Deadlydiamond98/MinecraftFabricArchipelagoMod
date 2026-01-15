@@ -1,0 +1,7 @@
+{
+  "mod": "archipelago",
+  "entries": {
+    "minecraft:bow": 1,
+    "minecraft:cross_bow": 2
+  }
+}
