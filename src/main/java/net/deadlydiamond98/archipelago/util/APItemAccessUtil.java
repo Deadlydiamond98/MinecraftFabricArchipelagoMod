@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class APItemAccessUtil {
-    public static final Map<String, List<Item>> BOOLEAN_ITEMS = new HashMap<>();
+    public static final Map<String, Set<Item>> BOOLEAN_ITEMS = new HashMap<>();
     public static final Map<String, HashMap<Item, Integer>> PROGRESSIVE_ITEMS = new HashMap<>();
     public static final Set<String> PROGRESSIVE_ITEM_IDS = new HashSet<>();
     public static final Set<String> BOOLEAN_ITEM_IDS = new HashSet<>();

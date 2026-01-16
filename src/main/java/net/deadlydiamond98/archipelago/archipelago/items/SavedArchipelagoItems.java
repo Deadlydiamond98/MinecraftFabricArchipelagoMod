@@ -4,10 +4,7 @@ package net.deadlydiamond98.archipelago.archipelago.items;
 import net.deadlydiamond98.archipelago.archipelago.items.type.PersistantStateAPItem;
 import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Creates Checks that are saved to World Data and Checks that load things from datapacks
@@ -59,7 +56,7 @@ public class SavedArchipelagoItems {
         // Add Check to Progressive Items list for loading json data
         if (isBool) {
             APItemAccessUtil.BOOLEAN_ITEM_IDS.add(key);
-            APItemAccessUtil.BOOLEAN_ITEMS.put(key, new ArrayList<>());
+            APItemAccessUtil.BOOLEAN_ITEMS.put(key, new HashSet<>());
         } else {
             APItemAccessUtil.PROGRESSIVE_ITEM_IDS.add(key);
             APItemAccessUtil.PROGRESSIVE_ITEMS.put(key, new HashMap<>());

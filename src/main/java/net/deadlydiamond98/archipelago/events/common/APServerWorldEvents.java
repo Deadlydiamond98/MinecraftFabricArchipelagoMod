@@ -3,6 +3,7 @@ package net.deadlydiamond98.archipelago.events.common;
 import io.github.archipelagomw.Client;
 import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLoader;
 import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
@@ -21,6 +22,9 @@ public class APServerWorldEvents {
         Archipelago.archipelago = new Archipelago();
         APServerUtil.server = server;
         APPersistentState.get().addMissingChecks();
+
+        // Since ItemTags aren't able to be checked when loading the item data initially, it's loaded here
+        APItemDataLoader.processItemTags();
     }
 
     private static void onUnload(MinecraftServer server, ServerWorld serverWorld) {

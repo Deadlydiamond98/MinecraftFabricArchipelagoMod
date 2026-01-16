@@ -3,9 +3,8 @@ package net.deadlydiamond98.archipelago;
 
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
-import net.deadlydiamond98.archipelago.archipelago.items.APItemDataLoader;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
-import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
+import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLoader;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerPlayConnectionEvents;
 import net.deadlydiamond98.archipelago.events.common.APServerWorldEvents;
