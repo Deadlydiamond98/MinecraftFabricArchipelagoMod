@@ -25,6 +25,14 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "maven.modrinth:koala_lib:${koala_lib_version}"
 
+	include "io.github.archipelagomw:Java-Client:${archipelago_client_version}"
+
+	// Includes these since they are Archipelago Dependencies
+	include "com.google.code.gson:gson:2.13.2"
+	include "org.apache.httpcomponents.client5:httpclient5:5.5"
+	include "org.apache.httpcomponents.core5:httpcore5:5.3.6"
+	include "org.java-websocket:Java-WebSocket:1.6.0"
+
 	implementation "io.github.archipelagomw:Java-Client:${archipelago_client_version}"
 }
 
