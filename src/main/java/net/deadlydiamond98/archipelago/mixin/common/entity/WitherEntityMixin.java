@@ -1,13 +1,11 @@
 package net.deadlydiamond98.archipelago.mixin.common.entity;
 
-import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,13 +17,11 @@ public class WitherEntityMixin {
     @Inject(method = "onSummoned", at = @At("TAIL"))
     private void archipelago$onSummoned(CallbackInfo ci) {
         WitherEntity wither = (WitherEntity) (Object) this;
-        if (!APPersistentState.get().getBooleanCheckValue("wither_summoning")) {
+        PlayerEntity player = wither.getWorld().getClosestPlayer(wither, 10);
+
+        if (!APItemAccessUtil.hasCheck(player, "wither_summoning")) {
             archipelago$dropStack(wither, new ItemStack(Blocks.SOUL_SAND, 4));
             archipelago$dropStack(wither, new ItemStack(Blocks.WITHER_SKELETON_SKULL, 3));
-            PlayerEntity player = wither.getWorld().getClosestPlayer(wither, 10);
-            if (player != null && !player.getWorld().isClient()) {
-                player.sendMessage(Text.translatable("archipelago.check.wither").setStyle(Style.EMPTY.withColor(0xFF0000)), true);
-            }
             wither.discard();
         }
     }

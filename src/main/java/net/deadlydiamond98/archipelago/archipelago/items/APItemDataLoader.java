@@ -3,12 +3,11 @@ package net.deadlydiamond98.archipelago.archipelago.items;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
 import net.deadlydiamond98.archipelago.APMod;
-import net.deadlydiamond98.archipelago.util.APItemUtil;
+import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -39,12 +38,12 @@ public class APItemDataLoader implements SimpleSynchronousResourceReloadListener
         manager.getAllNamespaces().forEach(mod -> {
             Identifier path = new Identifier(mod, "ap_items");
             // Gets all Progressive Items from json that need to be locked
-            APItemUtil.PROGRESSIVE_ITEM_IDS.forEach(id -> {
-                Map<Item, Integer> progressiveItems = APItemUtil.PROGRESSIVE_ITEMS.get(id);
+            APItemAccessUtil.PROGRESSIVE_ITEM_IDS.forEach(id -> {
+                Map<Item, Integer> progressiveItems = APItemAccessUtil.PROGRESSIVE_ITEMS.get(id);
                 progressiveItems.putAll(loadProgressive(manager, path, id));
             });
-            APItemUtil.BOOLEAN_ITEM_IDS.forEach(id -> {
-                List<Item> progressiveItems = APItemUtil.BOOLEAN_ITEMS.get(id);
+            APItemAccessUtil.BOOLEAN_ITEM_IDS.forEach(id -> {
+                List<Item> progressiveItems = APItemAccessUtil.BOOLEAN_ITEMS.get(id);
                 progressiveItems.addAll(loadSingle(manager, path, id));
             });
         });

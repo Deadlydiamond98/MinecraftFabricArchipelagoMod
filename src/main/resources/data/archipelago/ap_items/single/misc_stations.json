@@ -1,0 +1,9 @@
+{
+  "mod": "archipelago",
+  "entries": [
+    "minecraft:grindstone",
+    "minecraft:stonecutter",
+    "minecraft:loom",
+    "minecraft:cartography_table"
+  ]
+}

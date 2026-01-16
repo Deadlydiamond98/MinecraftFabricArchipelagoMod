@@ -1,12 +1,10 @@
-package net.deadlydiamond98.archipelago.mixin.common.entity;
+package net.deadlydiamond98.archipelago.mixin.common.entity.merchant;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,12 +17,8 @@ public abstract class VillagerEntityMixin {
     @WrapMethod(method = "interactMob")
     private ActionResult archipelago$interactMob(PlayerEntity player, Hand hand, Operation<ActionResult> original) {
         VillagerEntity trader = (VillagerEntity) (Object) this;
-        if (!APPersistentState.get().getBooleanCheckValue("trading")) {
+        if (!APItemAccessUtil.hasCheck(player, "trading")) {
             this.sayNo();
-            if (!trader.getWorld().isClient()) {
-                player.sendMessage(Text.translatable("archipelago.check.trading").setStyle(Style.EMPTY.withColor(0xFF0000)), true);
-            }
-
             return ActionResult.success(trader.getWorld().isClient);
         }
         return original.call(player, hand);

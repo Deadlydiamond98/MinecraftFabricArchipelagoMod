@@ -4,10 +4,7 @@
   "archipelago.connection.failed": "Failed to Connect to Server, please try again!",
   "archipelago.connection.no_connection": "You aren't Currently Connected to an Archipelago Server!",
 
-  "archipelago.check.trading": "Trading hasn't been unlocked",
-  "archipelago.check.wither": "The Wither Fight hasn't been unlocked",
-
-
+  "archipelago.check.requires_check": "Requires \"%s\"",
 
   "advancements.legacy.root.title": "Legacy and Bedrock",
   "advancements.legacy.root.description": "Root Advancement for Archipelago Advancements based off 1.12 Achievements and Bedrock Achievements",

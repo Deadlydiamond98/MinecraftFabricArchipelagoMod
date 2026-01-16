@@ -1,4 +1,4 @@
-package net.deadlydiamond98.archipelago.mixin.common.entity;
+package net.deadlydiamond98.archipelago.mixin.common.entity.player;
 
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.entity.player.PlayerEntity;
