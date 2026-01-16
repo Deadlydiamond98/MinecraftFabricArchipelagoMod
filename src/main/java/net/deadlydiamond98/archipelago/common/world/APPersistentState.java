@@ -32,6 +32,9 @@ public class APPersistentState extends PersistentState {
     // Saves unlocked advancements, so they're granted to any additional players in the world
     private final List<Long> advancementIds = new ArrayList<>();
 
+    public boolean hasKilledEnderDragon = false;
+    public boolean hasKilledWither = false;
+
     // ADVANCEMENT ID METHODS //////////////////////////////////////////////////////////////////////////////////////////
 
     public List<Long> getAdvancementIds() {
@@ -128,6 +131,9 @@ public class APPersistentState extends PersistentState {
         APState.write(nbt, "progressiveLevelChecks", this.progressiveLevelChecks, NbtCompound::putInt);
         APState.write(nbt, "toggleChecks", this.toggleChecks, NbtCompound::putBoolean);
 
+        nbt.putBoolean("HasKilledEnderDragon", this.hasKilledEnderDragon);
+        nbt.putBoolean("HasKilledWither", this.hasKilledWither);
+
         return nbt;
     }
 
@@ -147,6 +153,9 @@ public class APPersistentState extends PersistentState {
 
         states.allChecks.putAll(states.progressiveLevelChecks);
         states.allChecks.putAll(states.toggleChecks);
+
+        states.hasKilledEnderDragon = nbt.getBoolean("HasKilledEnderDragon");
+        states.hasKilledWither = nbt.getBoolean("HasKilledWither");
 
         return states;
     }

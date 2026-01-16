@@ -4,12 +4,16 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.common.effects.UnremovableStatusEffect;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -35,6 +39,8 @@ public abstract class LivingEntityMixin {
         - Prevents all effects that are un-removable from being removed, so milk can't be used to bypass them
         - Makes all blocks Slippery when under the Frost Footed Effect
         - Disables the ability to Sprint if the check isn't received!
+        - Triggers the Overpowered Advancement
+        - Triggers the Goal for killing the Wither or Ender Dragon
 
      */
 
@@ -93,6 +99,18 @@ public abstract class LivingEntityMixin {
     private void archipelago$applyFoodEffects(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
         if (stack.isOf(Items.ENCHANTED_GOLDEN_APPLE) && targetEntity instanceof PlayerEntity player) {
             APAdvancements.EAT_GOLDEN_APPLE.trigger(player);
+        }
+    }
+
+    // Kill Boss Goal //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Inject(method = "onDeath", at = @At("HEAD"))
+    private void archipelago$onDeath(DamageSource damageSource, CallbackInfo ci) {
+        LivingEntity entity = ((LivingEntity) (Object) this);
+        if (entity instanceof EnderDragonEntity) {
+            ArchipelagoGoalHelper.updateGoal(0);
+        } else if (entity instanceof WitherEntity) {
+            ArchipelagoGoalHelper.updateGoal(1);
         }
     }
 }

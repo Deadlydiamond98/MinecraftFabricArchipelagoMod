@@ -29,12 +29,12 @@ public class Archipelago extends Client {
 
     @Override
     public void onError(Exception ex) {
-        APServerUtil.sendMessage(Text.translatable("archipelago.connection.error", ex.toString()).setStyle(Style.EMPTY.withColor(Formatting.DARK_RED)));
+        APServerUtil.sendMessage(Text.translatable("archipelago.connection.error", ex.toString()).setStyle(Style.EMPTY.withColor(Formatting.RED)));
     }
 
     @Override
     public void onClose(String reason, int attemptingReconnect) {
-        APServerUtil.sendMessage(Text.translatable("archipelago.connection.error", reason).setStyle(Style.EMPTY.withColor(Formatting.DARK_RED)));
+        APServerUtil.sendMessage(Text.translatable("archipelago.connection.error", reason).setStyle(Style.EMPTY.withColor(Formatting.RED)));
         if (attemptingReconnect > 0) {
             APServerUtil.sendMessage(Text.translatable("archipelago.connection.reconnecting", attemptingReconnect));
         }
@@ -81,6 +81,7 @@ public class Archipelago extends Client {
     }
 
     public static class MCSlotData {
+        public int goal_condition;
         public int randomize_swim;
         public int randomize_sprint;
     }
