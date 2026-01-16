@@ -1,5 +1,7 @@
 package net.deadlydiamond98.archipelago.mixin.common.entity.player;
 
+import net.deadlydiamond98.archipelago.APMod;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoServerConnector;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;

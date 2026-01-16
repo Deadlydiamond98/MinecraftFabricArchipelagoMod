@@ -1,4 +1,8 @@
 {
+  "selectWorld.enterArchipelagoServer": "AP Server",
+  "selectWorld.enterPlayerName": "Slot Name",
+  "selectWorld.enterServerPassword": "Password",
+
   "archipelago.connection.error": "Connection Error: %s",
   "archipelago.connection.reconnecting": "Reconnecting in %s Seconds!",
   "archipelago.connection.failed": "Failed to Connect to Server, please try again!",

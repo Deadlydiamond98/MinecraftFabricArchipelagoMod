@@ -17,6 +17,7 @@ import java.util.Map;
  *  - Received Items
  *  - Checked Locations
  *  - Status of various abilities
+ *  - The Current Archipelago Server
  */
 public class APPersistentState extends PersistentState {
 
@@ -34,6 +35,10 @@ public class APPersistentState extends PersistentState {
 
     public boolean hasKilledEnderDragon = false;
     public boolean hasKilledWither = false;
+
+    public String currentServer = null;
+    public String currentPlayer = null;
+    public String currentPassword = null;
 
     // ADVANCEMENT ID METHODS //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,6 +139,16 @@ public class APPersistentState extends PersistentState {
         nbt.putBoolean("HasKilledEnderDragon", this.hasKilledEnderDragon);
         nbt.putBoolean("HasKilledWither", this.hasKilledWither);
 
+        if (this.currentServer != null) {
+            nbt.putString("ArchipelagoServer", this.currentServer);
+        }
+        if (this.currentPlayer != null) {
+            nbt.putString("ArchipelagoPlayer", this.currentPlayer);
+        }
+        if (this.currentPassword != null) {
+            nbt.putString("ArchipelagoPassword", this.currentPassword);
+        }
+
         return nbt;
     }
 
@@ -156,6 +171,16 @@ public class APPersistentState extends PersistentState {
 
         states.hasKilledEnderDragon = nbt.getBoolean("HasKilledEnderDragon");
         states.hasKilledWither = nbt.getBoolean("HasKilledWither");
+
+        if (nbt.contains("ArchipelagoServer")) {
+            states.currentServer = nbt.getString("ArchipelagoServer");
+        }
+        if (nbt.contains("ArchipelagoPlayer")) {
+            states.currentPlayer = nbt.getString("ArchipelagoPlayer");
+        }
+        if (nbt.contains("ArchipelagoPassword")) {
+            states.currentPassword = nbt.getString("ArchipelagoPassword");
+        }
 
         return states;
     }

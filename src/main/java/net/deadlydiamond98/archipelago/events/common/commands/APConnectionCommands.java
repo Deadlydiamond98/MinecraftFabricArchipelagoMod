@@ -3,15 +3,11 @@ package net.deadlydiamond98.archipelago.events.common.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.deadlydiamond98.archipelago.APMod;
+import io.github.archipelagomw.Client;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
-import net.deadlydiamond98.archipelago.util.APServerUtil;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoServerConnector;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
-
-import java.net.URISyntaxException;
 
 public class APConnectionCommands {
 
@@ -22,7 +18,7 @@ public class APConnectionCommands {
         dispatcher.register(start.then(CommandManager.literal("connect")
                 .then(CommandManager.argument("server", StringArgumentType.string())
                         .then(CommandManager.argument("player", StringArgumentType.string())
-                                .executes(context -> connectToArchipelago(
+                                .executes(context -> ArchipelagoServerConnector.connectToServer(
                                         StringArgumentType.getString(context, "server"),
                                         StringArgumentType.getString(context, "player"),
                                         ""
@@ -34,7 +30,7 @@ public class APConnectionCommands {
         dispatcher.register(CommandManager.literal("connect")
                 .then(CommandManager.argument("server", StringArgumentType.string())
                         .then(CommandManager.argument("player", StringArgumentType.string())
-                                .executes(context -> connectToArchipelago(
+                                .executes(context -> ArchipelagoServerConnector.connectToServer(
                                         StringArgumentType.getString(context, "server"),
                                         StringArgumentType.getString(context, "player"),
                                         ""
@@ -48,7 +44,7 @@ public class APConnectionCommands {
                 .then(CommandManager.argument("server", StringArgumentType.string())
                         .then(CommandManager.argument("player", StringArgumentType.string())
                                 .then(CommandManager.argument("password", StringArgumentType.string())
-                                        .executes(context -> connectToArchipelago(
+                                        .executes(context -> ArchipelagoServerConnector.connectToServer(
                                                 StringArgumentType.getString(context, "server"),
                                                 StringArgumentType.getString(context, "player"),
                                                 StringArgumentType.getString(context, "password")
@@ -62,7 +58,7 @@ public class APConnectionCommands {
                 .then(CommandManager.argument("server", StringArgumentType.string())
                         .then(CommandManager.argument("player", StringArgumentType.string())
                                 .then(CommandManager.argument("password", StringArgumentType.string())
-                                        .executes(context -> connectToArchipelago(
+                                        .executes(context -> ArchipelagoServerConnector.connectToServer(
                                                 StringArgumentType.getString(context, "server"),
                                                 StringArgumentType.getString(context, "player"),
                                                 StringArgumentType.getString(context, "password")
@@ -74,94 +70,11 @@ public class APConnectionCommands {
 
         // Disconnect Command //////////////////////////////////////////////////////////////////////////////////////////
         dispatcher.register(start.then(CommandManager.literal("disconnect")
-                .executes(context -> {
-                    Archipelago client = APMod.apClient();
-                    if (client != null) {
-                        client.close();
-                        return 1;
-                    }
-                    return 0;
-                })
+                .executes(context -> Archipelago.runCommand(Client::close, () -> {}))
         ));
 
         dispatcher.register(CommandManager.literal("disconnect")
-                .executes(context -> {
-                    Archipelago client = APMod.apClient();
-                    if (client != null) {
-                        client.close();
-                        return 1;
-                    }
-                    return 0;
-                })
+                .executes(context -> Archipelago.runCommand(Client::close, () -> {}))
         );
-
-        // Reconnect Command ///////////////////////////////////////////////////////////////////////////////////////////
-        dispatcher.register(start.then(CommandManager.literal("reconnect")
-                .then(CommandManager.argument("player", StringArgumentType.string())
-                        .executes(context -> connectToArchipelago(
-                                ArchipelagoReconnector.getLastConnectedServer(),
-                                StringArgumentType.getString(context, "player"),
-                                ""
-                        ))
-                )
-        ));
-
-        dispatcher.register(CommandManager.literal("reconnect")
-                .then(CommandManager.argument("player", StringArgumentType.string())
-                        .executes(context -> connectToArchipelago(
-                                ArchipelagoReconnector.getLastConnectedServer(),
-                                StringArgumentType.getString(context, "player"),
-                                ""
-                        ))
-                )
-        );
-
-        // Reconnect Command (with password) ///////////////////////////////////////////////////////////////////////////
-        dispatcher.register(start.then(CommandManager.literal("reconnect")
-                .then(CommandManager.argument("player", StringArgumentType.string())
-                        .then(CommandManager.argument("password", StringArgumentType.string())
-                                .executes(context -> connectToArchipelago(
-                                        ArchipelagoReconnector.getLastConnectedServer(),
-                                        StringArgumentType.getString(context, "player"),
-                                        StringArgumentType.getString(context, "password")
-                                ))
-                        )
-                )
-        ));
-
-        dispatcher.register(CommandManager.literal("reconnect")
-                .then(CommandManager.argument("player", StringArgumentType.string())
-                        .then(CommandManager.argument("password", StringArgumentType.string())
-                                .executes(context -> connectToArchipelago(
-                                        ArchipelagoReconnector.getLastConnectedServer(),
-                                        StringArgumentType.getString(context, "player"),
-                                        StringArgumentType.getString(context, "password")
-                                ))
-                        )
-                )
-        );
-    }
-
-
-    public static int connectToArchipelago(String apServer, String player, String password) {
-        Archipelago client = APMod.apClient();
-
-        if (client != null) {
-            client.setName(player);
-            client.setPassword(password);
-            try {
-                if (!apServer.isEmpty()) {
-                    client.connect(apServer);
-                    ArchipelagoReconnector.updateLastConnectedServer(apServer);
-                } else {
-                    APServerUtil.sendMessage(Text.translatable("archipelago.connection.failed"));
-                    return 0;
-                }
-            } catch (URISyntaxException e) {
-                return 0;
-            }
-            return 1;
-        }
-        return 0;
     }
 }

@@ -2,7 +2,7 @@ package net.deadlydiamond98.archipelago;
 
 
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
-import net.deadlydiamond98.archipelago.archipelago.ArchipelagoReconnector;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoServerConnector;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLoader;
 import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
@@ -28,7 +28,7 @@ public class APMod implements ModInitializer {
 	public void onInitialize() {
 		KoalaConfigCreator.addModConfig(MOD_ID, APModConfigs.Main.class);
 		KoalaUpdateChecker.addModUpdateChecker(MOD_ID);
-		ArchipelagoReconnector.readLastConnectedServer(); // TODO: MIGHT REMOVE THIS IN FAVOR OF TYING A SERVER TO A WORLD
+		ArchipelagoServerConnector.readLastConnectedServer();
 
 		// Register Persistent State Items
 		SavedArchipelagoItems.register();
@@ -49,11 +49,6 @@ public class APMod implements ModInitializer {
 
 	public static Identifier id(String path) {
 		return new Identifier(MOD_ID, path);
-	}
-
-	// TODO: REMOVE THIS IN FAVOR OF ARCHIPELAGO.RUN
-	public static @Nullable Archipelago apClient() {
-		return Archipelago.archipelago;
 	}
 
 	public static boolean isModLoaded(String modid) {

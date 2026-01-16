@@ -15,7 +15,9 @@ repositories {
 		url = "https://api.modrinth.com/maven"
 	}
 }
-loom {}
+loom {
+	accessWidenerPath = file("src/main/resources/archipelago.accesswidener")
+}
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

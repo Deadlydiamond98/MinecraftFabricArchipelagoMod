@@ -2,6 +2,7 @@ package net.deadlydiamond98.archipelago.archipelago;
 import io.github.archipelagomw.Client;
 import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.flags.ItemsHandling;
+import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.events.archipelago.APConnectEvents;
 import net.deadlydiamond98.archipelago.events.archipelago.APPrintJsonEvents;
 import net.deadlydiamond98.archipelago.events.archipelago.APReceiveItemEvents;
@@ -11,9 +12,14 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 
+import java.net.URISyntaxException;
 import java.util.function.Consumer;
 
 public class Archipelago extends Client {
+    public static String worldInputServer = null;
+    public static String worldInputPlayer = null;
+    public static String worldInputPassword = null;
+
     public static Archipelago archipelago;
     public static @Nullable MCSlotData slotData;
 
@@ -67,6 +73,18 @@ public class Archipelago extends Client {
             return true;
         }
         return false;
+    }
+
+    public static void connectToAPServer(String server, String player, String password) {
+        run(archipelago1 -> {
+            archipelago1.setName(player);
+            archipelago1.setPassword(password);
+            try {
+                archipelago1.connect(server);
+            } catch (URISyntaxException e) {
+                APServerUtil.sendMessage(Text.translatable("archipelago.connection.failed"));
+            }
+        });
     }
 
     // Slot Data Methods ///////////////////////////////////////////////////////////////////////////////////////////////

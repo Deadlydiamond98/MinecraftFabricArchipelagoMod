@@ -116,7 +116,6 @@ public class APItemDataLoader implements SimpleSynchronousResourceReloadListener
 
     private static List<Item> getItemsFromString(String key, String str, int i, boolean isProgressive) {
         List<Item> items = new ArrayList<>();
-        APMod.LOGGER.info(str);
         if (str.startsWith("#")) {
             if (isProgressive) {
                 Map<String, Integer> unprocessedProgressives = UNPROCESSED_PROGRESSIVE_ITEMS.getOrDefault(key, new HashMap<>());

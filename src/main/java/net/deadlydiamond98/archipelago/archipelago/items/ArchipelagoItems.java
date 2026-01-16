@@ -1,13 +1,12 @@
 package net.deadlydiamond98.archipelago.archipelago.items;
 
-import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
-import net.deadlydiamond98.archipelago.archipelago.items.type.ExperienceAPItem;
-import net.deadlydiamond98.archipelago.archipelago.items.type.ItemstackAPItem;
-import net.deadlydiamond98.archipelago.archipelago.items.type.SuspiciousStewAPItem;
+import net.deadlydiamond98.archipelago.archipelago.items.type.*;
 import net.deadlydiamond98.archipelago.archipelago.items.type.traps.*;
 import net.deadlydiamond98.archipelago.init.APEffects;
+import net.deadlydiamond98.archipelago.init.APTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +50,8 @@ public class ArchipelagoItems {
         ITEMS.put("Large Emerald Ore Vein", new ItemstackAPItem(Blocks.EMERALD_ORE, 2));
 
         // Foods
-        ITEMS.put("Apples", new ItemstackAPItem(Items.APPLE, 16));
+        ITEMS.put("Random Fruit", new ItemTagAPItem(APTags.FRUITS, 16));
+
         ITEMS.put("Golden Carrot", new ItemstackAPItem(Items.APPLE, 16));
         ITEMS.put("Baked Potato", new ItemstackAPItem(Items.BAKED_POTATO, 16));
         ITEMS.put("Cookies", new ItemstackAPItem(Items.COOKIE, 16));
@@ -68,17 +68,7 @@ public class ArchipelagoItems {
         ITEMS.put("Suspicious Stew", new SuspiciousStewAPItem());
 
         // Blocks
-        ITEMS.put("Oak Planks", new ItemstackAPItem(Blocks.OAK_PLANKS, 16));
-        ITEMS.put("Birch Planks", new ItemstackAPItem(Blocks.BIRCH_PLANKS, 16));
-        ITEMS.put("Spruce Planks", new ItemstackAPItem(Blocks.SPRUCE_PLANKS, 16));
-        ITEMS.put("Jungle Planks", new ItemstackAPItem(Blocks.JUNGLE_PLANKS, 16));
-        ITEMS.put("Acacia Planks", new ItemstackAPItem(Blocks.ACACIA_PLANKS, 16));
-        ITEMS.put("Dark Oak Planks", new ItemstackAPItem(Blocks.DARK_OAK_PLANKS, 16));
-        ITEMS.put("Cherry Planks", new ItemstackAPItem(Blocks.CHERRY_PLANKS, 16));
-        ITEMS.put("Crimson Planks", new ItemstackAPItem(Blocks.CRIMSON_PLANKS, 16));
-        ITEMS.put("Warped Planks", new ItemstackAPItem(Blocks.WARPED_PLANKS, 16));
-        ITEMS.put("Bamboo Planks", new ItemstackAPItem(Blocks.BAMBOO_PLANKS, 16));
-
+        ITEMS.put("Wooden Planks", new ItemTagAPItem(ItemTags.PLANKS, 16));
         ITEMS.put("Stone", new ItemstackAPItem(Blocks.STONE, 64));
         ITEMS.put("Andesite", new ItemstackAPItem(Blocks.ANDESITE, 16));
         ITEMS.put("Diorite", new ItemstackAPItem(Blocks.DIORITE, 16));

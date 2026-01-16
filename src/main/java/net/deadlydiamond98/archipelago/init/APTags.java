@@ -1,0 +1,23 @@
+package net.deadlydiamond98.archipelago.init;
+
+import net.deadlydiamond98.archipelago.APMod;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+
+public class APTags {
+
+    public static final TagKey<Item> FRUITS = item("fruits");
+
+    // Registry ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private static TagKey<Item> item(String name) {
+        return getTag(RegistryKeys.ITEM, name);
+    }
+
+    private static <T> TagKey<T> getTag(RegistryKey<? extends Registry<T>> registry, String name) {
+        return TagKey.of(registry, APMod.id(name));
+    }
+}
