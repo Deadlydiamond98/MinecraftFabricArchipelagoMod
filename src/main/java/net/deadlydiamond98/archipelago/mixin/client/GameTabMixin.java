@@ -1,4 +1,4 @@
-package net.deadlydiamond98.archipelago.mixin.worldcreation.client;
+package net.deadlydiamond98.archipelago.mixin.client;
 
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoServerConnector;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
@@ -28,6 +28,7 @@ public class GameTabMixin {
                 0, 0, 130, 18, Text.translatable("selectWorld.enterArchipelagoServer")),
                 adderAP.copyPositioner().margin(4, 1)
         );
+        ArchipelagoServerConnector.archipelagoServer = ArchipelagoServerConnector.lastConnectedServer;
         this.archipelagoServerField.setText(ArchipelagoServerConnector.lastConnectedServer);
         this.archipelagoServerField.setChangedListener(s -> ArchipelagoServerConnector.archipelagoServer = s);
 
@@ -36,6 +37,7 @@ public class GameTabMixin {
                         0, 0, 130, 18, Text.translatable("selectWorld.enterPlayerName")),
                 adderAP.copyPositioner().margin(4, 1)
         );
+        ArchipelagoServerConnector.archipelagoPlayer = ArchipelagoServerConnector.lastConnectedPlayer;
         this.archipelagoPlayerField.setText(ArchipelagoServerConnector.lastConnectedPlayer);
         this.archipelagoPlayerField.setChangedListener(s -> ArchipelagoServerConnector.archipelagoPlayer = s);
 

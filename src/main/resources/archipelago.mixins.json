@@ -6,7 +6,7 @@
   "client": [
     "client.controls.KeybindingMixin",
     "client.controls.MouseMixin",
-    "worldcreation.client.GameTabMixin"
+    "client.GameTabMixin"
   ],
   "mixins": [
     "common.advancement.PlayerAdvancementTrackerMixin",
@@ -28,7 +28,6 @@
     "common.entity.merchant.VillagerEntityMixin",
     "common.entity.merchant.WanderingTraderEntityMixin",
     "common.entity.merchant.WanderingTraderHeadRollTickFixingMixin",
-    "common.entity.player.PlayerEntityMixin",
     "common.handler.CraftingScreenHandlerMixin",
     "common.handler.SmithingScreenHandlerMixin"
   ],

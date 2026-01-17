@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.mixin.common.entity;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -10,6 +11,7 @@ import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -112,5 +114,16 @@ public abstract class LivingEntityMixin {
         } else if (entity instanceof WitherEntity) {
             ArchipelagoGoalHelper.updateGoal(1);
         }
+    }
+
+    // Drain Air Faster with no swim ///////////////////////////////////////////////////////////////////////////////////
+    @ModifyReturnValue(method = "getNextAirUnderwater", at = @At("RETURN"))
+    private int archipelago$getNextAirUnderwater(int original) {
+        if ((LivingEntity) (Object) this instanceof PlayerEntity) {
+            if (!APPersistentState.get().getBooleanCheckValue("swim")) {
+                return -20;
+            }
+        }
+        return original;
     }
 }

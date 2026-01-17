@@ -1,7 +1,6 @@
 package net.deadlydiamond98.archipelago;
 
 
-import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoServerConnector;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLoader;
@@ -16,7 +15,6 @@ import net.deadlydiamond98.koalalib.updater.KoalaUpdateChecker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
