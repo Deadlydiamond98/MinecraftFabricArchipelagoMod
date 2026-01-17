@@ -4,9 +4,9 @@
   "package": "net.deadlydiamond98.archipelago.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "client.GameTabMixin",
     "client.controls.KeybindingMixin",
-    "client.controls.MouseMixin",
-    "client.GameTabMixin"
+    "client.controls.MouseMixin"
   ],
   "mixins": [
     "common.advancement.PlayerAdvancementTrackerMixin",
@@ -28,6 +28,7 @@
     "common.entity.merchant.VillagerEntityMixin",
     "common.entity.merchant.WanderingTraderEntityMixin",
     "common.entity.merchant.WanderingTraderHeadRollTickFixingMixin",
+    "common.entity.player.PlayerEntityMixin",
     "common.handler.CraftingScreenHandlerMixin",
     "common.handler.SmithingScreenHandlerMixin"
   ],

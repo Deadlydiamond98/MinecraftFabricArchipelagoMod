@@ -22,7 +22,7 @@
       "translate": "advancements.legacy.kill_cow.title"
     },
     "description": {
-      "translate": "advancements.legacy.the_lie.description"
+      "translate": "advancements.legacy.kill_cow.description"
     },
     "announce_to_chat": true,
     "frame": "task",

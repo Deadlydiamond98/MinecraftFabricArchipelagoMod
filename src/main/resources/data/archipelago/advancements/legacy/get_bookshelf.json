@@ -19,10 +19,10 @@
       "item": "minecraft:bookshelf"
     },
     "title": {
-      "translate": "advancements.legacy.kill_cow.title"
+      "translate": "advancements.legacy.get_bookshelf.title"
     },
     "description": {
-      "translate": "advancements.legacy.the_lie.description"
+      "translate": "advancements.legacy.get_bookshelf.description"
     },
     "announce_to_chat": true,
     "frame": "task",
