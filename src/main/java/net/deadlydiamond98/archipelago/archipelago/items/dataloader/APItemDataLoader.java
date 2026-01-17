@@ -42,10 +42,16 @@ public class APItemDataLoader implements SimpleSynchronousResourceReloadListener
             // Gets all Progressive Items from json that need to be locked
             APItemAccessUtil.PROGRESSIVE_ITEM_IDS.forEach(id -> {
                 Map<Item, Integer> progressiveItems = APItemAccessUtil.PROGRESSIVE_ITEMS.get(id);
+                if (progressiveItems == null) {
+                    progressiveItems = new HashMap<>();
+                }
                 progressiveItems.putAll(loadProgressive(manager, path, id));
             });
             APItemAccessUtil.BOOLEAN_ITEM_IDS.forEach(id -> {
                 Set<Item> progressiveItems = APItemAccessUtil.BOOLEAN_ITEMS.get(id);
+                if (progressiveItems == null) {
+                    progressiveItems = new HashSet<>();
+                }
                 progressiveItems.addAll(loadSingle(manager, path, id));
             });
         });
@@ -137,5 +143,14 @@ public class APItemDataLoader implements SimpleSynchronousResourceReloadListener
 
     public static void register() {
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new APItemDataLoader());
+    }
+
+    public static void unload() {
+        APItemAccessUtil.PROGRESSIVE_ITEMS.forEach((s, itemIntegerHashMap) -> {
+            itemIntegerHashMap.clear();
+        });
+        APItemAccessUtil.BOOLEAN_ITEMS.forEach((s, items) -> {
+            items.clear();
+        });
     }
 }

@@ -25,13 +25,12 @@ public class APServerWorldEvents {
         APPersistentState.get().addMissingChecks();
         // Since ItemTags aren't able to be checked when loading the item data initially, it's loaded here
         APItemDataLoader.processItemTags();
-
-        // Connects to the AP Server on Joining if able
-//        ArchipelagoServerConnector.connectToServer();
     }
 
     private static void onUnload(MinecraftServer server, ServerWorld serverWorld) {
         Archipelago.run(Client::close);
         APServerUtil.server = null;
+        // Unloads Datapack stuffs so that the values don't carry over to the next world
+        APItemDataLoader.unload();
     }
 }
