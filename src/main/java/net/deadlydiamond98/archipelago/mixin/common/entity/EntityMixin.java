@@ -48,8 +48,8 @@ public class EntityMixin {
 
     @ModifyReturnValue(method = "isTouchingWater", at = @At("RETURN"))
     private boolean archipelago$isTouchingWater(boolean original) {
-        if ((Entity) (Object) this instanceof PlayerEntity) {
-            return APPersistentState.get().getBooleanCheckValue("swim");
+        if ((Entity) (Object) this instanceof PlayerEntity && !APPersistentState.get().getBooleanCheckValue("swim")) {
+            return false;
         }
         return original;
     }
