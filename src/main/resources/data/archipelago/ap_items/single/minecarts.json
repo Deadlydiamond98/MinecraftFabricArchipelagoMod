@@ -6,9 +6,6 @@
     "minecraft:chest_minecart",
     "minecraft:furnace_minecart",
     "minecraft:tnt_minecart",
-    "minecraft:rail",
-    "minecraft:powered_rail",
-    "minecraft:detector_rail",
-    "minecraft:activator_rail"
+    "#minecraft:rails"
   ]
 }

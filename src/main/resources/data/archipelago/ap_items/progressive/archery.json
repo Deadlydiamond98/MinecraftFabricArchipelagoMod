@@ -2,6 +2,6 @@
   "mod": "archipelago",
   "entries": {
     "minecraft:bow": 1,
-    "minecraft:cross_bow": 2
+    "minecraft:crossbow": 2
   }
 }

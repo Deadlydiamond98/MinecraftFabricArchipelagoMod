@@ -1,7 +1,7 @@
 package net.deadlydiamond98.archipelago.archipelago.items;
 
 
-import net.deadlydiamond98.archipelago.archipelago.items.type.PersistantStateAPItem;
+import net.deadlydiamond98.archipelago.archipelago.items.type.progression.PersistantStateAPItem;
 import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
 
 import java.util.*;
@@ -18,8 +18,9 @@ public class SavedArchipelagoItems {
         // Abilities
         register("Swim", "swim", true);
         register("Sprint", "sprint", true);
+        register("Jump", "jump", true);
 
-        // Always Locked Abilities
+        registerWithJson("Chests & Barrels", "chests", true);
         registerWithJson("Sleeping", "spawn_point", true);
         register("Wither Summoning", "wither_summoning", true);
         register("Villager Trading", "trading", true);
@@ -42,14 +43,14 @@ public class SavedArchipelagoItems {
         registerWithJson("Fishing Rod Recipes", "fishing", true);
         registerWithJson("Glass Bottle Recipes", "bottles", true);
         registerWithJson("Resource Compacting Recipes", "compacting", true);
-
+        registerWithJson("Shield Recipes", "shield", true);
 
         // Progressive Crafting
         registerWithJson("Progressive Tools", "tools", false);
         registerWithJson("Progressive Weapons", "weapons", false);
         registerWithJson("Progressive Archery", "archery", false);
-        registerWithJson("Progressive Smelting", "smelting", false);
         registerWithJson("Progressive Armor", "armor", false);
+        registerWithJson("Progressive Smelting", "smelting", false);
     }
 
     public static void registerWithJson(String name, String key, boolean isBool) {

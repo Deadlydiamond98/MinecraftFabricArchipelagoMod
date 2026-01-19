@@ -8,6 +8,18 @@
     "minecraft:diamond_block",
     "minecraft:netherite_block",
     "minecraft:emerald_block",
-    "minecraft:redstone_block"
+    "minecraft:redstone_block",
+
+    "minecraft:coal",
+    "minecraft:gold_ingot",
+    "minecraft:gold_ingot",
+    "minecraft:copper_ingot",
+    "minecraft:diamond",
+    "minecraft:netherite_ingot",
+    "minecraft:emerald",
+    "minecraft:redstone",
+
+    "minecraft:iron_nugget",
+    "minecraft:gold_nugget"
   ]
 }

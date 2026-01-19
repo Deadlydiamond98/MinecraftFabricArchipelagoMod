@@ -25,6 +25,7 @@ public class EntityMixin {
     This Mixin is used for doing various things on Entities
         - Checks if a player is riding a pig for checking the "When Pigs Fly" advancement
         - Prevents Swimming if player doesn't have swim
+        - Applies Weird Water Physics when under Weightless Effect
 
      */
 

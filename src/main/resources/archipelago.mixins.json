@@ -10,17 +10,7 @@
   ],
   "mixins": [
     "common.advancement.PlayerAdvancementTrackerMixin",
-    "common.block.BedBlockMixin",
-    "common.block.RespawnAnchorBlockMixin",
     "common.block.WitherSkullBlockMixin",
-    "common.block.station.AbstractFurnaceBlockMixin",
-    "common.block.station.BrewingStandBlockMixin",
-    "common.block.station.CartographyTableBlockMixin",
-    "common.block.station.EnchantingTableBlockMixin",
-    "common.block.station.GrindstoneBlockMixin",
-    "common.block.station.LoomBlockMixin",
-    "common.block.station.SmithingTableBlockMixin",
-    "common.block.station.StonecutterBlockMixin",
     "common.entity.EntityMixin",
     "common.entity.LivingEntityMixin",
     "common.entity.PiglinBrainMixin",
@@ -28,9 +18,10 @@
     "common.entity.merchant.VillagerEntityMixin",
     "common.entity.merchant.WanderingTraderEntityMixin",
     "common.entity.merchant.WanderingTraderHeadRollTickFixingMixin",
-    "common.entity.player.PlayerEntityMixin",
     "common.handler.CraftingScreenHandlerMixin",
-    "common.handler.SmithingScreenHandlerMixin"
+    "common.handler.SmithingScreenHandlerMixin",
+    "common.player.PlayerEntityMixin",
+    "common.player.ServerPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

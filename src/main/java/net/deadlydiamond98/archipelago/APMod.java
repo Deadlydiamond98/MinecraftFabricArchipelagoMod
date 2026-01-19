@@ -10,6 +10,7 @@ import net.deadlydiamond98.archipelago.events.common.APServerWorldEvents;
 import net.deadlydiamond98.archipelago.events.common.APSeverCommandEvents;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.init.APEffects;
+import net.deadlydiamond98.archipelago.networking.APNetworking;
 import net.deadlydiamond98.koalalib.config.KoalaConfigCreator;
 import net.deadlydiamond98.koalalib.updater.KoalaUpdateChecker;
 import net.fabricmc.api.ModInitializer;
@@ -34,6 +35,7 @@ public class APMod implements ModInitializer {
 		// Registry
 		APEffects.register();
 		APAdvancements.register();
+		APNetworking.registerC2SReceivers();
 
 		// Events
 		APServerWorldEvents.register();

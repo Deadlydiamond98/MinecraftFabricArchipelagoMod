@@ -13,7 +13,6 @@ import net.minecraft.text.Text;
 
 public class APSeverCommandEvents {
 
-    // TODO: REWRITE COMMANDS STUFF LATER
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             APConnectionCommands.connectionCommands(dispatcher);

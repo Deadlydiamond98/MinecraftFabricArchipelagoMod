@@ -1,0 +1,10 @@
+{
+  "mod": "archipelago",
+  "entries": [
+    "minecraft:chest",
+    "minecraft:trapped_chest",
+    "minecraft:chest_minecart",
+    "minecraft:barrel",
+    "#minecraft:chest_boats"
+  ]
+}

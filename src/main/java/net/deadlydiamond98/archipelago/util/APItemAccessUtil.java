@@ -6,7 +6,6 @@ import net.deadlydiamond98.koalalib.init.KoalaLibSounds;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -17,32 +16,44 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class APItemAccessUtil {
     public static final Map<String, Set<Item>> BOOLEAN_ITEMS = new HashMap<>();
     public static final Map<String, HashMap<Item, Integer>> PROGRESSIVE_ITEMS = new HashMap<>();
+
     public static final Set<String> PROGRESSIVE_ITEM_IDS = new HashSet<>();
     public static final Set<String> BOOLEAN_ITEM_IDS = new HashSet<>();
 
     /**
-     * Checks if a recipe can be crafted!
-     * @param stack the stack to be crafted
+     * Checks if an item is unlocked
+     * @param player the player
+     * @param item the item to check
      */
-    public static boolean allowCrafting(ItemStack stack) {
+    public static boolean allowCraftOrUse(PlayerEntity player, ItemConvertible item) {
         AtomicBoolean bl = new AtomicBoolean(true);
+        AtomicBoolean triggeredCheckRequired = new AtomicBoolean(false);
         PROGRESSIVE_ITEMS.forEach((key, items) -> {
-            if (checkIfProgressiveRecipeUnlocked(stack, APPersistentState.get().getIntCheckValue(key), items)) {
+            if (checkIfProgressiveRecipeUnlocked(item.asItem(), APPersistentState.get().getIntCheckValue(key), items)) {
+                if (!triggeredCheckRequired.get()) {
+                    triggeredCheckRequired.set(true);
+                    sendRequiresText(player, key, getTierForProgressive(key, item.asItem()));
+                }
                 bl.set(false);
             }
         });
         BOOLEAN_ITEMS.forEach((key, items) -> {
-            if (items.contains(stack.getItem()) && !APPersistentState.get().getBooleanCheckValue(key)) {
+            if (items.contains(item.asItem()) && !APPersistentState.get().getBooleanCheckValue(key)) {
+                if (!triggeredCheckRequired.get()) {
+                    triggeredCheckRequired.set(true);
+                    sendRequiresText(player, key, 1);
+                }
                 bl.set(false);
             }
         });
+
         return bl.get();
     }
 
-    public static int getTierForProgressive(String check, Item stack) {
+    public static int getTierForProgressive(String check, Item item) {
         HashMap<Item, Integer> map = PROGRESSIVE_ITEMS.get(check);
         if (map != null) {
-            return map.getOrDefault(stack, 0);
+            return map.getOrDefault(item, 0);
         }
         return 0;
     }
@@ -105,8 +116,8 @@ public class APItemAccessUtil {
         }
     }
 
-    private static boolean checkIfProgressiveRecipeUnlocked(ItemStack stack, int lvl, Map<Item, Integer> map) {
-        Integer tier = map.get(stack.getItem());
+    private static boolean checkIfProgressiveRecipeUnlocked(ItemConvertible item, int lvl, Map<Item, Integer> map) {
+        Integer tier = map.get(item.asItem());
         return !(tier == null || lvl >= tier);
     }
 }

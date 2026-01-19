@@ -3,6 +3,29 @@
   "selectWorld.enterPlayerName": "Slot Name",
   "selectWorld.enterServerPassword": "Password",
 
+  "key.archipelago.category.keys": "Archipelago Mod Keybindings",
+  "key.archipelago.open_tracker": "Open In-Game Tracker",
+
+  "gui.archipelago.none_present": "None Needed For Goal",
+  "gui.archipelago.goal_progress": "-- Goal Progress --",
+  "gui.archipelago.advancements_needed": "Advancements Needed",
+  "gui.archipelago.rubies_needed": "Rubies Needed",
+  "gui.archipelago.goal": "Goal Condition(s)",
+
+  "gui.archipelago.goal.dragon": "Defeat Ender Dragon",
+  "gui.archipelago.goal.wither": "Defeat Wither",
+  "gui.archipelago.goal.both": "Defeat Ender Dragon & Wither",
+  "gui.archipelago.goal.ruby_hunt": "Find %s Ruby(s)",
+  "gui.archipelago.goal.and": " & ",
+  "gui.archipelago.goal.advancements": "Complete %s Advancement(s)",
+  "gui.archipelago.goal.invalid": "Cannot Find Your Goal!",
+
+  "effect.archipelago.confusion": "Confusion",
+  "effect.archipelago.disorientation": "Disorientation",
+  "effect.archipelago.frost_footed": "Frost Footed",
+  "effect.archipelago.stunned": "Stunned",
+
+  "archipelago.connection.goal": "Your Goal For Minecraft Has been reached!",
   "archipelago.connection.error": "Connection Error: %s",
   "archipelago.connection.reconnecting": "Reconnecting in %s Seconds!",
   "archipelago.connection.failed": "Failed to Connect to Server, please try again!",

@@ -3,14 +3,22 @@ package net.deadlydiamond98.archipelago.mixin.common.handler;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.screen.ForgingScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.SmithingScreenHandler;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SmithingScreenHandler.class)
-public class SmithingScreenHandlerMixin {
+public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
+    public SmithingScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
+        super(type, syncId, playerInventory, context);
+    }
     /*
 
     This Mixin is used for preventing Smithing Table recipes from working when locked
@@ -20,7 +28,7 @@ public class SmithingScreenHandlerMixin {
 
     @WrapOperation(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isItemEnabled(Lnet/minecraft/resource/featuretoggle/FeatureSet;)Z"))
     private boolean archipelago$updateResult(ItemStack instance, FeatureSet enabledFeatures, Operation<Boolean> original) {
-        if (!APItemAccessUtil.allowCrafting(instance)) {
+        if (!APItemAccessUtil.allowCraftOrUse(this.player, instance.getItem())) {
             return false;
         }
         return original.call(instance, enabledFeatures);

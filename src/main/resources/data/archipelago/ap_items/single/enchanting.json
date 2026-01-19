@@ -1,6 +1,7 @@
 {
   "mod": "archipelago",
   "entries": [
-    "minecraft:enchanting_table"
+    "minecraft:enchanting_table",
+    "#minecraft:anvil"
   ]
 }

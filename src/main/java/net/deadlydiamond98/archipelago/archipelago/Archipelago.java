@@ -16,10 +16,6 @@ import java.net.URISyntaxException;
 import java.util.function.Consumer;
 
 public class Archipelago extends Client {
-    public static String worldInputServer = null;
-    public static String worldInputPlayer = null;
-    public static String worldInputPassword = null;
-
     public static Archipelago archipelago;
     public static @Nullable MCSlotData slotData;
 
@@ -44,6 +40,7 @@ public class Archipelago extends Client {
         if (attemptingReconnect > 0) {
             APServerUtil.sendMessage(Text.translatable("archipelago.connection.reconnecting", attemptingReconnect));
         }
+        slotData = null;
     }
 
     // Helper Methods //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +97,14 @@ public class Archipelago extends Client {
 
     public static class MCSlotData {
         public int goal_condition;
+
+        public int rubies_to_goal;
+        public int total_rubies;
+
+        public int keep_inventory;
         public int randomize_swim;
         public int randomize_sprint;
+        public int randomize_jump;
+        public int randomize_chests;
     }
 }

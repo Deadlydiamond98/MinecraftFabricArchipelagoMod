@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.common.world;
 
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
@@ -24,21 +25,22 @@ public class APPersistentState extends PersistentState {
     // This Could probably still be cleaned up even more, but it's fine
 
     // Checks that are handled by world data
-    private final Map<String, APState<?>> allChecks = new HashMap<>();
-    private final Map<String, APState<Integer>> progressiveLevelChecks = new HashMap<>();
-    private final Map<String, APState<Boolean>> toggleChecks = new HashMap<>();
+    public final Map<String, APState<?>> allChecks = new HashMap<>();
+    public final Map<String, APState<Integer>> progressiveLevelChecks = new HashMap<>();
+    public final Map<String, APState<Boolean>> toggleChecks = new HashMap<>();
 
     // Saves the Indexes of items to prevent them from being re-given in a world that they were already obtained in
     private final List<Long> itemIndexes = new ArrayList<>();
     // Saves unlocked advancements, so they're granted to any additional players in the world
     private final List<Long> advancementIds = new ArrayList<>();
 
-    public boolean hasKilledEnderDragon = false;
-    public boolean hasKilledWither = false;
+    private boolean hasKilledEnderDragon;
+    private boolean hasKilledWither;
+    private int currentRubyCount;
 
-    public String currentServer = null;
-    public String currentPlayer = null;
-    public String currentPassword = null;
+    public String currentServer;
+    public String currentPlayer;
+    public String currentPassword;
 
     // ADVANCEMENT ID METHODS //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,6 +140,7 @@ public class APPersistentState extends PersistentState {
 
         nbt.putBoolean("HasKilledEnderDragon", this.hasKilledEnderDragon);
         nbt.putBoolean("HasKilledWither", this.hasKilledWither);
+        nbt.putInt("RubiesCollected", this.currentRubyCount);
 
         if (this.currentServer != null) {
             nbt.putString("ArchipelagoServer", this.currentServer);
@@ -171,6 +174,7 @@ public class APPersistentState extends PersistentState {
 
         states.hasKilledEnderDragon = nbt.getBoolean("HasKilledEnderDragon");
         states.hasKilledWither = nbt.getBoolean("HasKilledWither");
+        states.currentRubyCount = nbt.getInt("RubiesCollected");
 
         if (nbt.contains("ArchipelagoServer")) {
             states.currentServer = nbt.getString("ArchipelagoServer");
@@ -219,5 +223,36 @@ public class APPersistentState extends PersistentState {
                     "archipelago:persistant_states"
             );
         });
+    }
+
+    // Goal Management Stuff ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+    public boolean hasKilledEnderDragon() {
+        return this.hasKilledEnderDragon;
+    }
+
+    public boolean hasKilledWither() {
+        return this.hasKilledWither;
+    }
+
+    public int getCollectedRubies() {
+        return this.currentRubyCount;
+    }
+
+    public void setHasKilledEnderDragon(boolean hasKilledEnderDragon) {
+        this.hasKilledEnderDragon = hasKilledEnderDragon;
+        this.markDirty();
+    }
+
+    public void setHasKilledWither(boolean hasKilledWither) {
+        this.hasKilledWither = hasKilledWither;
+        this.markDirty();
+    }
+
+    public void setCurrentRubyCount(int currentRubyCount) {
+        this.currentRubyCount = currentRubyCount;
+        ArchipelagoGoalHelper.tryTriggerGoal();
+        this.markDirty();
     }
 }

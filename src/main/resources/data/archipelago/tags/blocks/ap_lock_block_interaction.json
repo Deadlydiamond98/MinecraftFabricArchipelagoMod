@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:brewing_stand",
+    "minecraft:enchanting_table",
+    "#minecraft:anvil",
+    "minecraft:grindstone",
+    "minecraft:stonecutter",
+    "minecraft:loom",
+    "minecraft:cartography_table",
+    "minecraft:smithing_table",
+    "#minecraft:beds",
+    "minecraft:respawn_anchor",
+    "minecraft:chest",
+    "minecraft:trapped_chest",
+    "minecraft:barrel",
+    "minecraft:furnace",
+    "minecraft:blast_furnace",
+    "minecraft:smoker"
+  ]
+}

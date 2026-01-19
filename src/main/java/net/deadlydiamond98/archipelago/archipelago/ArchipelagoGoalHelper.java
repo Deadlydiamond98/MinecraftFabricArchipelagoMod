@@ -2,16 +2,20 @@ package net.deadlydiamond98.archipelago.archipelago;
 
 import io.github.archipelagomw.ClientStatus;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.util.APServerUtil;
+import net.minecraft.text.Text;
+
+import java.util.function.Function;
 
 public class ArchipelagoGoalHelper {
     /**
      * Updates Persistent states based on goalID
      * @param goalID the goalID
      */
-    public static void updateGoal(int goalID) {
+    public static void updateBossKillGoal(int goalID) {
         switch (goalID) {
-            case 0 -> APPersistentState.get().hasKilledEnderDragon = true;
-            case 1 -> APPersistentState.get().hasKilledWither = true;
+            case 0 -> APPersistentState.get().setHasKilledEnderDragon(true);
+            case 1 -> APPersistentState.get().setHasKilledWither(true);
         }
         tryTriggerGoal();
     }
@@ -20,18 +24,39 @@ public class ArchipelagoGoalHelper {
      * Attempts to trigger a goal!
      */
     public static void tryTriggerGoal() {
-        boolean killedDragon = APPersistentState.get().hasKilledEnderDragon;
-        boolean killedWither = APPersistentState.get().hasKilledWither;
+        APPersistentState state = APPersistentState.get();
+        boolean killedDragon = state.hasKilledEnderDragon();
+        boolean killedWither = state.hasKilledWither();
+//        int advancements = state.getAdvancementIds().size();
+        int rubies = state.getCollectedRubies();
 
-        Archipelago.MCSlotData slot = Archipelago.getSlotData();
-
-        if (slot != null) {
-            switch (slot.goal_condition) {
-                case 0 -> goal(killedDragon);
-                case 1 -> goal(killedWither);
-                case 2 -> goal(killedDragon && killedWither);
-            }
+        switch (getGoalID()) {
+            case 0 -> goal(killedDragon);
+            case 1 -> goal(killedWither);
+            case 2 -> goal(killedDragon && killedWither);
+            case 4 -> goal(getRubiesNeeded() <= rubies);
         }
+    }
+
+    public static int getGoalID() {
+        return getFromSlot(mcSlotData -> mcSlotData.goal_condition);
+    }
+
+    public static int getRubiesNeeded() {
+        return getFromSlot(mcSlotData -> {
+            if (mcSlotData.goal_condition == 4) {
+                return (int) Math.floor(mcSlotData.total_rubies * (mcSlotData.rubies_to_goal * 0.01));
+            }
+            return 0;
+        });
+    }
+
+    private static int getFromSlot(Function<Archipelago.MCSlotData, Integer> function) {
+        Archipelago.MCSlotData slot = Archipelago.getSlotData();
+        if (slot != null) {
+            return function.apply(slot);
+        }
+        return -1;
     }
 
     /**
@@ -41,6 +66,7 @@ public class ArchipelagoGoalHelper {
     private static void goal(boolean bl) {
         Archipelago.run(archipelago -> {
             if (bl) {
+                APServerUtil.sendMessage(Text.translatable("archipelago.connection.goal"));
                 archipelago.setGameState(ClientStatus.CLIENT_GOAL);
             }
         });

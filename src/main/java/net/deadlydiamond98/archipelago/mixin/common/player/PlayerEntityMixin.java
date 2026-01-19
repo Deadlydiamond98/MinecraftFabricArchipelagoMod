@@ -1,5 +1,8 @@
-package net.deadlydiamond98.archipelago.mixin.common.entity.player;
+package net.deadlydiamond98.archipelago.mixin.common.player;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,6 +24,14 @@ public class PlayerEntityMixin {
             if (riddenDist >= 500) {
                 APAdvancements.ON_A_RAIL.trigger(serverPlayer);
             }
+        }
+    }
+
+    @WrapMethod(method = "jump")
+    private void archipelago$jump(Operation<Void> original) {
+        APPersistentState states = APPersistentState.get();
+        if (states.getBooleanCheckValue("jump")) {
+            original.call();
         }
     }
 }

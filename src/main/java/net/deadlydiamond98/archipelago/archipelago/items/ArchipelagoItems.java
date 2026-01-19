@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.archipelago.items;
 
 import net.deadlydiamond98.archipelago.archipelago.items.type.*;
+import net.deadlydiamond98.archipelago.archipelago.items.type.progression.RubyAPItem;
 import net.deadlydiamond98.archipelago.archipelago.items.type.traps.*;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.deadlydiamond98.archipelago.init.APTags;
@@ -15,6 +16,9 @@ public class ArchipelagoItems {
     public static final Map<String, AbstractAPItem> ITEMS = new HashMap<>();
 
     static {
+        // Ruby Hunt Item //////////////////////////////////////////////////////////////////////////////////////////////
+        ITEMS.put("Ruby", new RubyAPItem());
+
         // Filler //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Experience
         ITEMS.put("5 Experience", new ExperienceAPItem(5, 0));
@@ -35,6 +39,7 @@ public class ArchipelagoItems {
         ITEMS.put("Netherite Scrap", new ItemstackAPItem(Items.NETHERITE_SCRAP, 2));
         ITEMS.put("Redstone Dust", new ItemstackAPItem(Items.REDSTONE, 8));
         ITEMS.put("Lapis Lazuli", new ItemstackAPItem(Items.LAPIS_LAZULI, 8));
+        ITEMS.put("Ender Pearls", new ItemstackAPItem(Items.ENDER_PEARL, 3));
 
         // Ores
         ITEMS.put("Coal Ore Vein", new ItemstackAPItem(Blocks.COAL_ORE, 6));
@@ -52,7 +57,7 @@ public class ArchipelagoItems {
         // Foods
         ITEMS.put("Random Fruit", new ItemTagAPItem(APTags.FRUITS, 16));
 
-        ITEMS.put("Golden Carrot", new ItemstackAPItem(Items.APPLE, 16));
+        ITEMS.put("Golden Carrot", new ItemstackAPItem(Items.GOLDEN_CARROT, 16));
         ITEMS.put("Baked Potato", new ItemstackAPItem(Items.BAKED_POTATO, 16));
         ITEMS.put("Cookies", new ItemstackAPItem(Items.COOKIE, 16));
 
@@ -63,7 +68,7 @@ public class ArchipelagoItems {
 
         ITEMS.put("Rotten Flesh", new ItemstackAPItem(Items.ROTTEN_FLESH, 8));
         ITEMS.put("Tropical Fish", new ItemstackAPItem(Items.TROPICAL_FISH, 16));
-        ITEMS.put("Puffer Fish", new ItemstackAPItem(Items.PUFFERFISH, 1));
+        ITEMS.put("Pufferfish", new ItemstackAPItem(Items.PUFFERFISH, 1));
         ITEMS.put("Poisonous Potato", new ItemstackAPItem(Items.POISONOUS_POTATO, 16));
         ITEMS.put("Suspicious Stew", new SuspiciousStewAPItem());
 
