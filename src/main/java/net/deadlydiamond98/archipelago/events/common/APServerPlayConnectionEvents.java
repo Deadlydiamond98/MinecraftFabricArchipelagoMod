@@ -8,13 +8,13 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 
 public class APServerPlayConnectionEvents {
     public static void register() {
-        // Re-Syncs advancements so that joining players get the advancements
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-            if (Archipelago.archipelago != null && !Archipelago.archipelago.isConnected()) {
-                ArchipelagoServerConnector.connectToServer();
-            }
-
-            APAdvancementHelper.resyncAdvancements();
+            server.execute(() -> {
+                if (Archipelago.archipelago != null && !Archipelago.archipelago.isConnected()) {
+                    ArchipelagoServerConnector.connectToServer();
+                }
+                APAdvancementHelper.resyncAdvancements();
+            });
         });
     }
 }

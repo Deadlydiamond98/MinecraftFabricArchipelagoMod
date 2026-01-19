@@ -4,10 +4,7 @@ package net.deadlydiamond98.archipelago;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoServerConnector;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLoader;
-import net.deadlydiamond98.archipelago.events.common.APServerChatEvents;
-import net.deadlydiamond98.archipelago.events.common.APServerPlayConnectionEvents;
-import net.deadlydiamond98.archipelago.events.common.APServerWorldEvents;
-import net.deadlydiamond98.archipelago.events.common.APSeverCommandEvents;
+import net.deadlydiamond98.archipelago.events.common.*;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.deadlydiamond98.archipelago.networking.APNetworking;
@@ -41,6 +38,7 @@ public class APMod implements ModInitializer {
 		APServerWorldEvents.register();
 		APSeverCommandEvents.register();
 		APServerChatEvents.register();
+		APServerTickEvents.register();
 		APServerPlayConnectionEvents.register();
 
 		// Data Pack Loader

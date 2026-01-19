@@ -3,7 +3,6 @@ package net.deadlydiamond98.archipelago.networking.s2c;
 import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
-import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.client.screens.GameTrackerScreen;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.tracker.TrackerDataHolder;
@@ -30,8 +29,8 @@ public class SendArchipelagoInfoS2CPacket {
         buf.writeVarInt(ArchipelagoGoalHelper.getGoalID());
 
         // ADVANCEMENTS
-        buf.writeVarInt(states.getAdvancementIds().size());
-        buf.writeVarInt(ArchipelagoLocations.LOCATIONS.size());
+        buf.writeVarInt(ArchipelagoGoalHelper.getCurrentAdvancements());
+        buf.writeVarInt(ArchipelagoGoalHelper.getAdvancementsNeeded());
 
         // RUBIES
         buf.writeVarInt(APPersistentState.get().getCollectedRubies());

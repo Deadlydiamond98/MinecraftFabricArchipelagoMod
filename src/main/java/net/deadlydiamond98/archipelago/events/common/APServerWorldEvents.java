@@ -30,6 +30,7 @@ public class APServerWorldEvents {
     private static void onUnload(MinecraftServer server, ServerWorld serverWorld) {
         Archipelago.run(Client::close);
         APServerUtil.server = null;
+        Archipelago.slotData = null;
         // Unloads Datapack stuffs so that the values don't carry over to the next world
         APItemDataLoader.unload();
     }

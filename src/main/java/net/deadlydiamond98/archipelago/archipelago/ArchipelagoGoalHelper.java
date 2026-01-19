@@ -5,6 +5,7 @@ import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.text.Text;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 public class ArchipelagoGoalHelper {
@@ -27,19 +28,35 @@ public class ArchipelagoGoalHelper {
         APPersistentState state = APPersistentState.get();
         boolean killedDragon = state.hasKilledEnderDragon();
         boolean killedWither = state.hasKilledWither();
-//        int advancements = state.getAdvancementIds().size();
+        int advancements = getCurrentAdvancements();
+        int advancementsNeeded = getAdvancementsNeeded();
         int rubies = state.getCollectedRubies();
 
-        switch (getGoalID()) {
-            case 0 -> goal(killedDragon);
-            case 1 -> goal(killedWither);
-            case 2 -> goal(killedDragon && killedWither);
-            case 4 -> goal(getRubiesNeeded() <= rubies);
+        if (advancements >= advancementsNeeded) {
+            switch (getGoalID()) {
+                case 0 -> goal(killedDragon);
+                case 1 -> goal(killedWither);
+                case 2 -> goal(killedDragon && killedWither);
+                case 3 -> goal(true);
+                case 4 -> goal(getRubiesNeeded() <= rubies);
+            }
         }
     }
 
     public static int getGoalID() {
         return getFromSlot(mcSlotData -> mcSlotData.goal_condition);
+    }
+
+    public static int getCurrentAdvancements() {
+        AtomicInteger advancements = new AtomicInteger();
+        Archipelago.run(archipelago -> {
+           advancements.set(archipelago.getLocationManager().getCheckedLocations().size());
+        });
+        return advancements.get();
+    }
+
+    public static int getAdvancementsNeeded() {
+        return getFromSlot(mcSlotData -> mcSlotData.advancements_to_goal);
     }
 
     public static int getRubiesNeeded() {

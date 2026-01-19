@@ -27,9 +27,7 @@ public class APAdvancementHelper {
             return;
         }
 
-        Archipelago.run(archipelago -> {
-            archipelago.checkLocation(id);
-        });
+        Archipelago.run(archipelago -> archipelago.checkLocation(id));
 
         APServerUtil.runOnServer(server -> {
             for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.fabricmc.loader.api.FabricLoader;
@@ -29,7 +30,7 @@ public class ArchipelagoServerConnector {
 
     public static void connectToServer() {
         APPersistentState state = APPersistentState.get();
-        String server = state.currentServer;
+        String server = state.getCurrentServer();
         if (server == null) {
             if (!archipelagoServer.isEmpty()) {
                 connectToServer(archipelagoServer, archipelagoPlayer, archipelagoPassword);
@@ -38,7 +39,7 @@ public class ArchipelagoServerConnector {
                 archipelagoPassword = "";
             }
         } else {
-            connectToServer(server, state.currentPlayer, state.currentPassword);
+            connectToServer(server, state.getCurrentPlayer(), state.getCurrentPassword());
         }
     }
 
@@ -51,11 +52,10 @@ public class ArchipelagoServerConnector {
             try {
                 archipelago.connect(server);
                 updateLastConnectedServer(server, player);
-                state.currentServer = archipelagoServer;
-                state.currentPlayer = archipelagoPlayer;
-                state.currentPassword = archipelagoPassword;
+                state.updateWorldServerInformation(archipelagoServer, archipelagoPlayer, archipelagoPassword);
                 i.set(1);
             } catch (URISyntaxException e) {
+                APMod.LOGGER.info("Server: {}, Player: {}, Password: {}", server, player, password);
                 APServerUtil.sendMessage(Text.translatable("archipelago.connection.failed"));
             }
         });

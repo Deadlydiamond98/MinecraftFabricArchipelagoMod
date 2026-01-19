@@ -14,13 +14,16 @@ public record TrackerDataHolder(int goal, int currentAdvancements, int totalAdva
     }
 
     public Text getAmount(int current, int max) {
-        if (max == 0) {
+        if (max <= 0) {
             return Text.translatable("gui.archipelago.none_present");
         }
 
         double percentage = current / (float) max;
         percentage = Math.floor(percentage * 100.0) / 100.0;
+
         percentage *= 100;
+        percentage = percentage >= 100 ? 100 : percentage;
+        current = Math.min(current, max);
         return Text.literal((current < 10 ? "0" : "") + current + " / " + (max < 10 ? "0" : "") + max + " (" + percentage + "%)");
     }
 

@@ -13,7 +13,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class GameTrackerScreen extends Screen {
-    public static TrackerDataHolder tracker = null;
+    public static TrackerDataHolder tracker;
 
     private static final Identifier WINDOW_TEXTURE = APMod.id("textures/gui/tracker_gui.png");
     private static final Identifier RUBY_ICON_TEXTURE = APMod.id("textures/gui/tracker_icon/ruby.png");
@@ -73,7 +73,6 @@ public class GameTrackerScreen extends Screen {
     @Override
     public void close() {
         super.close();
-        tracker = null;
     }
 
     private void renderGoalProgress(DrawContext context, int x, int y, int centerX, int centerY, float delta) {
@@ -112,7 +111,7 @@ public class GameTrackerScreen extends Screen {
         MutableText text = Text.empty();
         int goalId = tracker.goal();
 
-        if (goalId > 0) {
+        if (goalId > -1) {
             text.append((switch (goalId) {
                 case 0 -> lang("goal.dragon");
                 case 1 -> lang("goal.wither");

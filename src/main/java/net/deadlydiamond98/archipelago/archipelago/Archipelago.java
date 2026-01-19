@@ -2,7 +2,6 @@ package net.deadlydiamond98.archipelago.archipelago;
 import io.github.archipelagomw.Client;
 import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.flags.ItemsHandling;
-import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.events.archipelago.APConnectEvents;
 import net.deadlydiamond98.archipelago.events.archipelago.APPrintJsonEvents;
 import net.deadlydiamond98.archipelago.events.archipelago.APReceiveItemEvents;
@@ -12,7 +11,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 
-import java.net.URISyntaxException;
 import java.util.function.Consumer;
 
 public class Archipelago extends Client {
@@ -72,18 +70,6 @@ public class Archipelago extends Client {
         return false;
     }
 
-    public static void connectToAPServer(String server, String player, String password) {
-        run(archipelago1 -> {
-            archipelago1.setName(player);
-            archipelago1.setPassword(password);
-            try {
-                archipelago1.connect(server);
-            } catch (URISyntaxException e) {
-                APServerUtil.sendMessage(Text.translatable("archipelago.connection.failed"));
-            }
-        });
-    }
-
     // Slot Data Methods ///////////////////////////////////////////////////////////////////////////////////////////////
 
     public static MCSlotData initSlotData(ConnectionResultEvent event) {
@@ -97,6 +83,8 @@ public class Archipelago extends Client {
 
     public static class MCSlotData {
         public int goal_condition;
+
+        public int advancements_to_goal;
 
         public int rubies_to_goal;
         public int total_rubies;

@@ -6,6 +6,7 @@ import net.deadlydiamond98.archipelago.APMod;
 import net.minecraft.util.Identifier;
 
 public class ArchipelagoLocations {
+
     public static final BiMap<Identifier, Long> LOCATIONS = HashBiMap.create();
     private static long i = 1;
 

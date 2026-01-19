@@ -38,9 +38,9 @@ public class APPersistentState extends PersistentState {
     private boolean hasKilledWither;
     private int currentRubyCount;
 
-    public String currentServer;
-    public String currentPlayer;
-    public String currentPassword;
+    private String currentServer;
+    private String currentPlayer;
+    private String currentPassword;
 
     // ADVANCEMENT ID METHODS //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,6 +208,31 @@ public class APPersistentState extends PersistentState {
         this.allChecks.putAll(this.progressiveLevelChecks);
         this.allChecks.putAll(this.toggleChecks);
         this.markDirty();
+    }
+
+    /**
+     * Changes the Archipelago Server Info assigned to the world
+     * @param server the server
+     * @param player the player slot
+     * @param password the password
+     */
+    public void updateWorldServerInformation(String server, String player, String password) {
+        this.currentServer = server;
+        this.currentPlayer = player;
+        this.currentPassword = password;
+        this.markDirty();
+    }
+
+    public String getCurrentServer() {
+        return this.currentServer;
+    }
+
+    public String getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
+    public String getCurrentPassword() {
+        return this.currentPassword;
     }
 
     /**
