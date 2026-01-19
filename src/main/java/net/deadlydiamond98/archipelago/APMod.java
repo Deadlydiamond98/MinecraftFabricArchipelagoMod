@@ -7,6 +7,7 @@ import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLo
 import net.deadlydiamond98.archipelago.events.common.*;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.init.APEffects;
+import net.deadlydiamond98.archipelago.init.APSounds;
 import net.deadlydiamond98.archipelago.networking.APNetworking;
 import net.deadlydiamond98.koalalib.config.KoalaConfigCreator;
 import net.deadlydiamond98.koalalib.updater.KoalaUpdateChecker;
@@ -32,13 +33,13 @@ public class APMod implements ModInitializer {
 		// Registry
 		APEffects.register();
 		APAdvancements.register();
+		APSounds.register();
 		APNetworking.registerC2SReceivers();
 
 		// Events
 		APServerWorldEvents.register();
 		APSeverCommandEvents.register();
 		APServerChatEvents.register();
-		APServerTickEvents.register();
 		APServerPlayConnectionEvents.register();
 
 		// Data Pack Loader

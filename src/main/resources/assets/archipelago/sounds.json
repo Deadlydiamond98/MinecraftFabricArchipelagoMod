@@ -1,0 +1,9 @@
+{
+  "archipelago.ruby.receive": {
+    "sounds": [
+      {
+        "name": "archipelago:item_receive/ruby"
+      }
+    ]
+  }
+}

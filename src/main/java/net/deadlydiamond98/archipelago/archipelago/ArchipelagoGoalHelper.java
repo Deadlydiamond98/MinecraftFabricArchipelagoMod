@@ -50,6 +50,7 @@ public class ArchipelagoGoalHelper {
     public static int getCurrentAdvancements() {
         AtomicInteger advancements = new AtomicInteger();
         Archipelago.run(archipelago -> {
+            // TODO: IN FUTURE THIS WILL NEED TO BE UPDATED IN ORDER TO MAKE THINGS LIKE ITEM SANITY NOT COUNT
            advancements.set(archipelago.getLocationManager().getCheckedLocations().size());
         });
         return advancements.get();

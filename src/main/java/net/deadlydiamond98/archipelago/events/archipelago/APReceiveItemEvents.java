@@ -5,6 +5,7 @@ import io.github.archipelagomw.events.ReceiveItemEvent;
 import net.deadlydiamond98.archipelago.archipelago.items.ArchipelagoItems;
 import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.networking.s2c.SendArchipelagoInfoS2CPacket;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 
 public class APReceiveItemEvents {
@@ -22,6 +23,7 @@ public class APReceiveItemEvents {
                         states.putItemIndex(index);
                     }
                 }
+                SendArchipelagoInfoS2CPacket.send(serverPlayer);
             });
         });
     }
