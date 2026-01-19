@@ -9,6 +9,7 @@
     "client.controls.MouseMixin"
   ],
   "mixins": [
+    "common.DamageSourceMixin",
     "common.advancement.PlayerAdvancementTrackerMixin",
     "common.block.WitherSkullBlockMixin",
     "common.entity.EntityMixin",
@@ -21,6 +22,7 @@
     "common.handler.CraftingScreenHandlerMixin",
     "common.handler.SmithingScreenHandlerMixin",
     "common.player.PlayerEntityMixin",
+    "common.player.ServerPlayerEntityMixin",
     "common.player.ServerPlayerInteractionManagerMixin"
   ],
   "injectors": {

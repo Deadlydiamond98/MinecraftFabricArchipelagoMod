@@ -26,7 +26,12 @@ public class APConnectEvents {
                 APServerUtil.runOnServer(server -> server.getGameRules().get(GameRules.KEEP_INVENTORY).set(true, server));
             }
 
-            Archipelago.run(archipelago -> archipelago.getLocationManager().getCheckedLocations().forEach(state::putAdvancementId));
+            Archipelago.run(archipelago -> {
+                if (slot.deathlink != 0) {
+                    archipelago.setDeathLinkEnabled(true);
+                }
+                archipelago.getLocationManager().getCheckedLocations().forEach(state::putAdvancementId);
+            });
             APAdvancementHelper.resyncAdvancements();
         }
     }

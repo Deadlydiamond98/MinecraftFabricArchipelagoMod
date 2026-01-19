@@ -38,9 +38,9 @@ public class APPersistentState extends PersistentState {
     private boolean hasKilledWither;
     private int currentRubyCount;
 
-    private String currentServer;
-    private String currentPlayer;
-    private String currentPassword;
+    private String currentServer = "";
+    private String currentPlayer = "";
+    private String currentPassword = "";
 
     // ADVANCEMENT ID METHODS //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -142,15 +142,9 @@ public class APPersistentState extends PersistentState {
         nbt.putBoolean("HasKilledWither", this.hasKilledWither);
         nbt.putInt("RubiesCollected", this.currentRubyCount);
 
-        if (this.currentServer != null) {
-            nbt.putString("ArchipelagoServer", this.currentServer);
-        }
-        if (this.currentPlayer != null) {
-            nbt.putString("ArchipelagoPlayer", this.currentPlayer);
-        }
-        if (this.currentPassword != null) {
-            nbt.putString("ArchipelagoPassword", this.currentPassword);
-        }
+        nbt.putString("ArchipelagoServer", this.currentServer);
+        nbt.putString("ArchipelagoPlayer", this.currentPlayer);
+        nbt.putString("ArchipelagoPassword", this.currentPassword);
 
         return nbt;
     }
@@ -176,15 +170,9 @@ public class APPersistentState extends PersistentState {
         states.hasKilledWither = nbt.getBoolean("HasKilledWither");
         states.currentRubyCount = nbt.getInt("RubiesCollected");
 
-        if (nbt.contains("ArchipelagoServer")) {
-            states.currentServer = nbt.getString("ArchipelagoServer");
-        }
-        if (nbt.contains("ArchipelagoPlayer")) {
-            states.currentPlayer = nbt.getString("ArchipelagoPlayer");
-        }
-        if (nbt.contains("ArchipelagoPassword")) {
-            states.currentPassword = nbt.getString("ArchipelagoPassword");
-        }
+        states.currentServer = nbt.getString("ArchipelagoServer");
+        states.currentPlayer = nbt.getString("ArchipelagoPlayer");
+        states.currentPassword = nbt.getString("ArchipelagoPassword");
 
         return states;
     }

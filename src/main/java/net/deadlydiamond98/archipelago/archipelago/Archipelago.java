@@ -3,6 +3,7 @@ import io.github.archipelagomw.Client;
 import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.flags.ItemsHandling;
 import net.deadlydiamond98.archipelago.events.archipelago.APConnectEvents;
+import net.deadlydiamond98.archipelago.events.archipelago.APDeathlinkEvents;
 import net.deadlydiamond98.archipelago.events.archipelago.APPrintJsonEvents;
 import net.deadlydiamond98.archipelago.events.archipelago.APReceiveItemEvents;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
@@ -12,10 +13,12 @@ import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class Archipelago extends Client {
     public static Archipelago archipelago;
     public static @Nullable MCSlotData slotData;
+    public static String lastDeathlinkPlayer = "Unknown";
 
     public Archipelago() {
         super();
@@ -25,6 +28,7 @@ public class Archipelago extends Client {
         this.getEventManager().registerListener(new APPrintJsonEvents());
         this.getEventManager().registerListener(new APReceiveItemEvents());
         this.getEventManager().registerListener(new APConnectEvents());
+        this.getEventManager().registerListener(new APDeathlinkEvents());
     }
 
     @Override
@@ -81,6 +85,14 @@ public class Archipelago extends Client {
         return slotData;
     }
 
+    public static int getFromSlot(Function<MCSlotData, Integer> function) {
+        Archipelago.MCSlotData slot = Archipelago.getSlotData();
+        if (slot != null) {
+            return function.apply(slot);
+        }
+        return -1;
+    }
+
     public static class MCSlotData {
         public int goal_condition;
 
@@ -88,6 +100,8 @@ public class Archipelago extends Client {
 
         public int rubies_to_goal;
         public int total_rubies;
+
+        public int deathlink;
 
         public int keep_inventory;
         public int randomize_swim;

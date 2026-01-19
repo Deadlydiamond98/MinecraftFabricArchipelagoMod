@@ -6,6 +6,10 @@
   "key.archipelago.category.keys": "Archipelago Mod Keybindings",
   "key.archipelago.open_tracker": "Open In-Game Tracker",
 
+  "death.attack.deathlink": "%s was Deathlinked by %s",
+  "archipelago.deathlinked.player": "Deathlink was triggered by %s",
+  "archipelago.deathlinked.cause": "Cause: %s",
+
   "gui.archipelago.none_present": "None Needed For Goal",
   "gui.archipelago.goal_progress": "-- Goal Progress --",
   "gui.archipelago.advancements_needed": "Advancements Needed",

@@ -31,7 +31,7 @@ public class ArchipelagoServerConnector {
     public static void connectToServer() {
         APPersistentState state = APPersistentState.get();
         String server = state.getCurrentServer();
-        if (server == null) {
+        if (server.isEmpty()) {
             if (!archipelagoServer.isEmpty()) {
                 connectToServer(archipelagoServer, archipelagoPlayer, archipelagoPassword);
                 archipelagoServer = "";
@@ -52,10 +52,9 @@ public class ArchipelagoServerConnector {
             try {
                 archipelago.connect(server);
                 updateLastConnectedServer(server, player);
-                state.updateWorldServerInformation(archipelagoServer, archipelagoPlayer, archipelagoPassword);
+                state.updateWorldServerInformation(server, player, password);
                 i.set(1);
             } catch (URISyntaxException e) {
-                APMod.LOGGER.info("Server: {}, Player: {}, Password: {}", server, player, password);
                 APServerUtil.sendMessage(Text.translatable("archipelago.connection.failed"));
             }
         });

@@ -4,7 +4,9 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.events.common.commands.APConnectionCommands;
+import net.deadlydiamond98.archipelago.events.common.commands.APDeathlinkCommand;
 import net.deadlydiamond98.archipelago.events.common.commands.APTextClientCommands;
+import net.deadlydiamond98.archipelago.init.APDamageTypes;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.api.FabricLoader;
@@ -17,6 +19,7 @@ public class APSeverCommandEvents {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             APConnectionCommands.connectionCommands(dispatcher);
             APTextClientCommands.textClientCommands(dispatcher);
+            APDeathlinkCommand.deathlinkCommand(dispatcher);
 
             // Say Command (used for commands that aren't covered by what I added or for sending general messages)
             dispatcher.register(CommandManager.literal("archipelago").then(CommandManager.literal("say")

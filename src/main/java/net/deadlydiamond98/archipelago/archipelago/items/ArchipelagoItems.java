@@ -83,11 +83,11 @@ public class ArchipelagoItems {
         ITEMS.put("Saddle", new ItemstackAPItem(Items.SADDLE, 1));
 
         // Traps ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        ITEMS.put("Reverse Controls Trap", new SpecialEffectTrap(APEffects.CONFUSION, 1200));
-        ITEMS.put("Inverted Mouse Trap", new SpecialEffectTrap(APEffects.DISORIENTATION, 1200));
-        ITEMS.put("Ice Trap", new SpecialEffectTrap(APEffects.FROST_FOOTED, 1200));
+        ITEMS.put("Reverse Controls Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));
+        ITEMS.put("Inverted Mouse Trap", new StatusEffectTrap(APEffects.DISORIENTATION, 1200));
+        ITEMS.put("Ice Trap", new StatusEffectTrap(APEffects.FROST_FOOTED, 1200));
         ITEMS.put("Random Status Trap", new RandomEffectTrap());
-        ITEMS.put("Stun Trap", new SpecialEffectTrap(APEffects.STUNNED, 50));
+        ITEMS.put("Stun Trap", new StatusEffectTrap(APEffects.STUNNED, 50));
         ITEMS.put("TNT Trap", new TNTTrap());
         ITEMS.put("Teleport Trap", new TeleportTrap());
         ITEMS.put("Bee Trap", new BeeTrap());

@@ -44,7 +44,7 @@ public class ArchipelagoGoalHelper {
     }
 
     public static int getGoalID() {
-        return getFromSlot(mcSlotData -> mcSlotData.goal_condition);
+        return Archipelago.getFromSlot(mcSlotData -> mcSlotData.goal_condition);
     }
 
     public static int getCurrentAdvancements() {
@@ -57,11 +57,11 @@ public class ArchipelagoGoalHelper {
     }
 
     public static int getAdvancementsNeeded() {
-        return getFromSlot(mcSlotData -> mcSlotData.advancements_to_goal);
+        return Archipelago.getFromSlot(mcSlotData -> mcSlotData.advancements_to_goal);
     }
 
     public static int getRubiesNeeded() {
-        return getFromSlot(mcSlotData -> {
+        return Archipelago.getFromSlot(mcSlotData -> {
             if (mcSlotData.goal_condition == 4) {
                 return (int) Math.floor(mcSlotData.total_rubies * (mcSlotData.rubies_to_goal * 0.01));
             }
@@ -69,13 +69,6 @@ public class ArchipelagoGoalHelper {
         });
     }
 
-    private static int getFromSlot(Function<Archipelago.MCSlotData, Integer> function) {
-        Archipelago.MCSlotData slot = Archipelago.getSlotData();
-        if (slot != null) {
-            return function.apply(slot);
-        }
-        return -1;
-    }
 
     /**
      * Triggers Goal if given variable is true
