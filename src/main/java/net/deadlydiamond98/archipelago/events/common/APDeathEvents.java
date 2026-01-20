@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.events.common;
 
+import io.github.archipelagomw.bounce.DeathLinkHandler;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.init.APDamageTypes;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -10,10 +11,12 @@ public class APDeathEvents {
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
             if (entity instanceof PlayerEntity && !damageSource.isOf(APDamageTypes.DEATHLINK)) {
                 Archipelago.run(archipelago -> {
-                    archipelago.sendDeathlink(
-                            archipelago.getMyName(),
-                            damageSource.getDeathMessage(entity).getString()
-                    );
+                    if (archipelago.getTags().contains(DeathLinkHandler.DEATHLINK_TAG)) {
+                        archipelago.sendDeathlink(
+                                archipelago.getMyName(),
+                                damageSource.getDeathMessage(entity).getString()
+                        );
+                    }
                 });
             }
         });
