@@ -1,4 +1,4 @@
-package net.deadlydiamond98.archipelago.mixin.client;
+package net.deadlydiamond98.archipelago.mixin.client.screen;
 
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoServerConnector;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;

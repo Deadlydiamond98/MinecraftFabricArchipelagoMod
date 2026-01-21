@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.util;
 
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.advancement.Advancement;
@@ -15,6 +16,7 @@ public class APAdvancementHelper {
      */
     public static void resyncAdvancements() {
         APPersistentState.get().getAdvancementIds().forEach(APAdvancementHelper::grantAdvancement);
+        ArchipelagoGoalHelper.tryTriggerGoal();
     }
 
     /**

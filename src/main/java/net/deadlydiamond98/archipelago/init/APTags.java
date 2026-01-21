@@ -12,6 +12,7 @@ public class APTags {
     public static final TagKey<Item> FRUITS = item("fruits");
 
     // LOCKED BY CHECKS
+    public static final TagKey<Item> ARCHIPELAGO_LOCK_SMITHING = item("locking/ap_lock_smithing");
     public static final TagKey<Block> ARCHIPELAGO_LOCK_INTERACTION = block("ap_lock_block_interaction");
     public static final TagKey<Block> ARCHIPELAGO_LOCK_BREAKING = block("ap_lock_block_breaking");
 

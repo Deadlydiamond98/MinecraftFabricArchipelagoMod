@@ -44,6 +44,8 @@ public class ArchipelagoServerConnector {
     }
 
     public static int connectToServer(String server, String player, String password) {
+        APMod.LOGGER.info("Server: \"{}\", Slot: \"{}\", Password: \"{}\"", server, player, password);
+
         APPersistentState state = APPersistentState.get();
         AtomicInteger i = new AtomicInteger();
         Archipelago.run(archipelago -> {

@@ -1,10 +1,13 @@
 package net.deadlydiamond98.archipelago;
 
 import net.deadlydiamond98.archipelago.events.client.APClientTickEvent;
+import net.deadlydiamond98.archipelago.init.APItems;
 import net.deadlydiamond98.archipelago.init.client.APKeybindings;
 import net.deadlydiamond98.archipelago.init.client.APShaders;
 import net.deadlydiamond98.archipelago.networking.APNetworking;
 import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.util.Identifier;
 
 public class APModClient implements ClientModInitializer {
 
@@ -14,5 +17,17 @@ public class APModClient implements ClientModInitializer {
 		APClientTickEvent.register();
 		APShaders.register();
 		APNetworking.Client.registerS2CReceivers();
+
+
+		ModelPredicateProviderRegistry.register(APItems.TOTEM_OF_METEOROLOGY, new Identifier("weather"),  (stack, world, entity, seed) -> {
+			if (world != null) {
+				if (world.isThundering()) {
+					return 1;
+				} else if (world.isRaining()) {
+					return 0.5f;
+				}
+			}
+			return 0;
+		});
 	}
 }

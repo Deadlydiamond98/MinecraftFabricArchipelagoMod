@@ -3,9 +3,9 @@ package net.deadlydiamond98.archipelago.networking.s2c;
 import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
-import net.deadlydiamond98.archipelago.client.screens.GameTrackerScreen;
+import net.deadlydiamond98.archipelago.client.screens.ItemTrackerScreen;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
-import net.deadlydiamond98.archipelago.util.tracker.TrackerDataHolder;
+import net.deadlydiamond98.archipelago.util.tracker.ItemTrackerDataHolder;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -64,10 +64,10 @@ public class SendArchipelagoInfoS2CPacket {
             int currentRubies = buf.readVarInt();
             int maxRubies = buf.readVarInt();
 
-            List<TrackerDataHolder.TrackerEntry> entries = new ArrayList<>();
+            List<ItemTrackerDataHolder.TrackerEntry> entries = new ArrayList<>();
             int iterateNum = buf.readInt();
             for (int i = 0; i < iterateNum; i++) {
-                entries.add(new TrackerDataHolder.TrackerEntry(buf.readVarInt(), buf.readString(), buf.readString(), buf.readBoolean()));
+                entries.add(new ItemTrackerDataHolder.TrackerEntry(buf.readVarInt(), buf.readString(), buf.readString(), buf.readBoolean()));
             }
 
             entries.sort((o1, o2) -> {
@@ -76,7 +76,7 @@ public class SendArchipelagoInfoS2CPacket {
                 return name1.compareToIgnoreCase(name2);
             });
 
-            GameTrackerScreen.tracker = new TrackerDataHolder(
+            ItemTrackerScreen.tracker = new ItemTrackerDataHolder(
                     goal, currentAdvancements, maxAdvancements, currentRubies, maxRubies, entries
             );
         }

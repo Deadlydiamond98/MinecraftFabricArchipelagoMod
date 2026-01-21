@@ -2,7 +2,7 @@ package net.deadlydiamond98.archipelago.client.screens;
 
 import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.networking.c2s.RequestTrackerInformationC2SPacket;
-import net.deadlydiamond98.archipelago.util.tracker.TrackerDataHolder;
+import net.deadlydiamond98.archipelago.util.tracker.ItemTrackerDataHolder;
 import net.deadlydiamond98.archipelago.util.tracker.TrackerScreenUtil;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -12,8 +12,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class GameTrackerScreen extends Screen {
-    public static TrackerDataHolder tracker;
+public class ItemTrackerScreen extends Screen {
+    public static ItemTrackerDataHolder tracker;
 
     private static final Identifier WINDOW_TEXTURE = APMod.id("textures/gui/tracker_gui.png");
     private static final Identifier RUBY_ICON_TEXTURE = APMod.id("textures/gui/tracker_icon/ruby.png");
@@ -27,7 +27,7 @@ public class GameTrackerScreen extends Screen {
     private int maxScroll;
     private int scrollOffset;
 
-    public GameTrackerScreen(Text title) {
+    public ItemTrackerScreen(Text title) {
         super(title);
         RequestTrackerInformationC2SPacket.send();
     }
@@ -92,7 +92,7 @@ public class GameTrackerScreen extends Screen {
         // Tracker Entries
         context.enableScissor(x + 7, y + 65, x + 244, y + 196);
         for (int i = 0; i < tracker.entries().size(); i++) {
-            TrackerDataHolder.TrackerEntry entry = tracker.entries().get(i);
+            ItemTrackerDataHolder.TrackerEntry entry = tracker.entries().get(i);
 
             String amount = entry.isProgressive() && entry.count() > 0 ? " (x" + entry.count() + ")" : "";
 

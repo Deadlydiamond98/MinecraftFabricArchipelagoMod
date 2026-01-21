@@ -4,7 +4,7 @@ import net.minecraft.text.Text;
 
 import java.util.List;
 
-public record TrackerDataHolder(int goal, int currentAdvancements, int totalAdvancements, int currentRubies, int totalRubies, List<TrackerEntry> entries) {
+public record ItemTrackerDataHolder(int goal, int currentAdvancements, int totalAdvancements, int currentRubies, int totalRubies, List<TrackerEntry> entries) {
     public Text advancements() {
         return getAmount(this.currentAdvancements, this.totalAdvancements);
     }

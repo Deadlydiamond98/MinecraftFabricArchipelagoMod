@@ -24,6 +24,14 @@
   "gui.archipelago.goal.advancements": "Complete %s Advancement(s)",
   "gui.archipelago.goal.invalid": "Cannot Find Your Goal!",
 
+  "item.archipelago.unimplemented_desc": "Not Fully Implemented Yet!",
+  "item.archipelago.essence_of_archipelago": "Essence of Archipelago",
+  "item.archipelago.essence_of_archipelago.tooltipa": "Used to Craft various items to make",
+  "item.archipelago.essence_of_archipelago.tooltipb": "getting hard Locations Easier!",
+  "item.archipelago.totem_of_meteorology": "Totem of Meteorology",
+  "item.archipelago.totem_of_meteorology.tooltipa": "Allows the user to change the",
+  "item.archipelago.totem_of_meteorology.tooltipb": "weather when used!",
+
   "effect.archipelago.confusion": "Confusion",
   "effect.archipelago.disorientation": "Disorientation",
   "effect.archipelago.frost_footed": "Frost Footed",

@@ -2,6 +2,7 @@ package net.deadlydiamond98.archipelago.mixin.common.handler;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.deadlydiamond98.archipelago.init.APTags;
 import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -28,7 +29,7 @@ public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
 
     @WrapOperation(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isItemEnabled(Lnet/minecraft/resource/featuretoggle/FeatureSet;)Z"))
     private boolean archipelago$updateResult(ItemStack instance, FeatureSet enabledFeatures, Operation<Boolean> original) {
-        if (!APItemAccessUtil.allowCraftOrUse(this.player, instance.getItem())) {
+        if (instance.isIn(APTags.ARCHIPELAGO_LOCK_SMITHING) && !APItemAccessUtil.allowCraftOrUse(this.player, instance.getItem())) {
             return false;
         }
         return original.call(instance, enabledFeatures);
