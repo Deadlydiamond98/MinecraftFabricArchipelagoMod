@@ -2,15 +2,12 @@ package net.deadlydiamond98.archipelago.mixin.common.player;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
-import net.minecraft.entity.Entity;
+import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -34,8 +31,7 @@ public class PlayerEntityMixin {
     // Prevents Jumping without Jump Item
     @WrapMethod(method = "jump")
     private void archipelago$jump(Operation<Void> original) {
-        APPersistentState states = APPersistentState.get();
-        if (states.getBooleanCheckValue("jump")) {
+        if (UpdatePlayerAbilitiesS2CPacket.canJump) {
             original.call();
         }
     }

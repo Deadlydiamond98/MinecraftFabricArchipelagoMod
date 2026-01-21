@@ -5,6 +5,7 @@ import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -72,7 +73,6 @@ public class APAdvancementHelper {
     public static boolean isValidAdvancement(Identifier id) {
         if (ArchipelagoLocations.LOCATIONS.containsKey(id)) {
             int type = ArchipelagoLocations.LOCATION_TYPE_CHECKER.getOrDefault(id, 0);
-            APMod.LOGGER.info("Exclude Hard? {}", Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_hard));
             return switch (type) {
                 case ArchipelagoLocations.HARD -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_hard) == 0;
                 case ArchipelagoLocations.EXPLORATION -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_exploration) == 0;

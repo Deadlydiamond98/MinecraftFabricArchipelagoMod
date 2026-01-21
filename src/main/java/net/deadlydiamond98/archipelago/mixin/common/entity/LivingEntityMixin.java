@@ -5,11 +5,13 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.common.effects.UnremovableStatusEffect;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.init.APEffects;
+import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
@@ -86,8 +88,7 @@ public abstract class LivingEntityMixin {
 
     @WrapMethod(method = "setSprinting")
     private void archipelago$setSprinting(boolean sprinting, Operation<Void> original) {
-        APPersistentState states = APPersistentState.get();
-        if (states.getBooleanCheckValue("sprint")) {
+        if (UpdatePlayerAbilitiesS2CPacket.canSprint) {
             original.call(sprinting);
         } else {
             original.call(false);
@@ -120,7 +121,7 @@ public abstract class LivingEntityMixin {
     @ModifyReturnValue(method = "getNextAirUnderwater", at = @At("RETURN"))
     private int archipelago$getNextAirUnderwater(int original) {
         if ((LivingEntity) (Object) this instanceof PlayerEntity) {
-            if (!APPersistentState.get().getBooleanCheckValue("swim")) {
+            if (!UpdatePlayerAbilitiesS2CPacket.canSwim) {
                 return -20;
             }
         }

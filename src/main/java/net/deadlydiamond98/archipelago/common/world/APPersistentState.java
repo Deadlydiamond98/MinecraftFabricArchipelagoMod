@@ -2,6 +2,7 @@ package net.deadlydiamond98.archipelago.common.world;
 
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
+import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.nbt.*;
@@ -127,6 +128,11 @@ public class APPersistentState extends PersistentState {
         }
     }
 
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        APServerUtil.runOnServer(server -> server.getPlayerManager().getPlayerList().forEach(UpdatePlayerAbilitiesS2CPacket::send));
+    }
 
     // NBT Reading and Writing /////////////////////////////////////////////////////////////////////////////////////////
 

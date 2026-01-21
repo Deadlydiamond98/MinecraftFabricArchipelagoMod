@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 
 
 public class APServerPlayConnectionEvents {
-    public static boolean syncAdvancements = false;
+    public static boolean syncData = false;
 
     public static void register() {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
@@ -14,7 +14,7 @@ public class APServerPlayConnectionEvents {
                 ArchipelagoServerConnector.connectToServer();
             }
             // sets this to true to use elsewhere since players can't be modified here!
-            syncAdvancements = true;
+            syncData = true;
         });
     }
 }

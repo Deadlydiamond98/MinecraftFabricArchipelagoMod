@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.init.APAdvancements;
+import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.PigEntity;
@@ -39,7 +40,7 @@ public class EntityMixin {
     @WrapMethod(method = "setSwimming")
     private void archipelago$setSwimming(boolean swimming, Operation<Void> original) {
         if ((Entity) (Object) this instanceof PlayerEntity) {
-            if (APPersistentState.get().getBooleanCheckValue("swim")) {
+            if (UpdatePlayerAbilitiesS2CPacket.canSwim) {
                 original.call(swimming);
             }
         } else {
@@ -49,7 +50,7 @@ public class EntityMixin {
 
     @ModifyReturnValue(method = "isTouchingWater", at = @At("RETURN"))
     private boolean archipelago$isTouchingWater(boolean original) {
-        if ((Entity) (Object) this instanceof PlayerEntity && !APPersistentState.get().getBooleanCheckValue("swim")) {
+        if ((Entity) (Object) this instanceof PlayerEntity && !UpdatePlayerAbilitiesS2CPacket.canSwim) {
             return false;
         }
         return original;
