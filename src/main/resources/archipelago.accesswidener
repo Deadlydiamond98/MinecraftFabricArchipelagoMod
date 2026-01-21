@@ -3,3 +3,4 @@ accessWidener v2 named
 accessible class net/minecraft/client/gui/screen/world/CreateWorldScreen$GameTab
 accessible field net/minecraft/client/gui/screen/Screen textRenderer Lnet/minecraft/client/font/TextRenderer;
 accessible class net/minecraft/client/gui/screen/world/WorldScreenOptionGrid
+accessible class net/minecraft/advancement/AdvancementDisplays$Status

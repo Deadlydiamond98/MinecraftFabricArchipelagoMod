@@ -2,6 +2,8 @@ package net.deadlydiamond98.archipelago.events.common;
 
 import net.deadlydiamond98.archipelago.APModConfigs;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.init.APAdvancements;
+import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 
 public class APServerChatEvents {

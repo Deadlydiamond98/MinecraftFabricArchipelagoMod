@@ -164,8 +164,4 @@ public class ItemTrackerScreen extends Screen {
         return Text.translatable("gui.archipelago." + id, param);
     }
 
-    @Override
-    public boolean shouldPause() {
-        return false;
-    }
 }

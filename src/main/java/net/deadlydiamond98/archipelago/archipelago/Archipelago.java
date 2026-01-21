@@ -97,6 +97,8 @@ public class Archipelago extends Client {
         public int goal_condition;
 
         public int advancements_to_goal;
+        public int exclude_hard;
+        public int exclude_exploration;
 
         public int rubies_to_goal;
         public int total_rubies;

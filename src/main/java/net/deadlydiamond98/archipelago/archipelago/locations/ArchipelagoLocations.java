@@ -5,9 +5,15 @@ import com.google.common.collect.HashBiMap;
 import net.deadlydiamond98.archipelago.APMod;
 import net.minecraft.util.Identifier;
 
-public class ArchipelagoLocations {
+import java.util.HashMap;
+import java.util.Map;
 
+public class ArchipelagoLocations {
     public static final BiMap<Identifier, Long> LOCATIONS = HashBiMap.create();
+    public static final Map<Identifier, Integer> LOCATION_TYPE_CHECKER = new HashMap<>();
+    public static final int HARD = 1;
+    public static final int EXPLORATION = 2;
+
     private static long i = 1;
 
     static {
@@ -34,32 +40,32 @@ public class ArchipelagoLocations {
         addLocation(new Identifier("story/enter_the_end"));
 
         // Adventure Advancements
-        addLocation(new Identifier("adventure/trim_with_all_exclusive_armor_patterns"));
-        addLocation(new Identifier("adventure/very_very_frightening"));
-        addLocation(new Identifier("adventure/lightning_rod_with_villager_no_fire"));
+        addLocation(new Identifier("adventure/trim_with_all_exclusive_armor_patterns"), HARD);
+        addLocation(new Identifier("adventure/very_very_frightening"), HARD);
+        addLocation(new Identifier("adventure/lightning_rod_with_villager_no_fire"), HARD);
         addLocation(new Identifier("adventure/craft_decorated_pot_using_only_sherds"));
-        addLocation(new Identifier("adventure/kill_mob_near_sculk_catalyst"));
+        addLocation(new Identifier("adventure/kill_mob_near_sculk_catalyst"), EXPLORATION);
         addLocation(new Identifier("adventure/fall_from_world_height"));
-        addLocation(new Identifier("adventure/sniper_duel"));
+        addLocation(new Identifier("adventure/sniper_duel"), HARD);
         addLocation(new Identifier("adventure/bullseye"));
-        addLocation(new Identifier("adventure/two_birds_one_arrow"));
+        addLocation(new Identifier("adventure/two_birds_one_arrow"), EXPLORATION);
         addLocation(new Identifier("adventure/whos_the_pillager_now"));
-        addLocation(new Identifier("adventure/walk_on_powder_snow_with_leather_boots"));
+        addLocation(new Identifier("adventure/walk_on_powder_snow_with_leather_boots"), EXPLORATION);
         addLocation(new Identifier("adventure/salvage_sherd"));
         addLocation(new Identifier("adventure/shoot_arrow"));
         addLocation(new Identifier("adventure/arbalistic"));
         addLocation(new Identifier("adventure/summon_iron_golem"));
-        addLocation(new Identifier("adventure/avoid_vibration"));
+        addLocation(new Identifier("adventure/avoid_vibration"), EXPLORATION);
         addLocation(new Identifier("adventure/sleep_in_bed"));
-        addLocation(new Identifier("adventure/kill_all_mobs"));
+        addLocation(new Identifier("adventure/kill_all_mobs"), HARD);
         addLocation(new Identifier("adventure/voluntary_exile"));
         addLocation(new Identifier("adventure/spyglass_at_parrot"));
         addLocation(new Identifier("adventure/totem_of_undying"));
         addLocation(new Identifier("adventure/kill_a_mob"));
-        addLocation(new Identifier("adventure/adventuring_time"));
+        addLocation(new Identifier("adventure/adventuring_time"), HARD);
         addLocation(new Identifier("adventure/spyglass_at_dragon"));
         addLocation(new Identifier("adventure/trade_at_world_height"));
-        addLocation(new Identifier("adventure/play_jukebox_in_meadows"));
+        addLocation(new Identifier("adventure/play_jukebox_in_meadows"), EXPLORATION);
         addLocation(new Identifier("adventure/hero_of_the_village"));
         addLocation(new Identifier("adventure/read_power_of_chiseled_bookshelf"));
         addLocation(new Identifier("adventure/trade"));
@@ -71,40 +77,40 @@ public class ArchipelagoLocations {
 
         // Husbandry Advancements
         addLocation(new Identifier("husbandry/allay_deliver_item_to_player"));
-        addLocation(new Identifier("husbandry/froglights"));
-        addLocation(new Identifier("husbandry/ride_a_boat_with_a_goat"));
+        addLocation(new Identifier("husbandry/froglights"), HARD);
+        addLocation(new Identifier("husbandry/ride_a_boat_with_a_goat"), EXPLORATION);
         addLocation(new Identifier("husbandry/tame_an_animal"));
         addLocation(new Identifier("husbandry/make_a_sign_glow"));
-        addLocation(new Identifier("husbandry/leash_all_frog_variants"));
+        addLocation(new Identifier("husbandry/leash_all_frog_variants"), HARD);
         addLocation(new Identifier("husbandry/fishy_business"));
-        addLocation(new Identifier("husbandry/bred_all_animals"));
+        addLocation(new Identifier("husbandry/bred_all_animals"), HARD);
         addLocation(new Identifier("husbandry/tactical_fishing"));
-        addLocation(new Identifier("husbandry/feed_snifflet"));
+        addLocation(new Identifier("husbandry/feed_snifflet"), HARD);
         addLocation(new Identifier("husbandry/silk_touch_nest"));
-        addLocation(new Identifier("husbandry/tadpole_in_a_bucket"));
+        addLocation(new Identifier("husbandry/tadpole_in_a_bucket"), EXPLORATION);
         addLocation(new Identifier("husbandry/wax_off"));
         addLocation(new Identifier("husbandry/obtain_sniffer_egg"));
         addLocation(new Identifier("husbandry/obtain_netherite_hoe"));
-        addLocation(new Identifier("husbandry/plant_any_sniffer_seed"));
+        addLocation(new Identifier("husbandry/plant_any_sniffer_seed"), HARD);
         addLocation(new Identifier("husbandry/plant_seed"));
         addLocation(new Identifier("husbandry/axolotl_in_a_bucket"));
         addLocation(new Identifier("husbandry/allay_deliver_cake_to_note_block"));
         addLocation(new Identifier("husbandry/wax_on"));
-        addLocation(new Identifier("husbandry/balanced_diet"));
+        addLocation(new Identifier("husbandry/balanced_diet"), HARD);
         addLocation(new Identifier("husbandry/safely_harvest_honey"));
         addLocation(new Identifier("husbandry/kill_axolotl_target"));
         addLocation(new Identifier("husbandry/breed_an_animal"));
-        addLocation(new Identifier("husbandry/complete_catalogue"));
+        addLocation(new Identifier("husbandry/complete_catalogue"), HARD);
 
         // Nether Advancements
         addLocation(new Identifier("nether/obtain_crying_obsidian"));
         addLocation(new Identifier("nether/distract_piglin"));
-        addLocation(new Identifier("nether/all_potions"));
+        addLocation(new Identifier("nether/all_potions"), HARD);
         addLocation(new Identifier("nether/create_beacon"));
         addLocation(new Identifier("nether/brew_potion"));
-        addLocation(new Identifier("nether/explore_nether"));
+        addLocation(new Identifier("nether/explore_nether"), EXPLORATION);
         addLocation(new Identifier("nether/ride_strider"));
-        addLocation(new Identifier("nether/all_effects"));
+        addLocation(new Identifier("nether/all_effects"), HARD);
         addLocation(new Identifier("nether/get_wither_skull"));
         addLocation(new Identifier("nether/obtain_blaze_rod"));
         addLocation(new Identifier("nether/loot_bastion"));
@@ -113,7 +119,7 @@ public class ArchipelagoLocations {
         addLocation(new Identifier("nether/find_bastion"));
         addLocation(new Identifier("nether/ride_strider_in_overworld_lava"));
         addLocation(new Identifier("nether/obtain_ancient_debris"));
-        addLocation(new Identifier("nether/create_full_beacon"));
+        addLocation(new Identifier("nether/create_full_beacon"), HARD);
         addLocation(new Identifier("nether/summon_wither"));
         addLocation(new Identifier("nether/fast_travel"));
         addLocation(new Identifier("nether/use_lodestone"));
@@ -147,11 +153,16 @@ public class ArchipelagoLocations {
         addLocation(APMod.id("legacy/on_a_rail"));
         addLocation(APMod.id("legacy/overkill"));
         addLocation(APMod.id("legacy/get_bookshelf"));
-        addLocation(APMod.id("legacy/eat_golden_apple"));
+        addLocation(APMod.id("legacy/eat_golden_apple"), HARD);
         addLocation(APMod.id("legacy/when_pigs_fly"));
     }
 
     private static void addLocation(Identifier id) {
+        addLocation(id, 0);
+    }
+
+    private static void addLocation(Identifier id, int advancementType) {
         LOCATIONS.put(id, i++);
+        LOCATION_TYPE_CHECKER.put(id, advancementType);
     }
 }

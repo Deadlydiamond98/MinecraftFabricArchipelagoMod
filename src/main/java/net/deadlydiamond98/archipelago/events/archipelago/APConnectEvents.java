@@ -23,7 +23,13 @@ public class APConnectEvents {
             triggerSlotDataCheck("chests", slot.randomize_chests, state);
 
             if (slot.keep_inventory == 1) {
-                APServerUtil.runOnServer(server -> server.getGameRules().get(GameRules.KEEP_INVENTORY).set(true, server));
+                APServerUtil.runOnServer(server -> {
+                    server.getGameRules().get(GameRules.KEEP_INVENTORY).set(true, server);
+                    server.getPlayerManager().getPlayerList().forEach(player -> {
+                        server.getPlayerManager().getAdvancementTracker(player)
+                                .reload(server.getAdvancementLoader());
+                    });
+                });
             }
 
             Archipelago.run(archipelago -> {

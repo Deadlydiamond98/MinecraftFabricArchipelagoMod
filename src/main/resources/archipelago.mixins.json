@@ -10,6 +10,8 @@
   ],
   "mixins": [
     "common.DamageSourceMixin",
+    "common.advancement.AdvancementDisplayMixin",
+    "common.advancement.AdvancementDisplaysMixin",
     "common.advancement.PlayerAdvancementTrackerMixin",
     "common.block.BlockMixin",
     "common.block.WitherSkullBlockMixin",

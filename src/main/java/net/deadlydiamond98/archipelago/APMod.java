@@ -43,6 +43,7 @@ public class APMod implements ModInitializer {
 		APSeverCommandEvents.register();
 		APServerChatEvents.register();
 		APServerPlayConnectionEvents.register();
+		APServerTickEvents.register();
 		APDeathEvents.register();
 
 		// Data Pack Loader
