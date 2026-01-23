@@ -2,6 +2,7 @@ package net.deadlydiamond98.archipelago.util.tracker;
 
 import net.minecraft.text.Text;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public record ItemTrackerDataHolder(int goal, int currentAdvancements, int totalAdvancements, int currentRubies, int totalRubies, List<TrackerEntry> entries) {
@@ -18,13 +19,14 @@ public record ItemTrackerDataHolder(int goal, int currentAdvancements, int total
             return Text.translatable("gui.archipelago.none_present");
         }
 
-        double percentage = current / (float) max;
-        percentage = Math.floor(percentage * 100.0) / 100.0;
-
-        percentage *= 100;
+        double percentage = current / (double) max;
         percentage = percentage >= 100 ? 100 : percentage;
+
+        DecimalFormat decimalFormat = new DecimalFormat(".0%");
+        String percentageStr = decimalFormat.format(percentage);
         current = Math.min(current, max);
-        return Text.literal((current < 10 ? "0" : "") + current + " / " + (max < 10 ? "0" : "") + max + " (" + percentage + "%)");
+
+        return Text.literal((current < 10 ? "0" : "") + current + " / " + (max < 10 ? "0" : "") + max + " (" + percentageStr + "%)");
     }
 
     public record TrackerEntry(int count, String name, String id, boolean isProgressive) {}
