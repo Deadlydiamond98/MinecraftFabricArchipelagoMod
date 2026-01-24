@@ -4,6 +4,7 @@ import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.network.ConnectionResult;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
@@ -36,7 +37,11 @@ public class APConnectEvents {
                 if (slot.deathlink != 0) {
                     archipelago.setDeathLinkEnabled(true);
                 }
-                archipelago.getLocationManager().getCheckedLocations().forEach(state::putAdvancementId);
+                archipelago.getLocationManager().getCheckedLocations().forEach(aLong -> {
+                    if (APLocations.ADVANCEMENT_LOCATIONS.containsValue(aLong)) {
+                        state.putAdvancementId(aLong);
+                    }
+                });
             });
             APAdvancementHelper.resyncAdvancements();
         }

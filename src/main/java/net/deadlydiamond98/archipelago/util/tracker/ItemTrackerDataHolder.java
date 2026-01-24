@@ -26,7 +26,10 @@ public record ItemTrackerDataHolder(int goal, int currentAdvancements, int total
         String percentageStr = decimalFormat.format(percentage);
         current = Math.min(current, max);
 
-        return Text.literal((current < 10 ? "0" : "") + current + " / " + (max < 10 ? "0" : "") + max + " (" + percentageStr + "%)");
+        if (percentage <= 0) {
+            percentageStr = "0.0%";
+        }
+        return Text.literal((current < 10 ? "0" : "") + current + " / " + (max < 10 ? "0" : "") + max + " (" + percentageStr + ")");
     }
 
     public record TrackerEntry(int count, String name, String id, boolean isProgressive) {}

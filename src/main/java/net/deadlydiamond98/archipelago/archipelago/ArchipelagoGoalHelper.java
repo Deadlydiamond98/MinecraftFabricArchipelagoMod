@@ -50,8 +50,12 @@ public class ArchipelagoGoalHelper {
     public static int getCurrentAdvancements() {
         AtomicInteger advancements = new AtomicInteger();
         Archipelago.run(archipelago -> {
-            // TODO: IN FUTURE THIS WILL NEED TO BE UPDATED IN ORDER TO MAKE THINGS LIKE ITEM SANITY NOT COUNT
-           advancements.set(archipelago.getLocationManager().getCheckedLocations().size());
+            for (Long checkedLocation : archipelago.getLocationManager().getCheckedLocations()) {
+                APPersistentState state = APPersistentState.get();
+                if (state.getAdvancementIds().contains(checkedLocation)) {
+                    advancements.set(advancements.get() + 1);
+                }
+            }
         });
         return advancements.get();
     }
@@ -68,7 +72,6 @@ public class ArchipelagoGoalHelper {
             return 0;
         });
     }
-
 
     /**
      * Triggers Goal if given variable is true

@@ -93,12 +93,17 @@ public class Archipelago extends Client {
         return -1;
     }
 
+    public static boolean hasItemsanity() {
+        return Archipelago.getFromSlot(mcSlotData -> mcSlotData.itemsanity) == 1;
+    }
+
     public static class MCSlotData {
         public int goal_condition;
 
         public int advancements_to_goal;
         public int exclude_hard;
         public int exclude_exploration;
+        public int exclude_unreasonable;
 
         public int rubies_to_goal;
         public int total_rubies;
@@ -106,6 +111,8 @@ public class Archipelago extends Client {
         public int deathlink;
 
         public int keep_inventory;
+        public int itemsanity;
+
         public int randomize_swim;
         public int randomize_sprint;
         public int randomize_jump;

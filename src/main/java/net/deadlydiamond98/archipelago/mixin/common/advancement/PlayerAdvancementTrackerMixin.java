@@ -1,6 +1,6 @@
 package net.deadlydiamond98.archipelago.mixin.common.advancement;
 
-import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
+import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
@@ -26,7 +26,7 @@ public abstract class PlayerAdvancementTrackerMixin {
     @Inject(method = "grantCriterion", at = @At("RETURN"))
     private void archipelago$grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         APPersistentState state = APPersistentState.get();
-        Long i = ArchipelagoLocations.LOCATIONS.get(advancement.getId());
+        Long i = APLocations.ADVANCEMENT_LOCATIONS.get(advancement.getId());
         if (i != null && !state.getAdvancementIds().contains(i)) {
             if (getProgress(advancement).isDone()) {
                 state.putAdvancementId(i);

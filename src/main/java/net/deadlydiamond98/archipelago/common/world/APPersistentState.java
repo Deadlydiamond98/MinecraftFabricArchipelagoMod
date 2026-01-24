@@ -34,6 +34,8 @@ public class APPersistentState extends PersistentState {
     private final List<Long> itemIndexes = new ArrayList<>();
     // Saves unlocked advancements, so they're granted to any additional players in the world
     private final List<Long> advancementIds = new ArrayList<>();
+    // Saves found Itemsanity Checks
+    private final List<Long> itemsanityIds = new ArrayList<>();
 
     private boolean hasKilledEnderDragon;
     private boolean hasKilledWither;
@@ -43,7 +45,7 @@ public class APPersistentState extends PersistentState {
     private String currentPlayer = "";
     private String currentPassword = "";
 
-    // ADVANCEMENT ID METHODS //////////////////////////////////////////////////////////////////////////////////////////
+    // Location ID METHODS /////////////////////////////////////////////////////////////////////////////////////////////
 
     public List<Long> getAdvancementIds() {
         return advancementIds;
@@ -53,6 +55,15 @@ public class APPersistentState extends PersistentState {
         advancementIds.add(id);
         markDirty();
         APAdvancementHelper.resyncAdvancements();
+    }
+
+    public List<Long> getItemsanityIds() {
+        return itemsanityIds;
+    }
+
+    public void putItemsanityID(long id) {
+        itemsanityIds.add(id);
+        markDirty();
     }
 
     // ITEM INDEX METHODS //////////////////////////////////////////////////////////////////////////////////////////////
@@ -139,6 +150,7 @@ public class APPersistentState extends PersistentState {
     @Override
     public NbtCompound writeNbt(NbtCompound nbt) {
         nbt.putLongArray("AdvancementIds", this.advancementIds);
+        nbt.putLongArray("ItemsanityIds", this.itemsanityIds);
         nbt.putLongArray("ItemIndexes", this.itemIndexes);
 
         APState.write(nbt, "progressiveLevelChecks", this.progressiveLevelChecks, NbtCompound::putInt);
@@ -160,6 +172,10 @@ public class APPersistentState extends PersistentState {
 
         for (long itemIndex : nbt.getLongArray("AdvancementIds")) {
             states.advancementIds.add(itemIndex);
+        }
+
+        for (long itemIndex : nbt.getLongArray("ItemsanityIds")) {
+            states.itemsanityIds.add(itemIndex);
         }
 
         for (long itemIndex : nbt.getLongArray("ItemIndexes")) {

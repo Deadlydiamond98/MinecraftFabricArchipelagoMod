@@ -10,6 +10,7 @@ import net.minecraft.registry.tag.TagKey;
 
 public class APTags {
     public static final TagKey<Item> FRUITS = item("fruits");
+    public static final TagKey<Item> DYES = item("dyes");
 
     // LOCKED BY CHECKS
     public static final TagKey<Item> ARCHIPELAGO_LOCK_SMITHING = item("locking/ap_lock_smithing");

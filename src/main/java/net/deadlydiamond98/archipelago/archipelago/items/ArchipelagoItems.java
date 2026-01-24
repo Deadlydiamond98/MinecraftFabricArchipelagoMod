@@ -6,7 +6,9 @@ import net.deadlydiamond98.archipelago.archipelago.items.type.traps.*;
 import net.deadlydiamond98.archipelago.init.APEffects;
 import net.deadlydiamond98.archipelago.init.APTags;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Potions;
 import net.minecraft.registry.tag.ItemTags;
 
 import java.util.HashMap;
@@ -55,10 +57,9 @@ public class ArchipelagoItems {
         ITEMS.put("Large Emerald Ore Vein", new ItemstackAPItem(Blocks.EMERALD_ORE, 2));
 
         // Foods
-        ITEMS.put("Random Fruit", new ItemTagAPItem(APTags.FRUITS, 16));
-
-        ITEMS.put("Golden Carrot", new ItemstackAPItem(Items.GOLDEN_CARROT, 16));
-        ITEMS.put("Baked Potato", new ItemstackAPItem(Items.BAKED_POTATO, 16));
+        ITEMS.put("Apples", new ItemstackAPItem(Items.APPLE, 16));
+        ITEMS.put("Golden Carrots", new ItemstackAPItem(Items.GOLDEN_CARROT, 16));
+        ITEMS.put("Baked Potatos", new ItemstackAPItem(Items.BAKED_POTATO, 16));
         ITEMS.put("Cookies", new ItemstackAPItem(Items.COOKIE, 16));
 
         ITEMS.put("Steak", new ItemstackAPItem(Items.COOKED_BEEF, 16));
@@ -79,8 +80,27 @@ public class ArchipelagoItems {
         ITEMS.put("Diorite", new ItemstackAPItem(Blocks.DIORITE, 16));
         ITEMS.put("Granite", new ItemstackAPItem(Blocks.GRANITE, 16));
 
+        // Enchanted Books
+        ITEMS.put("Looting III", new EnchantmentAPItem(Enchantments.LOOTING, 3));
+        ITEMS.put("Sharpness III", new EnchantmentAPItem(Enchantments.SHARPNESS, 3));
+        ITEMS.put("Silk Touch", new EnchantmentAPItem(Enchantments.SILK_TOUCH, 1));
+        ITEMS.put("Channeling", new EnchantmentAPItem(Enchantments.CHANNELING, 1));
+        ITEMS.put("Piercing IV", new EnchantmentAPItem(Enchantments.PIERCING, 4));
+        ITEMS.put("Unbreaking I", new EnchantmentAPItem(Enchantments.UNBREAKING, 1));
+        ITEMS.put("Unbreaking II", new EnchantmentAPItem(Enchantments.UNBREAKING, 2));
+        ITEMS.put("Unbreaking III", new EnchantmentAPItem(Enchantments.UNBREAKING, 3));
+
+        // Potions
+        ITEMS.put("Potion of Fire Resistance", new PotionAPItem(Potions.FIRE_RESISTANCE));
+        ITEMS.put("Potion of Swiftness", new PotionAPItem(Potions.SWIFTNESS));
+        ITEMS.put("Potion of Luck", new PotionAPItem(Potions.LUCK));
+        ITEMS.put("Strong Potion of Harming", new PotionAPItem(Potions.STRONG_HARMING));
+        ITEMS.put("Potion of Healing", new PotionAPItem(Potions.HEALING));
+        ITEMS.put("Strong Potion of Healing", new PotionAPItem(Potions.STRONG_HEALING));
+
         // Misc
         ITEMS.put("Saddle", new ItemstackAPItem(Items.SADDLE, 1));
+        ITEMS.put("Random Dye", new ItemTagAPItem(APTags.DYES, 3));
 
         // Traps ///////////////////////////////////////////////////////////////////////////////////////////////////////
         ITEMS.put("Reverse Controls Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));

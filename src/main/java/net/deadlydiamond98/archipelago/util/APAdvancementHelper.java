@@ -1,15 +1,16 @@
 package net.deadlydiamond98.archipelago.util;
 
-import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
-import net.deadlydiamond98.archipelago.archipelago.locations.ArchipelagoLocations;
+import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
-import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class APAdvancementHelper {
 
@@ -43,7 +44,7 @@ public class APAdvancementHelper {
      * @param id the location id corresponding to the advancement
      */
     public static void grantAdvancement(long id) {
-        Identifier advancementID = ArchipelagoLocations.LOCATIONS.inverse().get(id);
+        Identifier advancementID = APLocations.ADVANCEMENT_LOCATIONS.inverse().get(id);
         if (advancementID == null) {
             return;
         }
@@ -58,8 +59,10 @@ public class APAdvancementHelper {
      */
     public static void grantAdvancement(Identifier id) {
         APServerUtil.runOnServer(server -> {
-            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
-                Advancement advancement = server.getAdvancementLoader().get(id);
+            List<ServerPlayerEntity> players = new ArrayList<>(server.getPlayerManager().getPlayerList());
+            Advancement advancement = server.getAdvancementLoader().get(id);
+
+            for (ServerPlayerEntity player : players) {
                 AdvancementProgress progress = player.getAdvancementTracker().getProgress(advancement);
                 if (!progress.isDone()) {
                     progress.getUnobtainedCriteria().forEach(s -> {
@@ -71,11 +74,12 @@ public class APAdvancementHelper {
     }
 
     public static boolean isValidAdvancement(Identifier id) {
-        if (ArchipelagoLocations.LOCATIONS.containsKey(id)) {
-            int type = ArchipelagoLocations.LOCATION_TYPE_CHECKER.getOrDefault(id, 0);
+        if (APLocations.ADVANCEMENT_LOCATIONS.containsKey(id)) {
+            int type = APLocations.LOCATION_TYPE_CHECKER.getOrDefault(id, 0);
             return switch (type) {
-                case ArchipelagoLocations.HARD -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_hard) == 0;
-                case ArchipelagoLocations.EXPLORATION -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_exploration) == 0;
+                case APLocations.HARD -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_hard) == 0;
+                case APLocations.EXPLORATION -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_exploration) == 0;
+                case APLocations.UNREASONABLE -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_unreasonable) == 0;
                 default -> true;
             };
         }
