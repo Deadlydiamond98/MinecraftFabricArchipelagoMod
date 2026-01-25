@@ -15,6 +15,7 @@ public class TNTTrap extends AbstractTrapItem {
         Vec3d pos = player.getPos();
 
         TntEntity tntEntity = new TntEntity(world, pos.getX(), pos.getY(), pos.getZ(), null);
+        tntEntity.setFuse(40);
         world.spawnEntity(tntEntity);
         world.playSound(
                 null,

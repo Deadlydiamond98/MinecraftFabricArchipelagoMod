@@ -111,5 +111,6 @@ public class ArchipelagoItems {
         ITEMS.put("TNT Trap", new TNTTrap());
         ITEMS.put("Teleport Trap", new TeleportTrap());
         ITEMS.put("Bee Trap", new BeeTrap());
+        ITEMS.put("Literature Trap", new LiteratureTrap());
     }
 }
