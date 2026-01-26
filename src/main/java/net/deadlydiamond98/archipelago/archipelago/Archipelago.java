@@ -2,10 +2,7 @@ package net.deadlydiamond98.archipelago.archipelago;
 import io.github.archipelagomw.Client;
 import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.flags.ItemsHandling;
-import net.deadlydiamond98.archipelago.events.archipelago.APConnectEvents;
-import net.deadlydiamond98.archipelago.events.archipelago.APDeathlinkEvents;
-import net.deadlydiamond98.archipelago.events.archipelago.APPrintJsonEvents;
-import net.deadlydiamond98.archipelago.events.archipelago.APReceiveItemEvents;
+import net.deadlydiamond98.archipelago.events.archipelago.*;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -29,6 +26,7 @@ public class Archipelago extends Client {
         this.getEventManager().registerListener(new APReceiveItemEvents());
         this.getEventManager().registerListener(new APConnectEvents());
         this.getEventManager().registerListener(new APDeathlinkEvents());
+        this.getEventManager().registerListener(new APBouncedEvents());
     }
 
     @Override
@@ -109,6 +107,7 @@ public class Archipelago extends Client {
         public int total_rubies;
 
         public int deathlink;
+        public int traplink;
 
         public int keep_inventory;
         public int itemsanity;

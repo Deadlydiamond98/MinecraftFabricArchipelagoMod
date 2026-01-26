@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.archipelago.items.type;
 
 import io.github.archipelagomw.parts.NetworkItem;
+import net.deadlydiamond98.archipelago.networking.ArchipelagoPacketManager;
 import net.deadlydiamond98.koalalib.init.KoalaLibSounds;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,14 +21,23 @@ public abstract class AbstractAPItem {
 
     public abstract void applyReward(ServerPlayerEntity player);
 
-    public final void apply(NetworkItem item, ServerPlayerEntity player) {
+    public final void apply(NetworkItem item, ServerPlayerEntity player, boolean traplink) {
+        apply(item.itemName, player, traplink);
+    }
+
+    public final void apply(String itemName, ServerPlayerEntity player, boolean traplink) {
+        // Sends Trap With traplink
+        if (traplink) {
+            ArchipelagoPacketManager.sendTraplink(itemName);
+        }
+
         // Done like this so that getting multiple of these doesn't play a really loud sound due to multiple stacking
         if (NO_MORE_EAR_BLEEDING.getOrDefault(player, 0) < player.age) {
             player.playSound(getSoundEvent(), SoundCategory.PLAYERS, getSoundVolume(), 1);
             NO_MORE_EAR_BLEEDING.put(player, player.age);
         }
         Style style = Style.EMPTY.withColor(getTextColor());
-        player.sendMessage(Text.literal(item.itemName).setStyle(style), true);
+        player.sendMessage(Text.literal(itemName).setStyle(style), true);
         applyReward(player);
     }
 

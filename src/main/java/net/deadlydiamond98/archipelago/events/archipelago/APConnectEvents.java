@@ -37,6 +37,9 @@ public class APConnectEvents {
                 if (slot.deathlink != 0) {
                     archipelago.setDeathLinkEnabled(true);
                 }
+                if (slot.traplink != 0) {
+                    archipelago.addTag("TrapLink");
+                }
                 archipelago.getLocationManager().getCheckedLocations().forEach(aLong -> {
                     if (APLocations.ADVANCEMENT_LOCATIONS.containsValue(aLong)) {
                         state.putAdvancementId(aLong);

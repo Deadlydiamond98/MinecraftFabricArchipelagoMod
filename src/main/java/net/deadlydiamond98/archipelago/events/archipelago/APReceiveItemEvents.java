@@ -19,7 +19,7 @@ public class APReceiveItemEvents {
                     APPersistentState states = APPersistentState.get();
                     long index = event.getIndex();
                     if (!states.getItemIndexes().contains(index)) {
-                        item.apply(event.getItem(), serverPlayer);
+                        item.apply(event.getItem(), serverPlayer, true);
                         states.putItemIndex(index);
                     }
                 }
