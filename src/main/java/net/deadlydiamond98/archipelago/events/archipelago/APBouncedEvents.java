@@ -13,16 +13,20 @@ public class APBouncedEvents {
     public void onBounced(BouncedEvent event) {
         Archipelago.MCSlotData slotData = Archipelago.getSlotData();
 
-        if (slotData != null) {
-            if (event.tags.contains("TrapLink") && slotData.traplink != 0) {
-                String trapName = event.getString("trap_name");
-                AbstractAPItem abstractAPItem = MultiworldTraps.TRAPS.get(trapName);
-                if (abstractAPItem != null) {
-                    APServerUtil.runOnServer(server -> server.getPlayerManager().getPlayerList().forEach(player -> {
-                        abstractAPItem.apply(trapName, player, false);
-                    }));
+        Archipelago.run(archipelago -> {
+            if (slotData != null) {
+                if (event.tags.contains("TrapLink") && slotData.traplink != 0) {
+                    if (!event.getString("source").equals(archipelago.getMyName())) {
+                        String trapName = event.getString("trap_name");
+                        AbstractAPItem abstractAPItem = MultiworldTraps.TRAPS.get(trapName);
+                        if (abstractAPItem != null) {
+                            APServerUtil.runOnServer(server -> server.getPlayerManager().getPlayerList().forEach(player -> {
+                                abstractAPItem.apply(trapName, player, false);
+                            }));
+                        }
+                    }
                 }
             }
-        }
+        });
     }
 }

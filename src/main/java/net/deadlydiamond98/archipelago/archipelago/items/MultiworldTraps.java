@@ -12,15 +12,19 @@ public class MultiworldTraps {
     public static final Map<String, AbstractAPItem> TRAPS = new HashMap<>();
 
     static {
+        TRAPS.put("Animal Trap", new BeeTrap());
+        TRAPS.put("Army Trap", new BeeTrap());
         TRAPS.put("Banana Peel Trap", new StatusEffectTrap(APEffects.FROST_FOOTED, 1200));
         TRAPS.put("Banana Trap", new StatusEffectTrap(APEffects.FROST_FOOTED, 1200));
         TRAPS.put("Bee Trap", new BeeTrap());
         TRAPS.put("Bomb", new TNTTrap());
+        TRAPS.put("Bullet Time Trap", new StatusEffectTrap(StatusEffects.SLOWNESS, 600));
         TRAPS.put("Chaos Control Trap", new StatusEffectTrap(APEffects.STUNNED, 50));
         TRAPS.put("Confuse Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));
         TRAPS.put("Confusion Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));
         TRAPS.put("Controller Drift Trap", new StatusEffectTrap(APEffects.FROST_FOOTED, 1200));
         TRAPS.put("Cutscene Trap", new StatusEffectTrap(APEffects.STUNNED, 50));
+        TRAPS.put("Damage Trap", new StatusEffectTrap(StatusEffects.INSTANT_DAMAGE, 1));
         TRAPS.put("Depletion Trap", new StatusEffectTrap(StatusEffects.HUNGER, 200));
         TRAPS.put("Disable A Trap", new StatusEffectTrap(APEffects.STUNNED, 50));
         TRAPS.put("Disable B Trap", new StatusEffectTrap(APEffects.STUNNED, 50));
@@ -51,6 +55,7 @@ public class MultiworldTraps {
         TRAPS.put("Swap Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));
         TRAPS.put("Teleport Trap", new TeleportTrap());
         TRAPS.put("Text Trap", new LiteratureTrap());
+        TRAPS.put("Thwimp Trap", new TNTTrap());
         TRAPS.put("TNT Barrel Trap", new TNTTrap());
         TRAPS.put("TNT Trap", new TNTTrap());
     }

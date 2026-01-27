@@ -13,7 +13,7 @@ import net.minecraft.registry.Registry;
 
 public class APItems {
 
-    public static final Item SINGLE_USE_POTION = register("single_use_potion", new SingleUsePotionItem(new FabricItemSettings()));
+    public static final Item SINGLE_USE_POTION = register("single_use_potion", new SingleUsePotionItem(new FabricItemSettings().maxCount(1)));
 
     public static final Item ESSENCE_OF_ARCHIPELAGO = register("essence_of_archipelago", new EssenceOfArchipelagoItem(new FabricItemSettings()));
     public static final Item TOTEM_OF_METEOROLOGY = register("totem_of_meteorology", new TotemOfMeteorologyItem(new FabricItemSettings().maxCount(1)));

@@ -1,0 +1,22 @@
+{
+  "mod": "archipelago",
+  "entries": {
+    "minecraft:red_dye": 1,
+    "minecraft:yellow_dye": 1,
+    "minecraft:green_dye": 1,
+    "minecraft:blue_dye": 1,
+    "minecraft:white_dye": 1,
+    "minecraft:black_dye": 1,
+    "minecraft:gray_dye": 1,
+
+    "minecraft:orange_dye": 2,
+    "minecraft:lime_dye": 2,
+    "minecraft:cyan_dye": 2,
+    "minecraft:light_blue_dye": 2,
+    "minecraft:purple_dye": 2,
+    "minecraft:magenta_dye": 2,
+    "minecraft:pink_dye": 2,
+    "minecraft:light_gray_dye": 2,
+    "minecraft:brown_dye": 2
+  }
+}

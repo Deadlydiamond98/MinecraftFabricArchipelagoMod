@@ -44,6 +44,7 @@ public class SavedArchipelagoItems {
         registerWithJson("Glass Bottle Recipes", "bottles", true);
         registerWithJson("Resource Compacting Recipes", "compacting", true);
         registerWithJson("Shield Recipes", "shield", true);
+        registerWithJson("Bundle Recipes", "bundles", true);
 
         // Progressive Crafting
         registerWithJson("Progressive Tools", "tools", false);
@@ -51,6 +52,7 @@ public class SavedArchipelagoItems {
         registerWithJson("Progressive Archery", "archery", false);
         registerWithJson("Progressive Armor", "armor", false);
         registerWithJson("Progressive Smelting", "smelting", false);
+        registerWithJson("Progressive Dye Recipes", "dyes", false);
     }
 
     public static void registerWithJson(String name, String key, boolean isBool) {

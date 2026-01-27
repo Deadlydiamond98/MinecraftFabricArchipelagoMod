@@ -21,6 +21,9 @@ public class ArchipelagoItems {
         // Ruby Hunt Item //////////////////////////////////////////////////////////////////////////////////////////////
         ITEMS.put("Ruby", new RubyAPItem());
 
+        // Limited Filler //////////////////////////////////////////////////////////////////////////////////////////////
+        ITEMS.put("Bundle", new ItemstackAPItem(Items.BUNDLE, 1));
+
         // Filler //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Experience
         ITEMS.put("5 Experience", new ExperienceAPItem(5, 0));
@@ -42,6 +45,8 @@ public class ArchipelagoItems {
         ITEMS.put("Redstone Dust", new ItemstackAPItem(Items.REDSTONE, 8));
         ITEMS.put("Lapis Lazuli", new ItemstackAPItem(Items.LAPIS_LAZULI, 8));
         ITEMS.put("Ender Pearls", new ItemstackAPItem(Items.ENDER_PEARL, 3));
+//        ITEMS.put("Prismarine Shards", new ItemstackAPItem(Items.PRISMARINE_SHARD, 32));
+//        ITEMS.put("Prismarine Crystals", new ItemstackAPItem(Items.PRISMARINE_CRYSTALS, 8));
 
         // Ores
         ITEMS.put("Coal Ore Vein", new ItemstackAPItem(Blocks.COAL_ORE, 6));
