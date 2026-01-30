@@ -4,7 +4,6 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import net.deadlydiamond98.archipelago.archipelago.locations.advancement.VanillaAdvancements;
 import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.VanillaItemsanity;
-import net.deadlydiamond98.archipelago.archipelago.locations.killsanity.VanillaKillsanity;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
@@ -26,7 +25,6 @@ public class APLocations {
         VanillaAdvancements.addVanillaAdvancements();
         VanillaAdvancements.addLegacyAdvancements();
         VanillaItemsanity.addVanillaItemsanity();
-//        VanillaKillsanity.addVanillaKillsanity();
     }
 
 

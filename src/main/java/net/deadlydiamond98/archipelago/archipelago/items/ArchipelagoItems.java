@@ -45,8 +45,8 @@ public class ArchipelagoItems {
         ITEMS.put("Redstone Dust", new ItemstackAPItem(Items.REDSTONE, 8));
         ITEMS.put("Lapis Lazuli", new ItemstackAPItem(Items.LAPIS_LAZULI, 8));
         ITEMS.put("Ender Pearls", new ItemstackAPItem(Items.ENDER_PEARL, 3));
-//        ITEMS.put("Prismarine Shards", new ItemstackAPItem(Items.PRISMARINE_SHARD, 32));
-//        ITEMS.put("Prismarine Crystals", new ItemstackAPItem(Items.PRISMARINE_CRYSTALS, 8));
+        ITEMS.put("Prismarine Shards", new ItemstackAPItem(Items.PRISMARINE_SHARD, 8));
+        ITEMS.put("Prismarine Crystals", new ItemstackAPItem(Items.PRISMARINE_CRYSTALS, 2));
 
         // Ores
         ITEMS.put("Coal Ore Vein", new ItemstackAPItem(Blocks.COAL_ORE, 6));

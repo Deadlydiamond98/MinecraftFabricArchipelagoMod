@@ -1151,5 +1151,7 @@ public class VanillaItemsanity {
         addItemsanityLocation(new Identifier("minecraft:shelter_pottery_sherd"));
         addItemsanityLocation(new Identifier("minecraft:skull_pottery_sherd"));
         addItemsanityLocation(new Identifier("minecraft:snort_pottery_sherd"));
+        addItemsanityLocation(new Identifier("minecraft:firework_star"));
+        addItemsanityLocation(new Identifier("minecraft:firework_rocket"));
     }
 }
