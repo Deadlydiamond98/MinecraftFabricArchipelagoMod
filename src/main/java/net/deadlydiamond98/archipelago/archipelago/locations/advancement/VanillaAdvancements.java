@@ -25,13 +25,13 @@ public class VanillaAdvancements {
         addAdvancmentLocation(new Identifier("story/enter_the_end"));
 
         // Adventure Advancements
-        addAdvancmentLocation(new Identifier("adventure/trim_with_all_exclusive_armor_patterns"), HARD);
+        addAdvancmentLocation(new Identifier("adventure/trim_with_all_exclusive_armor_patterns"), UNREASONABLE);
         addAdvancmentLocation(new Identifier("adventure/very_very_frightening"), HARD);
         addAdvancmentLocation(new Identifier("adventure/lightning_rod_with_villager_no_fire"), HARD);
         addAdvancmentLocation(new Identifier("adventure/craft_decorated_pot_using_only_sherds"));
         addAdvancmentLocation(new Identifier("adventure/kill_mob_near_sculk_catalyst"), EXPLORATION);
         addAdvancmentLocation(new Identifier("adventure/fall_from_world_height"));
-        addAdvancmentLocation(new Identifier("adventure/sniper_duel"));
+        addAdvancmentLocation(new Identifier("adventure/sniper_duel"), HARD);
         addAdvancmentLocation(new Identifier("adventure/bullseye"));
         addAdvancmentLocation(new Identifier("adventure/two_birds_one_arrow"), EXPLORATION);
         addAdvancmentLocation(new Identifier("adventure/whos_the_pillager_now"));
@@ -44,7 +44,7 @@ public class VanillaAdvancements {
         addAdvancmentLocation(new Identifier("adventure/sleep_in_bed"));
         addAdvancmentLocation(new Identifier("adventure/kill_all_mobs"), HARD);
         addAdvancmentLocation(new Identifier("adventure/voluntary_exile"));
-        addAdvancmentLocation(new Identifier("adventure/spyglass_at_parrot"));
+        addAdvancmentLocation(new Identifier("adventure/spyglass_at_parrot"), EXPLORATION);
         addAdvancmentLocation(new Identifier("adventure/totem_of_undying"), EXPLORATION);
         addAdvancmentLocation(new Identifier("adventure/kill_a_mob"));
         addAdvancmentLocation(new Identifier("adventure/adventuring_time"), UNREASONABLE);
@@ -108,7 +108,7 @@ public class VanillaAdvancements {
         addAdvancmentLocation(new Identifier("nether/summon_wither"));
         addAdvancmentLocation(new Identifier("nether/fast_travel"));
         addAdvancmentLocation(new Identifier("nether/use_lodestone"));
-        addAdvancmentLocation(new Identifier("nether/uneasy_alliance"));
+        addAdvancmentLocation(new Identifier("nether/uneasy_alliance"), HARD);
         addAdvancmentLocation(new Identifier("nether/find_fortress"));
         addAdvancmentLocation(new Identifier("nether/netherite_armor"), HARD);
 
