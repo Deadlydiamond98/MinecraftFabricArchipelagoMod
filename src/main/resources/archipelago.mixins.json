@@ -16,6 +16,7 @@
     "common.advancement.PlayerAdvancementTrackerMixin",
     "common.block.BlockMixin",
     "common.block.WitherSkullBlockMixin",
+    "common.entity.DrownedEntityMixin",
     "common.entity.EntityMixin",
     "common.entity.LivingEntityMixin",
     "common.entity.PiglinBrainMixin",
