@@ -6,6 +6,7 @@
   "client": [
     "client.controls.KeybindingMixin",
     "client.controls.MouseMixin",
+    "client.renderer.ItemRendererMixin",
     "client.screen.GameTabMixin"
   ],
   "mixins": [

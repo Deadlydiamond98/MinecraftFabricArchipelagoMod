@@ -2,6 +2,7 @@ package net.deadlydiamond98.archipelago.common.world;
 
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
+import net.deadlydiamond98.archipelago.networking.s2c.SendUncheckedItemsS2CPacket;
 import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
@@ -64,6 +65,7 @@ public class APPersistentState extends PersistentState {
     public void putItemsanityID(long id) {
         itemsanityIds.add(id);
         markDirty();
+        SendUncheckedItemsS2CPacket.send();
     }
 
     // ITEM INDEX METHODS //////////////////////////////////////////////////////////////////////////////////////////////
