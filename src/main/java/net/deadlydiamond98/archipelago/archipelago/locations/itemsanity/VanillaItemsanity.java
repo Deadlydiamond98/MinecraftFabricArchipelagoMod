@@ -3,7 +3,6 @@ package net.deadlydiamond98.archipelago.archipelago.locations.itemsanity;
 import net.minecraft.util.Identifier;
 
 import static net.deadlydiamond98.archipelago.archipelago.locations.APLocations.*;
-import static net.deadlydiamond98.archipelago.archipelago.locations.logic.VanillaLogic.*;
 
 public class VanillaItemsanity {
     public static void addVanillaItemsanity() {

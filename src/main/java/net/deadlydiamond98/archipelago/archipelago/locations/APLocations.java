@@ -14,7 +14,6 @@ import java.util.function.Predicate;
 public class APLocations {
     public static final BiMap<Identifier, Long> ADVANCEMENT_LOCATIONS = HashBiMap.create();
     public static final BiMap<Identifier, Long> ITEMSANITY_LOCATIONS = HashBiMap.create();
-    public static final Map<Identifier, APLocationLogic> LOCATION_LOGIC_CHECKER = new HashMap<>();
     private static long id = 1;
 
     static {
