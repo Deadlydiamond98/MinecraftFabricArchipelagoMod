@@ -27,9 +27,7 @@ public class ArchipelagoMixinPlugin implements IMixinConfigPlugin {
     }
 
     @Override
-    public void onLoad(String mixinPackage) {
-
-    }
+    public void onLoad(String mixinPackage) {}
 
     @Override
     public String getRefMapperConfig() {
@@ -38,7 +36,6 @@ public class ArchipelagoMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {
-
     }
 
     @Override

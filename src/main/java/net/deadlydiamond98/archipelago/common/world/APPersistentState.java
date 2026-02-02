@@ -160,7 +160,6 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
 
         NbtList receivedItemsList = new NbtList();
         for (Map.Entry<Long, String> entry : this.receivedItems.entrySet()) {
-            APMod.LOGGER.info("({}, {})", entry.getValue(), entry.getKey());
 
             NbtCompound itemNbt = new NbtCompound();
             itemNbt.putString("itemName", entry.getValue());
