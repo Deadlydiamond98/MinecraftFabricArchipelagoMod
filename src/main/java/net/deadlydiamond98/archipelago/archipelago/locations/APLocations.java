@@ -26,31 +26,11 @@ public class APLocations {
 
     // CREATE //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static void advancement(Identifier advancemeentID, APLocationLogic logic) {
-        advancement(advancemeentID);
-        LOCATION_LOGIC_CHECKER.put(advancemeentID, logic);
-    }
-
     public static void advancement(Identifier advancemeentID) {
         ADVANCEMENT_LOCATIONS.put(advancemeentID, id++);
     }
 
-    public static void itemsanity(Identifier itemID, APLocationLogic logic) {
-        itemsanity(itemID);
-        LOCATION_LOGIC_CHECKER.put(itemID, logic);
-    }
-
     public static void itemsanity(Identifier itemID) {
         ITEMSANITY_LOCATIONS.put(itemID, id++);
-    }
-
-    // LOGIC ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public static APLocationLogic logic(Predicate<IAbilityCheck> inLogic) {
-        return new APLocationLogic(inLogic);
-    }
-
-    public static APLocationLogic logic(Predicate<IAbilityCheck> inLogic, Predicate<IAbilityCheck> possible) {
-        return new APLocationLogic(inLogic, possible);
     }
 }

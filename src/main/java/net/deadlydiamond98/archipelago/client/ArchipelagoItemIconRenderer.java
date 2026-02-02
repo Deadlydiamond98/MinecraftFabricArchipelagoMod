@@ -12,6 +12,14 @@ import org.joml.Matrix4f;
 public class ArchipelagoItemIconRenderer {
     public static final Identifier ARCHIPELAGO_ITEM_TEXTURE = APMod.id("textures/item/icon/unchecked.png");
 
+    public static void renderIconScreen(MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
+        matrices.push();
+        matrices.scale(0.5f, 0.5f, 1);
+        matrices.translate(0, getBobbingY(0.25f), 1);
+        draw(matrices, vertexConsumers);
+        matrices.pop();
+    }
+
     public static void renderIconHandledScreen(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int x, int y) {
         matrices.push();
         matrices.translate((float)(x + 8), (float)(y + 8), 150);

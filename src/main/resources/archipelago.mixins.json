@@ -34,7 +34,10 @@
     "common.player.PlayerEntityMixin",
     "common.player.ServerPlayerEntityMixin",
     "common.player.ServerPlayerInteractionManagerMixin",
-    "compat.jade.DisplayHelperMixin"
+    "compat.jade.DisplayHelperMixin",
+    "compat.jei.ItemStackBatchRendererMixin",
+    "compat.jei.ItemStackRendererMixin",
+    "compat.rei.ItemEntryRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
