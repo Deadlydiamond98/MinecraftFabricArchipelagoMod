@@ -3,8 +3,8 @@ package net.deadlydiamond98.archipelago.networking.s2c;
 import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
-import net.deadlydiamond98.archipelago.client.screens.ItemTrackerScreen;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.util.tracker.ArchipelagoTrackingData;
 import net.deadlydiamond98.archipelago.util.tracker.ItemTrackerDataHolder;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -76,7 +76,7 @@ public class SendArchipelagoInfoS2CPacket {
                 return name1.compareToIgnoreCase(name2);
             });
 
-            ItemTrackerScreen.tracker = new ItemTrackerDataHolder(
+            ArchipelagoTrackingData.tracker = new ItemTrackerDataHolder(
                     goal, currentAdvancements, maxAdvancements, currentRubies, maxRubies, entries
             );
         }

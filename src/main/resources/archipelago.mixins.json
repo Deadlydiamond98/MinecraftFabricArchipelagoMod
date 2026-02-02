@@ -6,8 +6,10 @@
   "client": [
     "client.controls.KeybindingMixin",
     "client.controls.MouseMixin",
-    "client.renderer.ItemRendererMixin",
-    "client.screen.GameTabMixin"
+    "client.renderer.ItemEntityRendererMixin",
+    "client.screen.AnimatedResultButtonMixin",
+    "client.screen.GameTabMixin",
+    "client.screen.HandledScreenMixin"
   ],
   "mixins": [
     "common.DamageSourceMixin",
@@ -31,9 +33,11 @@
     "common.handler.SmithingScreenHandlerMixin",
     "common.player.PlayerEntityMixin",
     "common.player.ServerPlayerEntityMixin",
-    "common.player.ServerPlayerInteractionManagerMixin"
+    "common.player.ServerPlayerInteractionManagerMixin",
+    "compat.jade.DisplayHelperMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  },
+  "plugin": "net.deadlydiamond98.archipelago.util.ArchipelagoMixinPlugin"
 }

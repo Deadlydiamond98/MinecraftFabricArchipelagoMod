@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class APAdvancementHelper {
 
@@ -75,13 +76,11 @@ public class APAdvancementHelper {
 
     public static boolean isValidAdvancement(Identifier id) {
         if (APLocations.ADVANCEMENT_LOCATIONS.containsKey(id)) {
-            int type = APLocations.LOCATION_TYPE_CHECKER.getOrDefault(id, 0);
-            return switch (type) {
-                case APLocations.HARD -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_hard) == 0;
-                case APLocations.EXPLORATION -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_exploration) == 0;
-                case APLocations.UNREASONABLE -> Archipelago.getFromSlot(mcSlotData -> mcSlotData.exclude_unreasonable) == 0;
-                default -> true;
-            };
+            Archipelago archipelago = Archipelago.archipelago;
+            if (archipelago != null) {
+                Set<Long> locations = archipelago.getLocationManager().getMissingLocations();
+                return locations.contains(APLocations.ADVANCEMENT_LOCATIONS.get(id));
+            }
         }
         return false;
     }

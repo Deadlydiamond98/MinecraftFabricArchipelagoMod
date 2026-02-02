@@ -5,6 +5,7 @@ import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLoader;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
+import net.deadlydiamond98.archipelago.util.tracker.ArchipelagoTrackingData;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
@@ -27,6 +28,7 @@ public class APServerWorldEvents {
         Archipelago.run(Client::close);
         APServerUtil.server = null;
         Archipelago.slotData = null;
+        ArchipelagoTrackingData.clear();
         // Unloads Datapack stuffs so that the values don't carry over to the next world
         APItemDataLoader.unload();
     }

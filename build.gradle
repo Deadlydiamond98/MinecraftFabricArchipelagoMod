@@ -1,4 +1,5 @@
 plugins {
+//	id 'fabric-loom' version '1.8.0-alpha.16'
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
@@ -36,6 +37,10 @@ dependencies {
 	include "org.java-websocket:Java-WebSocket:1.6.0"
 
 	implementation "io.github.archipelagomw:Java-Client:${archipelago_client_version}"
+
+	// Optional Dependencies
+	modImplementation "maven.modrinth:jade:${jade_version}"
+//	modImplementation "maven.modrinth:jei:${jei_version}"
 }
 
 processResources {

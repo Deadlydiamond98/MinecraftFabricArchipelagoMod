@@ -6,6 +6,7 @@ import io.github.archipelagomw.network.ConnectionResult;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.networking.s2c.SendArchipelagoInfoS2CPacket;
 import net.deadlydiamond98.archipelago.networking.s2c.SendUncheckedItemsS2CPacket;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
@@ -30,6 +31,7 @@ public class APConnectEvents {
                     server.getPlayerManager().getPlayerList().forEach(player -> {
                         server.getPlayerManager().getAdvancementTracker(player)
                                 .reload(server.getAdvancementLoader());
+                        SendArchipelagoInfoS2CPacket.send(player);
                         SendUncheckedItemsS2CPacket.send(player);
                     });
                 });

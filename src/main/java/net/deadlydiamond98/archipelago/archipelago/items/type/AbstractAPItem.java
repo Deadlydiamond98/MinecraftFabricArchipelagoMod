@@ -7,6 +7,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Style;
@@ -31,14 +32,20 @@ public abstract class AbstractAPItem {
             ArchipelagoPacketManager.sendTraplink(itemName);
         }
 
-        // Done like this so that getting multiple of these doesn't play a really loud sound due to multiple stacking
-        if (NO_MORE_EAR_BLEEDING.getOrDefault(player, 0) < player.age) {
-            player.playSound(getSoundEvent(), SoundCategory.PLAYERS, getSoundVolume(), 1);
-            NO_MORE_EAR_BLEEDING.put(player, player.age);
-        }
+        playSound(player);
         Style style = Style.EMPTY.withColor(getTextColor());
         player.sendMessage(Text.literal(itemName).setStyle(style), true);
         applyReward(player);
+    }
+
+    private void playSound(ServerPlayerEntity player) {
+        ServerWorld world = (ServerWorld) player.getWorld();
+        int time = world.getServer().getTicks();
+        // Done like this so that getting multiple of these doesn't play a really loud sound due to multiple stacking
+        if (NO_MORE_EAR_BLEEDING.getOrDefault(player, 0) < time) {
+            player.playSound(getSoundEvent(), SoundCategory.PLAYERS, getSoundVolume(), 1);
+            NO_MORE_EAR_BLEEDING.put(player, time);
+        }
     }
 
     protected void giveItem(ServerPlayerEntity player, ItemStack stack) {

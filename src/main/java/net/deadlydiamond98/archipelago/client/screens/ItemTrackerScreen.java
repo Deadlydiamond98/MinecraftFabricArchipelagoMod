@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.client.screens;
 
 import net.deadlydiamond98.archipelago.APMod;
+import net.deadlydiamond98.archipelago.util.tracker.ArchipelagoTrackingData;
 import net.deadlydiamond98.archipelago.networking.c2s.RequestTrackerInformationC2SPacket;
 import net.deadlydiamond98.archipelago.util.tracker.ItemTrackerDataHolder;
 import net.deadlydiamond98.archipelago.util.tracker.TrackerScreenUtil;
@@ -13,8 +14,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class ItemTrackerScreen extends Screen {
-    public static ItemTrackerDataHolder tracker;
-
     private static final Identifier WINDOW_TEXTURE = APMod.id("textures/gui/tracker_gui.png");
     private static final Identifier RUBY_ICON_TEXTURE = APMod.id("textures/gui/tracker_icon/ruby.png");
     private static final Identifier TROPHY_ICON_TEXTURE = APMod.id("textures/gui/tracker_icon/trophy.png");
@@ -34,11 +33,11 @@ public class ItemTrackerScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        if (tracker == null) {
+        if (tracker() == null) {
             return;
         }
 
-        this.maxScroll = Math.max(((tracker.entries().size() * ENTRY_HEIGHT) + 10) - (ENTRY_HEIGHT * 7), 0);
+        this.maxScroll = Math.max(((tracker().entries().size() * ENTRY_HEIGHT) + 10) - (ENTRY_HEIGHT * 7), 0);
 
         this.guiX = (this.width - this.backgroundWidth) / 2;
         this.guiY = (this.height - this.backgroundHeight) / 2;
@@ -78,11 +77,15 @@ public class ItemTrackerScreen extends Screen {
     private void renderGoalProgress(DrawContext context, int x, int y, int centerX, int centerY, float delta) {
         TrackerScreenUtil.drawScaledText(context, this.textRenderer, lang("goal_progress"), centerX, y + 11, 1, 0xFFFFFF, true);
 
-        int advancementHex = tracker.currentAdvancements() >= tracker.totalAdvancements() ? 0x00FFAA : 0xFFFFFF;
-        int rubyHex = tracker.totalRubies() == 0 ? 0x9A9A9A : (tracker.currentRubies() >= tracker.totalRubies() ? 0x00FFAA : 0xFFFFFF);
+        int advancementHex = tracker().currentAdvancements() >= tracker().totalAdvancements() ? 0x00FFAA : 0xFFFFFF;
+        int rubyHex = tracker().totalRubies() == 0 ? 0x9A9A9A : (tracker().currentRubies() >= tracker().totalRubies() ? 0x00FFAA : 0xFFFFFF);
 
-        drawGoalCheck(context, TROPHY_ICON_TEXTURE, lang("advancements_needed"), tracker.advancements(), x, y, 19, advancementHex);
-        drawGoalCheck(context, RUBY_ICON_TEXTURE, lang("rubies_needed"), tracker.rubies(), x, y, 37, rubyHex);
+        drawGoalCheck(context, TROPHY_ICON_TEXTURE, lang("advancements_needed"), tracker().advancements(), x, y, 19, advancementHex);
+        drawGoalCheck(context, RUBY_ICON_TEXTURE, lang("rubies_needed"), tracker().rubies(), x, y, 37, rubyHex);
+    }
+
+    private ItemTrackerDataHolder tracker() {
+        return ArchipelagoTrackingData.tracker;
     }
 
     private void renderChecks(DrawContext context, int x, int y) {
@@ -91,8 +94,8 @@ public class ItemTrackerScreen extends Screen {
 
         // Tracker Entries
         context.enableScissor(x + 7, y + 65, x + 244, y + 196);
-        for (int i = 0; i < tracker.entries().size(); i++) {
-            ItemTrackerDataHolder.TrackerEntry entry = tracker.entries().get(i);
+        for (int i = 0; i < tracker().entries().size(); i++) {
+            ItemTrackerDataHolder.TrackerEntry entry = tracker().entries().get(i);
 
             String amount = entry.isProgressive() && entry.count() > 0 ? " (x" + entry.count() + ")" : "";
 
@@ -109,22 +112,22 @@ public class ItemTrackerScreen extends Screen {
         context.drawCenteredTextWithShadow(this.textRenderer, lang("goal"), x, y + 200, 0xFFFFFF);
 
         MutableText text = Text.empty();
-        int goalId = tracker.goal();
+        int goalId = tracker().goal();
 
         if (goalId > -1) {
             text.append((switch (goalId) {
                 case 0 -> lang("goal.dragon");
                 case 1 -> lang("goal.wither");
                 case 2 -> lang("goal.both");
-                case 4 -> lang("goal.ruby_hunt", tracker.totalRubies());
+                case 4 -> lang("goal.ruby_hunt", tracker().totalRubies());
                 default -> Text.literal("");
             }).setStyle(Style.EMPTY.withColor(Formatting.AQUA)));
 
-            if (tracker.totalAdvancements() > 0) {
+            if (tracker().totalAdvancements() > 0) {
                 if (goalId != 3) {
                     text.append(lang("goal.and"));
                 }
-                text.append(lang("goal.advancements", tracker.totalAdvancements()).setStyle(Style.EMPTY.withColor(Formatting.GREEN)));
+                text.append(lang("goal.advancements", tracker().totalAdvancements()).setStyle(Style.EMPTY.withColor(Formatting.GREEN)));
             }
 
             TrackerScreenUtil.drawScaledText(context, this.textRenderer, text, x, y + 215, 0.75f, 0xFFFFFF, true);

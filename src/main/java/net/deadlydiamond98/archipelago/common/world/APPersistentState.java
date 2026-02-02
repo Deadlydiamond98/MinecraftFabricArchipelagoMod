@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.common.world;
 
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
+import net.deadlydiamond98.archipelago.util.tracker.IAbilityCheck;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
 import net.deadlydiamond98.archipelago.networking.s2c.SendUncheckedItemsS2CPacket;
 import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
@@ -22,7 +23,7 @@ import java.util.Map;
  *  - Status of various abilities
  *  - The Current Archipelago Server
  */
-public class APPersistentState extends PersistentState {
+public class APPersistentState extends PersistentState implements IAbilityCheck {
 
     // This Could probably still be cleaned up even more, but it's fine
 
@@ -100,10 +101,12 @@ public class APPersistentState extends PersistentState {
         this.setCheckValue(id, bl, Boolean.class);
     }
 
+    @Override
     public int getIntCheckValue(String id) {
         return getCheckValue(id, 0, Integer.class);
     }
 
+    @Override
     public boolean getBooleanCheckValue(String id) {
         return getCheckValue(id, false, Boolean.class);
     }

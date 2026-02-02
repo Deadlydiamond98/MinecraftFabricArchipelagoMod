@@ -5,7 +5,7 @@ import net.minecraft.text.Text;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public record ItemTrackerDataHolder(int goal, int currentAdvancements, int totalAdvancements, int currentRubies, int totalRubies, List<TrackerEntry> entries) {
+public record ItemTrackerDataHolder(int goal, int currentAdvancements, int totalAdvancements, int currentRubies, int totalRubies, List<TrackerEntry> entries) implements IAbilityCheck {
     public Text advancements() {
         return getAmount(this.currentAdvancements, this.totalAdvancements);
     }
@@ -33,4 +33,24 @@ public record ItemTrackerDataHolder(int goal, int currentAdvancements, int total
     }
 
     public record TrackerEntry(int count, String name, String id, boolean isProgressive) {}
+
+    @Override
+    public int getIntCheckValue(String id) {
+        for (TrackerEntry entry : entries) {
+            if (entry.id.equals(id)) {
+                return entry.count;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean getBooleanCheckValue(String id) {
+        for (TrackerEntry entry : entries) {
+            if (entry.id.equals(id)) {
+                return entry.count > 0;
+            }
+        }
+        return false;
+    }
 }

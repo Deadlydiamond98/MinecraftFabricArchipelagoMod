@@ -6,6 +6,7 @@ import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.client.ArchipelagoItemIconRenderer;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
+import net.deadlydiamond98.archipelago.util.tracker.ArchipelagoTrackingData;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -48,13 +49,20 @@ public class SendUncheckedItemsS2CPacket {
     public static class Handler {
         public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
             BiMap<Long, Identifier> items = APLocations.ITEMSANITY_LOCATIONS.inverse();
-            ArchipelagoItemIconRenderer.UNCHECKED_ITEMS.clear();
+            ArchipelagoTrackingData.UNCHECKED_LOCATIONS.clear();
+            ArchipelagoTrackingData.UNCHECKED_ITEMS.clear();
 
             long[] locationsArray = buf.readLongArray();
             for (long id : locationsArray) {
                 Identifier itemID = items.get(id);
                 Item item = Registries.ITEM.get(itemID);
-                ArchipelagoItemIconRenderer.UNCHECKED_ITEMS.add(item);
+                if (!item.getDefaultStack().isEmpty()) {
+                    ArchipelagoTrackingData.UNCHECKED_ITEMS.add(item);
+                }
+            }
+
+            for (long id : locationsArray) {
+                ArchipelagoTrackingData.UNCHECKED_LOCATIONS.add(id);
             }
         }
     }
