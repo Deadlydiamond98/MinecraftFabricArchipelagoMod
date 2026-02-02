@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.events.common;
 
 import io.github.archipelagomw.Client;
+import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.items.dataloader.APItemDataLoader;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;

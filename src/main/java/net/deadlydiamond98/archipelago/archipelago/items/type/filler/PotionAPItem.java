@@ -1,5 +1,6 @@
-package net.deadlydiamond98.archipelago.archipelago.items.type;
+package net.deadlydiamond98.archipelago.archipelago.items.type.filler;
 
+import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
 import net.deadlydiamond98.archipelago.init.APItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;

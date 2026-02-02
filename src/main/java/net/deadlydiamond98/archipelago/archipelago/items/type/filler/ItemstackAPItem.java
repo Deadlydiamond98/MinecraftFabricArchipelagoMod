@@ -1,11 +1,9 @@
-package net.deadlydiamond98.archipelago.archipelago.items.type;
+package net.deadlydiamond98.archipelago.archipelago.items.type.filler;
 
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.Item;
+import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.World;
 
 public class ItemstackAPItem extends AbstractAPItem {
     private final ItemConvertible item;

@@ -1,11 +1,18 @@
 package net.deadlydiamond98.archipelago.archipelago.items.type;
 
+import io.github.archipelagomw.ItemManager;
 import io.github.archipelagomw.parts.NetworkItem;
-import net.deadlydiamond98.archipelago.networking.ArchipelagoPacketManager;
+import net.deadlydiamond98.archipelago.APMod;
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.items.ArchipelagoItems;
+import net.deadlydiamond98.archipelago.common.world.APPersistentState;
+import net.deadlydiamond98.archipelago.networking.s2c.SendArchipelagoInfoS2CPacket;
+import net.deadlydiamond98.archipelago.util.mixinterfaces.IPlayerReceivedItems;
 import net.deadlydiamond98.koalalib.init.KoalaLibSounds;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -15,30 +22,62 @@ import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractAPItem {
+
     private static final Map<PlayerEntity, Integer> NO_MORE_EAR_BLEEDING = new HashMap<>();
 
-    public abstract void applyReward(ServerPlayerEntity player);
+    public static void sync(MinecraftServer server) {
+        server.getPlayerManager().getPlayerList().forEach(player -> {
+            IPlayerReceivedItems items = (IPlayerReceivedItems) player;
+            List<Long> ids = items.archipelago$getItemIDs();
 
-    public final void apply(NetworkItem item, ServerPlayerEntity player, boolean traplink) {
-        apply(item.itemName, player, traplink);
+            Archipelago.run(archipelago -> {
+                APPersistentState state = APPersistentState.get();
+                state.getReceivedItems().forEach((aLong, name) -> {
+                    if (!ids.contains(aLong)) {
+                        items.archipelago$putItemID(aLong);
+                        AbstractAPItem item = ArchipelagoItems.ITEMS.get(name);
+                        if (item != null) {
+                            item.apply(name, player);
+                        }
+                    }
+                });
+            });
+        });
     }
 
-    public final void apply(String itemName, ServerPlayerEntity player, boolean traplink) {
-        // Sends Trap With traplink
-        if (traplink) {
-            ArchipelagoPacketManager.sendTraplink(itemName);
-        }
-
-        playSound(player);
-        Style style = Style.EMPTY.withColor(getTextColor());
-        player.sendMessage(Text.literal(itemName).setStyle(style), true);
-        applyReward(player);
+    /**
+     * Called to trigger the item in the world.
+     *
+     * @param item   the Item
+     * @param server the Server
+     * @param index
+     */
+    public final void receiveItem(NetworkItem item, MinecraftServer server, long index) {
+        triggerOneTimeEffect(item, server);
+        server.getPlayerManager().getPlayerList().forEach(player -> {
+            apply(item.itemName, player);
+            IPlayerReceivedItems items = (IPlayerReceivedItems) player;
+            items.archipelago$putItemID(index);
+            SendArchipelagoInfoS2CPacket.send(player);
+        });
     }
 
-    private void playSound(ServerPlayerEntity player) {
+    /**
+     * Triggers an event or effect that only happens when the item is initially received, such as sending a Traplink,
+     * or Updating Persistant Data
+     */
+    protected void triggerOneTimeEffect(NetworkItem item, MinecraftServer server) {}
+
+    /**
+     * Applies the item to the player, with a sound effect and chat message
+     * @param item the Item Name
+     * @param player the Player
+     */
+    public final void apply(String item, ServerPlayerEntity player) {
         ServerWorld world = (ServerWorld) player.getWorld();
         int time = world.getServer().getTicks();
         // Done like this so that getting multiple of these doesn't play a really loud sound due to multiple stacking
@@ -46,7 +85,16 @@ public abstract class AbstractAPItem {
             player.playSound(getSoundEvent(), SoundCategory.PLAYERS, getSoundVolume(), 1);
             NO_MORE_EAR_BLEEDING.put(player, time);
         }
+
+        Style style = Style.EMPTY.withColor(getTextColor());
+        player.sendMessage(Text.literal(item).setStyle(style), true);
+        applyReward(player);
     }
+
+    /** Applies the Reward to the Player
+     * @param player the Player
+     */
+    protected void applyReward(ServerPlayerEntity player) {}
 
     protected void giveItem(ServerPlayerEntity player, ItemStack stack) {
         World world = player.getWorld();

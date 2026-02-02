@@ -21,7 +21,7 @@ public class APBouncedEvents {
                         AbstractAPItem abstractAPItem = MultiworldTraps.TRAPS.get(trapName);
                         if (abstractAPItem != null) {
                             APServerUtil.runOnServer(server -> server.getPlayerManager().getPlayerList().forEach(player -> {
-                                abstractAPItem.apply(trapName, player, false);
+                                abstractAPItem.apply(trapName, player);
                             }));
                         }
                     }

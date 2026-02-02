@@ -2,31 +2,22 @@ package net.deadlydiamond98.archipelago.mixin.common.player;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import net.deadlydiamond98.archipelago.common.world.APPersistentState;
-import net.deadlydiamond98.archipelago.init.APAdvancements;
 import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
+import net.deadlydiamond98.archipelago.util.mixinterfaces.IPlayerReceivedItems;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
+import net.minecraft.nbt.NbtCompound;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(PlayerEntity.class)
-public class PlayerEntityMixin {
+import java.util.ArrayList;
+import java.util.List;
 
-    // Triggers on a rail advancement
-    @Inject(method = "tick", at = @At("HEAD"))
-    private void archipelago$tick(CallbackInfo ci) {
-        PlayerEntity player = (PlayerEntity) (Object) this;
-        if (player instanceof ServerPlayerEntity serverPlayer) {
-            int riddenDist = serverPlayer.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(Stats.MINECART_ONE_CM));
-            if (riddenDist >= 500) {
-                APAdvancements.ON_A_RAIL.trigger(serverPlayer);
-            }
-        }
-    }
+@Mixin(PlayerEntity.class)
+public class PlayerEntityMixin implements IPlayerReceivedItems {
+    @Unique private List<Long> archipelago$receivedItems = new ArrayList<>();
 
     // Prevents Jumping without Jump Item
     @WrapMethod(method = "jump")
@@ -34,5 +25,35 @@ public class PlayerEntityMixin {
         if (UpdatePlayerAbilitiesS2CPacket.canJump) {
             original.call();
         }
+    }
+
+    // READ & WRITE NBT ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+    public void zeldacraft$writeCustomDataToNbt(NbtCompound nbt, CallbackInfo info) {
+        nbt.putLongArray("ItemIndexes", this.archipelago$receivedItems);
+    }
+
+    @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+    public void zeldacraft$readCustomDataFromNbt(NbtCompound nbt, CallbackInfo info) {
+        this.archipelago$receivedItems.clear();
+        for (long itemIndex : nbt.getLongArray("ItemIndexes")) {
+            this.archipelago$receivedItems.add(itemIndex);
+        }
+    }
+
+    @Override
+    public List<Long> archipelago$getItemIDs() {
+        return this.archipelago$receivedItems;
+    }
+
+    @Override
+    public void archipelago$setItemIDs(List<Long> ids) {
+        this.archipelago$receivedItems = ids;
+    }
+
+    @Override
+    public void archipelago$putItemID(long id) {
+        this.archipelago$receivedItems.add(id);
     }
 }

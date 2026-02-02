@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.common.world;
 
+import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.util.tracker.IAbilityCheck;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
@@ -33,7 +34,7 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
     public final Map<String, APState<Boolean>> toggleChecks = new HashMap<>();
 
     // Saves the Indexes of items to prevent them from being re-given in a world that they were already obtained in
-    private final List<Long> itemIndexes = new ArrayList<>();
+    private final Map<Long, String> receivedItems = new HashMap<>();
     // Saves unlocked advancements, so they're granted to any additional players in the world
     private final List<Long> advancementIds = new ArrayList<>();
     // Saves found Itemsanity Checks
@@ -71,12 +72,12 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
 
     // ITEM INDEX METHODS //////////////////////////////////////////////////////////////////////////////////////////////
 
-    public List<Long> getItemIndexes() {
-        return itemIndexes;
+    public Map<Long, String> getReceivedItems() {
+        return receivedItems;
     }
 
-    public void putItemIndex(long index) {
-        itemIndexes.add(index);
+    public void putItemIndex(long index, String name) {
+        receivedItems.put(index, name);
         markDirty();
     }
 
@@ -156,7 +157,19 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
     public NbtCompound writeNbt(NbtCompound nbt) {
         nbt.putLongArray("AdvancementIds", this.advancementIds);
         nbt.putLongArray("ItemsanityIds", this.itemsanityIds);
-        nbt.putLongArray("ItemIndexes", this.itemIndexes);
+
+        NbtList receivedItemsList = new NbtList();
+        for (Map.Entry<Long, String> entry : this.receivedItems.entrySet()) {
+            APMod.LOGGER.info("({}, {})", entry.getValue(), entry.getKey());
+
+            NbtCompound itemNbt = new NbtCompound();
+            itemNbt.putString("itemName", entry.getValue());
+            itemNbt.putLong("itemValue", entry.getKey());
+
+            receivedItemsList.add(itemNbt);
+        }
+        nbt.put("receivedItems", receivedItemsList);
+
 
         APState.write(nbt, "progressiveLevelChecks", this.progressiveLevelChecks, NbtCompound::putInt);
         APState.write(nbt, "toggleChecks", this.toggleChecks, NbtCompound::putBoolean);
@@ -183,8 +196,13 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
             states.itemsanityIds.add(itemIndex);
         }
 
-        for (long itemIndex : nbt.getLongArray("ItemIndexes")) {
-            states.itemIndexes.add(itemIndex);
+        NbtList receivedItemsList = nbt.getList("receivedItems", NbtElement.COMPOUND_TYPE);
+        for (int i = 0; i < receivedItemsList.size(); i++) {
+            NbtCompound itemNbt = receivedItemsList.getCompound(i);
+            String itemName = itemNbt.getString("itemName");
+            long itemValue = itemNbt.getLong("itemValue");
+
+            states.receivedItems.put(itemValue, itemName);
         }
 
         states.progressiveLevelChecks.putAll(APState.read(nbt, "progressiveLevelChecks", states, NbtCompound::getInt));

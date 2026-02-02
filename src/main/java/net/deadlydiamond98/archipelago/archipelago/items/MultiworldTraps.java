@@ -46,6 +46,7 @@ public class MultiworldTraps {
         TRAPS.put("Poison Trap", new StatusEffectTrap(StatusEffects.POISON, 200));
         TRAPS.put("Random Status Trap", new RandomEffectTrap());
         TRAPS.put("Reversal Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));
+        TRAPS.put("Reverse Controls Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));
         TRAPS.put("Reverse Trap", new StatusEffectTrap(APEffects.CONFUSION, 1200));
         TRAPS.put("Sleep Trap", new StatusEffectTrap(APEffects.STUNNED, 50));
         TRAPS.put("Slip Trap", new StatusEffectTrap(APEffects.FROST_FOOTED, 1200));

@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.archipelago.items;
 
 import net.deadlydiamond98.archipelago.archipelago.items.type.*;
+import net.deadlydiamond98.archipelago.archipelago.items.type.filler.*;
 import net.deadlydiamond98.archipelago.archipelago.items.type.progression.RubyAPItem;
 import net.deadlydiamond98.archipelago.archipelago.items.type.traps.*;
 import net.deadlydiamond98.archipelago.init.APEffects;

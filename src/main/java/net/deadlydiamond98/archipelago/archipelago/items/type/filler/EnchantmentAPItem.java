@@ -1,5 +1,6 @@
-package net.deadlydiamond98.archipelago.archipelago.items.type;
+package net.deadlydiamond98.archipelago.archipelago.items.type.filler;
 
+import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.EnchantedBookItem;

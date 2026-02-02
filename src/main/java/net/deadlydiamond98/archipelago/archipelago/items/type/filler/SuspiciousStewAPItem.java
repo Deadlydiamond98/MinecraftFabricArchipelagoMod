@@ -1,5 +1,6 @@
-package net.deadlydiamond98.archipelago.archipelago.items.type;
+package net.deadlydiamond98.archipelago.archipelago.items.type.filler;
 
+import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
 import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

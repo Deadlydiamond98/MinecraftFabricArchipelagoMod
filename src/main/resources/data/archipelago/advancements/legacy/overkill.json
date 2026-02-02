@@ -6,6 +6,12 @@
         "damage": {
           "dealt": {
             "min": 18
+          },
+          "blocked": false,
+          "type": {
+            "direct_entity": {
+              "type": "minecraft:player"
+            }
           }
         }
       },
