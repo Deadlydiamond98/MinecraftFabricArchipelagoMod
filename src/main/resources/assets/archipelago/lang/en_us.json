@@ -10,6 +10,9 @@
   "archipelago.deathlinked.player": "Deathlink was triggered by %s",
   "archipelago.deathlinked.cause": "Cause: %s",
 
+  "archipelago.tip": "Tip: ",
+  "archipelago.tip.tracker": "You can Press %s to Open a tracker to see what Abilities are available",
+
   "gui.archipelago.none_present": "None Needed For Goal",
   "gui.archipelago.goal_progress": "-- Goal Progress --",
   "gui.archipelago.advancements_needed": "Advancements Needed",
@@ -101,5 +104,8 @@
   "archipelago.main.config.category": "Archipelago Mod",
 
   "archipelago.main.config.chatMessagesAppearInClient": "Send Chat Messages to Client",
-  "archipelago.main.config.chatMessagesAppearInClient.desc": "If true, messages that players type into the chat will be sent to other Archipelago Players"
+  "archipelago.main.config.chatMessagesAppearInClient.desc": "If true, messages that players type into the chat will be sent to other Archipelago Players",
+
+  "archipelago.main.config.disableTrackerTooltip": "Disable Tracker Tooltip",
+  "archipelago.main.config.disableTrackerTooltip.desc": "If true, the mod will no longer send a message on startup to inform you of the In-Game Tracker"
 }

@@ -9,6 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -95,13 +96,15 @@ public class Archipelago extends Client {
         return Archipelago.getFromSlot(mcSlotData -> mcSlotData.itemsanity) == 1;
     }
 
+    public static boolean hasQOLSetting(String setting) {
+        Archipelago.MCSlotData slot = Archipelago.getSlotData();
+        return slot != null && slot.time_saving_options.contains(setting);
+    }
+
     public static class MCSlotData {
         public int goal_condition;
 
         public int advancements_to_goal;
-        public int exclude_hard;
-        public int exclude_exploration;
-        public int exclude_unreasonable;
 
         public int rubies_to_goal;
         public int total_rubies;
@@ -112,9 +115,9 @@ public class Archipelago extends Client {
         public int keep_inventory;
         public int itemsanity;
 
-        public int randomize_swim;
-        public int randomize_sprint;
-        public int randomize_jump;
-        public int randomize_chests;
+        public Set<String> randomized_abilities;
+        public Set<String> possible_randomized_abilities;
+
+        public Set<String> time_saving_options;
     }
 }

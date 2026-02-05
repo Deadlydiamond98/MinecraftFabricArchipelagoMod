@@ -17,6 +17,15 @@ import java.util.List;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements IPlayerReceivedItems {
+
+    /*
+
+    This Mixin is used for doing various things on Players
+        - Prevents Jumping if locked
+        - Stores Received Archipelago Items for a player
+
+     */
+
     @Unique private List<Long> archipelago$receivedItems = new ArrayList<>();
 
     // Prevents Jumping without Jump Item

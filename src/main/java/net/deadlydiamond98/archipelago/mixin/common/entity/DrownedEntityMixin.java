@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.mixin.common.entity;
 
+import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnReason;
@@ -16,7 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class DrownedEntityMixin {
     @Inject(method = "initialize", at = @At("TAIL"))
     private void archipelago$initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        DrownedEntity drowned = (DrownedEntity) (Object) this;
-        drowned.setEquipmentDropChance(EquipmentSlot.MAINHAND, 2);
+        if (Archipelago.hasQOLSetting("Drowned Items")) {
+            DrownedEntity drowned = (DrownedEntity) (Object) this;
+            drowned.setEquipmentDropChance(EquipmentSlot.MAINHAND, 2);
+        }
     }
 }
