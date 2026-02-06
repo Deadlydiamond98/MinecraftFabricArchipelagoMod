@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.archipelago;
 
 import io.github.archipelagomw.ClientStatus;
+import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.text.Text;
@@ -61,7 +62,7 @@ public class ArchipelagoGoalHelper {
     }
 
     public static int getAdvancementsNeeded() {
-        return Archipelago.getFromSlot(mcSlotData -> mcSlotData.advancements_to_goal);
+        return Archipelago.getFromSlot(mcSlotData -> Math.min(APLocations.ADVANCEMENT_LOCATIONS.size(), mcSlotData.advancements_to_goal));
     }
 
     public static int getRubiesNeeded() {
