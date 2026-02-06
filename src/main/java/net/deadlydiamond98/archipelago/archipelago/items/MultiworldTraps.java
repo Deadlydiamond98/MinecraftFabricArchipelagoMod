@@ -59,5 +59,10 @@ public class MultiworldTraps {
         TRAPS.put("Thwimp Trap", new TNTTrap());
         TRAPS.put("TNT Barrel Trap", new TNTTrap());
         TRAPS.put("TNT Trap", new TNTTrap());
+        TRAPS.put("Lightning Trap", new LightningTrap());
+        TRAPS.put("Item Drop Trap", new ItemDropTrap());
+        TRAPS.put("Nighttime Trap", new NighttimeTrap());
+        TRAPS.put("Box Trap", new BoxTrap());
+        TRAPS.put("Shuffle Trap", new ShuffleTrap());
     }
 }
