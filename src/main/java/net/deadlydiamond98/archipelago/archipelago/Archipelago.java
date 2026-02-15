@@ -119,5 +119,8 @@ public class Archipelago extends Client {
         public Set<String> possible_randomized_abilities;
 
         public Set<String> time_saving_options;
+
+//        public long seed;
+//        public int randomize_mob_spawns;
     }
 }
