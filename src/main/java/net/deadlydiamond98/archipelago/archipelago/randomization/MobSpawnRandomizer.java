@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomizedMobSpawns {
+public class MobSpawnRandomizer {
     public static final List<EntityType<?>> MOB_LIST = new ArrayList<>();
     public static final List<EntityType<?>> MOB_LIST_COPY;
 
