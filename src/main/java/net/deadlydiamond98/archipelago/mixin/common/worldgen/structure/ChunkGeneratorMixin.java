@@ -3,7 +3,9 @@ package net.deadlydiamond98.archipelago.mixin.common.worldgen.structure;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.randomization.StructureRandomizer;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -26,7 +28,7 @@ public abstract class ChunkGeneratorMixin {
     @WrapOperation(method = "locateStructure(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/registry/entry/RegistryEntryList;Lnet/minecraft/util/math/BlockPos;IZ)Lcom/mojang/datafixers/util/Pair;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/chunk/placement/StructurePlacementCalculator;getPlacements(Lnet/minecraft/registry/entry/RegistryEntry;)Ljava/util/List;"))
     private List<StructurePlacement> archieplago$locateStructure(StructurePlacementCalculator instance, RegistryEntry<Structure> structureEntry, Operation<List<StructurePlacement>> original, @Local ServerWorld world, @Local StructurePlacementCalculator structurePlacementCalculator) {
         Registry<Structure> registry = world.getRegistryManager().get(RegistryKeys.STRUCTURE);
-        Structure altStructure = StructureRandomizer.getAlternativeStructure(structureEntry.value(), registry);
+        Structure altStructure = StructureRandomizer.getAlternativeStructureInverse(structureEntry.value(), registry);
         RegistryEntry<Structure> altKey = registry.getEntry(altStructure);
         return structurePlacementCalculator.getPlacements(altKey);
     }
@@ -38,7 +40,7 @@ public abstract class ChunkGeneratorMixin {
 
     @WrapOperation(method = "trySetStructureStart", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/structure/Structure;getValidBiomes()Lnet/minecraft/registry/entry/RegistryEntryList;"))
     private RegistryEntryList<Biome> archipelago$trySetStructureStart(Structure instance, Operation<RegistryEntryList<Biome>> original, @Local(argsOnly = true) StructureAccessor structureAccessor) {
-        return StructureRandomizer.getAlternativeStructure(instance, structureAccessor.world.getRegistryManager().get(RegistryKeys.STRUCTURE)).getValidBiomes();
+        return StructureRandomizer.getAlternativeStructureInverse(instance, structureAccessor.world.getRegistryManager().get(RegistryKeys.STRUCTURE)).getValidBiomes();
     }
 
 }

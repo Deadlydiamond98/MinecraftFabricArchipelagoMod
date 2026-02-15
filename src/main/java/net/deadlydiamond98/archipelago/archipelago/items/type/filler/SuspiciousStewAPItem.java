@@ -13,7 +13,7 @@ public class SuspiciousStewAPItem extends AbstractAPItem {
     @Override
     public void applyReward(ServerPlayerEntity player) {
         List<SuspiciousStewIngredient> ingredients = SuspiciousStewIngredient.getAll();
-        SuspiciousStewIngredient ingredient = ingredients.get(player.getRandom().nextBetween(0, ingredients.size()));
+        SuspiciousStewIngredient ingredient = ingredients.get(player.getRandom().nextBetween(0, ingredients.size() - 1));
         ItemStack stew = new ItemStack(Items.SUSPICIOUS_STEW);
         SuspiciousStewItem.addEffectToStew(stew, ingredient.getEffectInStew(), ingredient.getEffectInStewDuration());
         giveItem(player, stew);

@@ -7,6 +7,7 @@ import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
 import net.deadlydiamond98.archipelago.archipelago.items.type.AbstractAPItem;
 import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
+import net.deadlydiamond98.archipelago.archipelago.randomization.StructureRandomizer;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.deadlydiamond98.archipelago.networking.s2c.SendArchipelagoInfoS2CPacket;
 import net.deadlydiamond98.archipelago.networking.s2c.SendUncheckedItemsS2CPacket;
@@ -22,6 +23,8 @@ public class APConnectEvents {
     @ArchipelagoEventListener
     public void onConnectionEvent(ConnectionResultEvent event) {
         if (event.getResult() == ConnectionResult.Success) {
+            StructureRandomizer.randomizeStructures();
+
             APPersistentState state = APPersistentState.get();
             Archipelago.MCSlotData slot = Archipelago.initSlotData(event);
 

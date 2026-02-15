@@ -22,7 +22,7 @@ public class SearchWorkerManagerMixin {
     @WrapOperation(method = "createWorkers", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/chunk/placement/StructurePlacementCalculator;getPlacements(Lnet/minecraft/registry/entry/RegistryEntry;)Ljava/util/List;"))
     private List<StructurePlacement> archipelago$createWorkers(StructurePlacementCalculator instance, RegistryEntry<Structure> structureEntry, Operation<List<StructurePlacement>> original, @Local ServerWorld world) {
         Registry<Structure> registry = world.getRegistryManager().get(RegistryKeys.STRUCTURE);
-        Structure altStructure = StructureRandomizer.getAlternativeStructure(structureEntry.value(), registry);
+        Structure altStructure = StructureRandomizer.getAlternativeStructureInverse(structureEntry.value(), registry);
         RegistryEntry<Structure> altKey = registry.getEntry(altStructure);
         return world.getChunkManager().getStructurePlacementCalculator().getPlacements(altKey);
     }
