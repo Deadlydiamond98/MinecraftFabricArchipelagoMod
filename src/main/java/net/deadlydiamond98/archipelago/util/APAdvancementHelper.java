@@ -6,6 +6,7 @@ import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementProgress;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
@@ -20,7 +21,7 @@ public class APAdvancementHelper {
      */
     public static void resyncAdvancements() {
         // Sends all Found Advancements
-        APPersistentState.get().getAdvancementIds().forEach(APAdvancementHelper::grantAdvancement);
+        new ArrayList<>(APPersistentState.get().getAdvancementIds()).forEach(APAdvancementHelper::grantAdvancement);
         // Grant Root Advancements
         grantRootAdvancements();
         // Attempts to trigger goal
@@ -31,13 +32,15 @@ public class APAdvancementHelper {
      * Grants All Root Advancements to players
      */
     private static void grantRootAdvancements() {
-        APServerUtil.runOnServer(server -> {
+        MinecraftServer server = APServerUtil.server;
+
+        if (server != null) {
             server.getAdvancementLoader().getAdvancements().forEach(advancement -> {
                 if (advancement.getRoot() == advancement) {
                     grantAdvancement(advancement.getId());
                 }
             });
-        });
+        }
     }
 
     /**
@@ -59,7 +62,9 @@ public class APAdvancementHelper {
      * @param id the advancement ID
      */
     public static void grantAdvancement(Identifier id) {
-        APServerUtil.runOnServer(server -> {
+        MinecraftServer server = APServerUtil.server;
+
+        if (server != null) {
             List<ServerPlayerEntity> players = new ArrayList<>(server.getPlayerManager().getPlayerList());
             Advancement advancement = server.getAdvancementLoader().get(id);
 
@@ -71,7 +76,7 @@ public class APAdvancementHelper {
                     });
                 }
             }
-        });
+        }
     }
 
     public static boolean isValidAdvancement(Identifier id) {

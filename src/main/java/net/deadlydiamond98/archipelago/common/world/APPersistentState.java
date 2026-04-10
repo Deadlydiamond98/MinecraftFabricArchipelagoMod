@@ -1,6 +1,5 @@
 package net.deadlydiamond98.archipelago.common.world;
 
-import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.util.tracker.IAbilityCheck;
 import net.deadlydiamond98.archipelago.archipelago.items.SavedArchipelagoItems;
@@ -8,14 +7,13 @@ import net.deadlydiamond98.archipelago.networking.s2c.SendUncheckedItemsS2CPacke
 import net.deadlydiamond98.archipelago.networking.s2c.UpdatePlayerAbilitiesS2CPacket;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.world.PersistentState;
 import net.minecraft.world.PersistentStateManager;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Saves Data to the Minecraft World
@@ -40,6 +38,7 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
     // Saves found Itemsanity Checks
     private final List<Long> itemsanityIds = new ArrayList<>();
 
+//    private final Set<Item> collectedItems = new HashSet<>();
     private boolean hasKilledEnderDragon;
     private boolean hasKilledWither;
     private int currentRubyCount;
@@ -145,6 +144,15 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
         }
     }
 
+//    public void collectItem(Item item) {
+//        this.collectedItems.add(item);
+//        markDirty();
+//    }
+//
+//    public Set<Item> getCollectedItems() {
+//        return this.collectedItems;
+//    }
+
     @Override
     public void markDirty() {
         super.markDirty();
@@ -172,6 +180,14 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
 
         APState.write(nbt, "progressiveLevelChecks", this.progressiveLevelChecks, NbtCompound::putInt);
         APState.write(nbt, "toggleChecks", this.toggleChecks, NbtCompound::putBoolean);
+
+
+//        NbtList collectedItemsList = new NbtList();
+//        for (Item collectedItem : this.collectedItems) {
+//            NbtCompound item = collectedItem.getDefaultStack().writeNbt(new NbtCompound());
+//            collectedItemsList.add(item);
+//        }
+//        nbt.put("collectedItems", collectedItemsList);
 
         nbt.putBoolean("HasKilledEnderDragon", this.hasKilledEnderDragon);
         nbt.putBoolean("HasKilledWither", this.hasKilledWither);
@@ -209,6 +225,12 @@ public class APPersistentState extends PersistentState implements IAbilityCheck 
 
         states.allChecks.putAll(states.progressiveLevelChecks);
         states.allChecks.putAll(states.toggleChecks);
+
+//        NbtList collectedItemsList = nbt.getList("collectedItems", NbtElement.COMPOUND_TYPE);
+//        for (int i = 0; i < collectedItemsList.size(); i++) {
+//            NbtCompound itemNbt = collectedItemsList.getCompound(i);
+//            states.collectedItems.add(ItemStack.fromNbt(itemNbt).getItem());
+//        }
 
         states.hasKilledEnderDragon = nbt.getBoolean("HasKilledEnderDragon");
         states.hasKilledWither = nbt.getBoolean("HasKilledWither");

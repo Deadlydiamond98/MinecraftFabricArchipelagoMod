@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.mixin.common.advancement;
 
 import net.deadlydiamond98.archipelago.archipelago.Archipelago;
+import net.deadlydiamond98.archipelago.archipelago.ArchipelagoGoalHelper;
 import net.deadlydiamond98.archipelago.archipelago.locations.APLocations;
 import net.deadlydiamond98.archipelago.common.world.APPersistentState;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
@@ -26,8 +27,14 @@ public class InventoryChangedCriterionMixin {
                 if (!state.getItemsanityIds().contains(longID)) {
                     Archipelago.run(archipelago -> archipelago.checkLocation(longID));
                     state.putItemsanityID(longID);
+                    ArchipelagoGoalHelper.tryTriggerGoal();
                 }
             }
         }
+
+//        if (!stack.isEmpty() && !state.getCollectedItems().contains(stack.getItem())) {
+//            state.collectItem(stack.getItem());
+//            ArchipelagoGoalHelper.tryTriggerGoal();
+//        }
     }
 }
