@@ -66,8 +66,8 @@ public class StructureRandomizer {
             structures.add(identifier);
             replacements.add(identifier2);
         });
-        Collections.shuffle(structures);
-//        Collections.shuffle(replacements);
+//        Collections.shuffle(structures);
+        Collections.shuffle(replacements);
 
         while (!structures.isEmpty()) {
             STRUCTURE.put(structures.get(0), replacements.get(0));
@@ -76,7 +76,7 @@ public class StructureRandomizer {
         }
 
         STRUCTURE.forEach((identifier, identifier2) -> {
-            APMod.LOGGER.info("{} is now.... {}", identifier.toString(), identifier2.toString());
+            APMod.LOGGER.info("{} is replaced by.... {}", identifier.toString(), identifier2.toString());
         });
     }
 
