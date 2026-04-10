@@ -1,5 +1,6 @@
 package net.deadlydiamond98.archipelago.events.archipelago;
 
+import io.github.archipelagomw.Client;
 import io.github.archipelagomw.events.ArchipelagoEventListener;
 import io.github.archipelagomw.events.ConnectionResultEvent;
 import io.github.archipelagomw.network.ConnectionResult;
@@ -12,6 +13,8 @@ import net.deadlydiamond98.archipelago.networking.s2c.SendArchipelagoInfoS2CPack
 import net.deadlydiamond98.archipelago.networking.s2c.SendUncheckedItemsS2CPacket;
 import net.deadlydiamond98.archipelago.util.APAdvancementHelper;
 import net.deadlydiamond98.archipelago.util.APServerUtil;
+import net.deadlydiamond98.koalalib.init.KoalaLibSounds;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -24,6 +27,23 @@ public class APConnectEvents {
         if (event.getResult() == ConnectionResult.Success) {
             APPersistentState state = APPersistentState.get();
             Archipelago.MCSlotData slot = Archipelago.initSlotData(event);
+
+            String version = slot.world_version;
+            Style style = Style.EMPTY.withColor(Formatting.YELLOW);
+            if (version != null) {
+                if (!version.contains(APMod.VALID_WORLD_VERSION)) {
+                    APServerUtil.sendMessage(Text.translatable("archipelago.version_message.mismatched", version, APMod.VALID_WORLD_VERSION).setStyle(style));
+                    APServerUtil.runOnServer(server -> server.getPlayerManager().getPlayerList().forEach(player ->
+                            player.playSound(KoalaLibSounds.MAGIC_FAIL, SoundCategory.PLAYERS, 1, 1))
+                    );
+                    Archipelago.run(Client::close);
+                    return;
+                }
+            } else {
+                APServerUtil.sendMessage(Text.translatable("archipelago.version_message.invalid").setStyle(style));
+                Archipelago.run(Client::close);
+                return;
+            }
 
             // Unlocks Optional Abilities that aren't randomized
             slot.possible_randomized_abilities.forEach(ability -> {

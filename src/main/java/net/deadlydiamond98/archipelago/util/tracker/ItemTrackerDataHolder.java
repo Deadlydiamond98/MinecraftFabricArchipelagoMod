@@ -5,9 +5,13 @@ import net.minecraft.text.Text;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public record ItemTrackerDataHolder(int goal, int currentAdvancements, int totalAdvancements, int currentRubies, int totalRubies, List<TrackerEntry> entries) implements IAbilityCheck {
+public record ItemTrackerDataHolder(int goal, int currentAdvancements, int totalAdvancements, int currentItems, int totalItems, int currentRubies, int totalRubies, List<TrackerEntry> entries) implements IAbilityCheck {
     public Text advancements() {
         return getAmount(this.currentAdvancements, this.totalAdvancements);
+    }
+
+    public Text items() {
+        return getAmount(this.currentItems, this.totalItems);
     }
 
     public Text rubies() {
@@ -20,7 +24,10 @@ public record ItemTrackerDataHolder(int goal, int currentAdvancements, int total
         }
 
         double percentage = current / (double) max;
-        percentage = percentage >= 100 ? 100 : percentage;
+
+        if (current >= max) {
+            percentage = 1;
+        }
 
         DecimalFormat decimalFormat = new DecimalFormat(".0%");
         String percentageStr = decimalFormat.format(percentage);

@@ -17,6 +17,7 @@ public class ItemTrackerScreen extends Screen {
     private static final Identifier WINDOW_TEXTURE = APMod.id("textures/gui/tracker_gui.png");
     private static final Identifier RUBY_ICON_TEXTURE = APMod.id("textures/gui/tracker_icon/ruby.png");
     private static final Identifier TROPHY_ICON_TEXTURE = APMod.id("textures/gui/tracker_icon/trophy.png");
+    private static final Identifier ITEM_ICON_TEXTURE = APMod.id("textures/gui/tracker_icon/item.png");
     private int guiX, guiY;
     protected int backgroundWidth = 256;
     protected int backgroundHeight = 229;
@@ -77,11 +78,13 @@ public class ItemTrackerScreen extends Screen {
     private void renderGoalProgress(DrawContext context, int x, int y, int centerX, int centerY, float delta) {
         TrackerScreenUtil.drawScaledText(context, this.textRenderer, lang("goal_progress"), centerX, y + 11, 1, 0xFFFFFF, true);
 
-        int advancementHex = tracker().currentAdvancements() >= tracker().totalAdvancements() ? 0x00FFAA : 0xFFFFFF;
+        int advancementHex = tracker().totalAdvancements() == 0 ? 0x9A9A9A : tracker().currentAdvancements() >= tracker().totalAdvancements() ? 0x00FFAA : 0xFFFFFF;
+        int itemHex = tracker().totalItems() == 0 ? 0x9A9A9A : tracker().currentItems() >= tracker().totalItems() ? 0x00FFAA : 0xFFFFFF;
         int rubyHex = tracker().totalRubies() == 0 ? 0x9A9A9A : (tracker().currentRubies() >= tracker().totalRubies() ? 0x00FFAA : 0xFFFFFF);
 
         drawGoalCheck(context, TROPHY_ICON_TEXTURE, lang("advancements_needed"), tracker().advancements(), x, y, 19, advancementHex);
-        drawGoalCheck(context, RUBY_ICON_TEXTURE, lang("rubies_needed"), tracker().rubies(), x, y, 37, rubyHex);
+        drawGoalCheck(context, ITEM_ICON_TEXTURE, lang("items_needed"), tracker().items(), x, y, 37, itemHex);
+        drawGoalCheck(context, RUBY_ICON_TEXTURE, lang("rubies_needed"), tracker().rubies(), x, y, 55, rubyHex);
     }
 
     private ItemTrackerDataHolder tracker() {
@@ -90,10 +93,12 @@ public class ItemTrackerScreen extends Screen {
 
     private void renderChecks(DrawContext context, int x, int y) {
         // Scrollbar
-        drawScrollBar(context,  x, y);
+        drawScrollBar(context, x, y);
+
+        int offset = 82;
 
         // Tracker Entries
-        context.enableScissor(x + 7, y + 65, x + 244, y + 196);
+        context.enableScissor(x + 7, y + offset, x + 244, y + 196);
         for (int i = 0; i < tracker().entries().size(); i++) {
             ItemTrackerDataHolder.TrackerEntry entry = tracker().entries().get(i);
 
@@ -102,7 +107,7 @@ public class ItemTrackerScreen extends Screen {
             drawCheck(context,
                     APMod.id("textures/gui/tracker_icon/" + entry.id() + ".png"),
                     Text.literal(entry.name()).append(amount),
-                    x, y, 65 + (i * ENTRY_HEIGHT) - this.scrollOffset, entry.count() > 0
+                    x, y, offset + (i * ENTRY_HEIGHT) - this.scrollOffset, entry.count() > 0
             );
         }
         context.disableScissor();
@@ -139,10 +144,10 @@ public class ItemTrackerScreen extends Screen {
 
     private void drawScrollBar(DrawContext context, int x, int y) {
         if (this.maxScroll > 0) {
-            int maxHeight = 131;
+            int maxHeight = 114;
             int scrollBarHeight = Math.max(20, (maxHeight * maxHeight) / (maxHeight + this.maxScroll));
             int scrollBarX = x + 245;
-            int scrollBarY = (y + 65) + (this.scrollOffset * (maxHeight - scrollBarHeight) / this.maxScroll);
+            int scrollBarY = (y + 82) + (this.scrollOffset * (maxHeight - scrollBarHeight) / this.maxScroll);
 
             context.fill(scrollBarX, scrollBarY, scrollBarX + 4, scrollBarY + scrollBarHeight, 0xFFFFFFFF);
         }

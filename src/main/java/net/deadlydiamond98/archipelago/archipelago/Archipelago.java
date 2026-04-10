@@ -102,9 +102,12 @@ public class Archipelago extends Client {
     }
 
     public static class MCSlotData {
+        public String world_version;
+
         public int goal_condition;
 
         public int advancements_to_goal;
+        public int items_to_goal;
 
         public int rubies_to_goal;
         public int total_rubies;

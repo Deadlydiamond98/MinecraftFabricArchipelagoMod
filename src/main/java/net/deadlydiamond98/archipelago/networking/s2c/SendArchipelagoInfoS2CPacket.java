@@ -32,6 +32,10 @@ public class SendArchipelagoInfoS2CPacket {
         buf.writeVarInt(ArchipelagoGoalHelper.getCurrentAdvancements());
         buf.writeVarInt(ArchipelagoGoalHelper.getAdvancementsNeeded());
 
+        // Items
+        buf.writeVarInt(ArchipelagoGoalHelper.getCurrentItems());
+        buf.writeVarInt(ArchipelagoGoalHelper.getItemsNeeded());
+
         // RUBIES
         buf.writeVarInt(APPersistentState.get().getCollectedRubies());
         buf.writeVarInt(ArchipelagoGoalHelper.getRubiesNeeded());
@@ -61,6 +65,8 @@ public class SendArchipelagoInfoS2CPacket {
             int goal = buf.readVarInt();
             int currentAdvancements = buf.readVarInt();
             int maxAdvancements = buf.readVarInt();
+            int currentItems = buf.readVarInt();
+            int maxItems = buf.readVarInt();
             int currentRubies = buf.readVarInt();
             int maxRubies = buf.readVarInt();
 
@@ -77,7 +83,7 @@ public class SendArchipelagoInfoS2CPacket {
             });
 
             ArchipelagoTrackingData.tracker = new ItemTrackerDataHolder(
-                    goal, currentAdvancements, maxAdvancements, currentRubies, maxRubies, entries
+                    goal, currentAdvancements, maxAdvancements, currentItems, maxItems, currentRubies, maxRubies, entries
             );
         }
     }

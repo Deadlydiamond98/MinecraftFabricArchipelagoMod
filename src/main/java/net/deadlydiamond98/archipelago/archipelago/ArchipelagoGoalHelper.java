@@ -7,7 +7,6 @@ import net.deadlydiamond98.archipelago.util.APServerUtil;
 import net.minecraft.text.Text;
 
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
 
 public class ArchipelagoGoalHelper {
     /**
@@ -31,9 +30,11 @@ public class ArchipelagoGoalHelper {
         boolean killedWither = state.hasKilledWither();
         int advancements = getCurrentAdvancements();
         int advancementsNeeded = getAdvancementsNeeded();
+        int items = getCurrentItems();
+        int itemsNeeded = getItemsNeeded();
         int rubies = state.getCollectedRubies();
 
-        if (advancements >= advancementsNeeded) {
+        if (advancements >= advancementsNeeded && items >= itemsNeeded) {
             switch (getGoalID()) {
                 case 0 -> goal(killedDragon);
                 case 1 -> goal(killedWither);
@@ -61,8 +62,30 @@ public class ArchipelagoGoalHelper {
         return advancements.get();
     }
 
+//    public static int getCurrentItems() {
+//        APPersistentState state = APPersistentState.get();
+//        return state.getCollectedItems().size();
+//    }
+
+    public static int getCurrentItems() {
+        AtomicInteger items = new AtomicInteger();
+        Archipelago.run(archipelago -> {
+            for (Long checkedLocation : archipelago.getLocationManager().getCheckedLocations()) {
+                APPersistentState state = APPersistentState.get();
+                if (state.getItemsanityIds().contains(checkedLocation)) {
+                    items.set(items.get() + 1);
+                }
+            }
+        });
+        return items.get();
+    }
+
     public static int getAdvancementsNeeded() {
         return Archipelago.getFromSlot(mcSlotData -> Math.min(APLocations.ADVANCEMENT_LOCATIONS.size(), mcSlotData.advancements_to_goal));
+    }
+
+    public static int getItemsNeeded() {
+        return Archipelago.hasItemsanity() ? Archipelago.getFromSlot(mcSlotData -> Math.min(APLocations.ITEMSANITY_LOCATIONS.size(), mcSlotData.items_to_goal)) : 0;
     }
 
     public static int getRubiesNeeded() {
