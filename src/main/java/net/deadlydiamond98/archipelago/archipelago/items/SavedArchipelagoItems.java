@@ -1,6 +1,7 @@
 package net.deadlydiamond98.archipelago.archipelago.items;
 
 
+import net.deadlydiamond98.archipelago.APMod;
 import net.deadlydiamond98.archipelago.archipelago.items.type.progression.PersistantStateAPItem;
 import net.deadlydiamond98.archipelago.util.APItemAccessUtil;
 
@@ -15,6 +16,11 @@ public class SavedArchipelagoItems {
     public static final List<String> PERSISTENT_STATE_BOOLEANS = new ArrayList<>();
     
     public static void register() {
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // VANILLA /////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // Abilities
         register("Swim", "swim", true);
         register("Sprint", "sprint", true);
@@ -53,6 +59,20 @@ public class SavedArchipelagoItems {
         registerWithJson("Progressive Armor", "armor", false);
         registerWithJson("Progressive Smelting", "smelting", false);
         registerWithJson("Progressive Dye Recipes", "dyes", false);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CREATE //////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Crafting Stations
+        if (APMod.isModLoaded("create")) {
+            registerWithJson("Water Wheel Recipes", "water_wheel", true);
+            registerWithJson("Windmill Recipes", "windmill", true);
+            registerWithJson("Steam Engine Recipes", "steam_engine", true);
+            registerWithJson("Mechanical Mixer Recipes", "mechanical_mixer", true);
+            registerWithJson("Mechanical Press Recipes", "mechanical_press", true);
+            registerWithJson("Cogwheel Recipes", "cogwheel", true);
+        }
     }
 
     public static void registerWithJson(String name, String key, boolean isBool) {

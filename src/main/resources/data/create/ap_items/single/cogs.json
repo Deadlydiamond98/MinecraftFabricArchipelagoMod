@@ -1,0 +1,7 @@
+{
+  "mod": "create",
+  "entries": [
+    "create:cogwheel",
+    "create:large_cogwheel"
+  ]
+}

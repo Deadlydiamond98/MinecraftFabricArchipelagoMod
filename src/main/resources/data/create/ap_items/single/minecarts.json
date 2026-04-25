@@ -1,0 +1,8 @@
+{
+  "mod": "create",
+  "entries": [
+    "create:minecart_coupling",
+    "create:controller_rail",
+    "create:cart_assembler"
+  ]
+}

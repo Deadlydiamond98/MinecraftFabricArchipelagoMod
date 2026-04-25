@@ -20,6 +20,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.GameRules;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class APConnectEvents {
 
     @ArchipelagoEventListener
@@ -43,6 +46,28 @@ public class APConnectEvents {
                 APServerUtil.sendMessage(Text.translatable("archipelago.version_message.invalid").setStyle(style));
                 Archipelago.run(Client::close);
                 return;
+            }
+
+            List<String> missing = new ArrayList<>();
+
+            slot.enabled_mods.forEach(modID -> {
+                if (!APMod.isModLoaded(modID)) {
+                    missing.add(modID);
+                }
+            });
+
+            APServerUtil.sendMessage(Text.translatable("archipelago.mods_enabled", slot.enabled_mods.toString()).setStyle(style));
+
+            if (!missing.isEmpty()) {
+                APServerUtil.runOnServer(server -> server.getPlayerManager().getPlayerList().forEach(player ->
+                        player.playSound(KoalaLibSounds.MAGIC_FAIL, SoundCategory.PLAYERS, 1, 1))
+                );
+                APServerUtil.sendMessage(Text.translatable("archipelago.mod_missing", missing.toString()).setStyle(style.withColor(Formatting.RED)));
+                APServerUtil.runOnServer(server -> server.getPlayerManager().broadcast(
+                        Text.translatable("archipelago.mod_missing_alert")
+                                .setStyle(style.withColor(Formatting.RED)),
+                        true
+                ));
             }
 
             // Unlocks Optional Abilities that aren't randomized

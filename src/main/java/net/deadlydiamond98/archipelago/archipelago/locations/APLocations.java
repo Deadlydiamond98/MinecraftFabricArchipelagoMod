@@ -2,7 +2,12 @@ package net.deadlydiamond98.archipelago.archipelago.locations;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import net.deadlydiamond98.archipelago.APMod;
+import net.deadlydiamond98.archipelago.archipelago.locations.advancement.CreateAdvancements;
+import net.deadlydiamond98.archipelago.archipelago.locations.advancement.HealPGoodAdvancements;
 import net.deadlydiamond98.archipelago.archipelago.locations.advancement.VanillaAdvancements;
+import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.CreateItemsanity;
+import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.HealPGoodItemsanity;
 import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.VanillaItemsanity;
 import net.deadlydiamond98.archipelago.util.tracker.IAbilityCheck;
 import net.minecraft.util.Identifier;
@@ -21,6 +26,12 @@ public class APLocations {
         VanillaAdvancements.addVanillaAdvancements();
         VanillaAdvancements.addLegacyAdvancements();
         VanillaItemsanity.addVanillaItemsanity();
+        // Create Locations
+        CreateAdvancements.addAdvancements();
+        CreateItemsanity.addItemsanity();
+        // Healing Pretty Good Locations
+        HealPGoodAdvancements.addAdvancements();
+        HealPGoodItemsanity.addItemsanity();
     }
 
     // CREATE //////////////////////////////////////////////////////////////////////////////////////////////////////////

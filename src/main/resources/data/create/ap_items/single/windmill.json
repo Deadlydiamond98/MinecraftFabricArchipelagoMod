@@ -1,0 +1,8 @@
+{
+  "mod": "create",
+  "entries": [
+    "create:windmill_bearing",
+    "create:white_sail",
+    "create:sail_frame"
+  ]
+}

@@ -123,6 +123,8 @@ public class Archipelago extends Client {
 
         public Set<String> time_saving_options;
 
+        public Set<String> enabled_mods;
+
 //        public long seed;
 //        public int randomize_mob_spawns;
     }

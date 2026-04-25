@@ -1,0 +1,14 @@
+{
+  "mod": "create",
+  "entries": {
+    "create:goggles": 1,
+
+    "create:copper_backtank": 2,
+    "create:copper_diving_helmet": 2,
+    "create:copper_diving_boots": 2,
+
+    "create:netherite_backtank": 5,
+    "create:netherite_diving_helmet": 5,
+    "create:netherite_diving_boots": 5
+  }
+}

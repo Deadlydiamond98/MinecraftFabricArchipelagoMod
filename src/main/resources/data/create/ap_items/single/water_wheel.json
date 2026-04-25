@@ -1,0 +1,7 @@
+{
+  "mod": "create",
+  "entries": [
+    "create:water_wheel",
+    "create:large_water_wheel"
+  ]
+}

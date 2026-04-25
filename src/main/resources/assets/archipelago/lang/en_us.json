@@ -16,6 +16,10 @@
   "archipelago.version_message.invalid": "The AP World Used Is meant for a Version of the Mod Before 1.0.7! Please try downgrading your mod version, or upgrading your AP World Version",
   "archipelago.version_message.mismatched": "You don't have the correct Mod version for your AP World!! Your AP World Version is %s, but the Mod is Meant for %s",
 
+  "archipelago.mods_enabled": "Your yaml has the following mods enabled: %s",
+  "archipelago.mod_missing": "You are missing: %s",
+  "archipelago.mod_missing_alert": "YOU ARE MISSING MODS PRESENT IN YOUR YAML!!",
+
   "gui.archipelago.none_present": "None Needed For Goal",
   "gui.archipelago.goal_progress": "-- Goal Progress --",
   "gui.archipelago.advancements_needed": "Advancements Needed",
