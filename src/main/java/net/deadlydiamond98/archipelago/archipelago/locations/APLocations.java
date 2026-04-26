@@ -8,6 +8,7 @@ import net.deadlydiamond98.archipelago.archipelago.locations.advancement.HealPGo
 import net.deadlydiamond98.archipelago.archipelago.locations.advancement.VanillaAdvancements;
 import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.CreateItemsanity;
 import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.HealPGoodItemsanity;
+import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.IronChestsItemsanity;
 import net.deadlydiamond98.archipelago.archipelago.locations.itemsanity.VanillaItemsanity;
 import net.deadlydiamond98.archipelago.util.tracker.IAbilityCheck;
 import net.minecraft.util.Identifier;
@@ -32,6 +33,8 @@ public class APLocations {
         // Healing Pretty Good Locations
         HealPGoodAdvancements.addAdvancements();
         HealPGoodItemsanity.addItemsanity();
+        // Iron Chests: Restocked Locations
+        IronChestsItemsanity.addItemsanity();
     }
 
     // CREATE //////////////////////////////////////////////////////////////////////////////////////////////////////////

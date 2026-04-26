@@ -73,6 +73,18 @@ public class SavedArchipelagoItems {
             registerWithJson("Mechanical Press Recipes", "mechanical_press", true);
             registerWithJson("Cogwheel Recipes", "cogwheel", true);
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // GENERIC /////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//        if (hasAdvancedStorage()) {
+//            registerWithJson("Advanced Storage Recipes", "advanced_storage_recipes", true);
+//        }
+    }
+
+    public static boolean hasAdvancedStorage() {
+        return APMod.isModLoaded("ironchests");
     }
 
     public static void registerWithJson(String name, String key, boolean isBool) {
