@@ -1,0 +1,7 @@
+{
+  "mod": "create",
+  "entries": [
+    "create:empty_blaze_burner",
+    "create:blaze_burner"
+  ]
+}

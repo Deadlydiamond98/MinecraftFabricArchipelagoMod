@@ -53,12 +53,14 @@ public class ArchipelagoItems {
         ITEMS.put("Coal Ore Vein", new ItemstackAPItem(Blocks.COAL_ORE, 6));
         ITEMS.put("Iron Ore Vein", new ItemstackAPItem(Blocks.IRON_ORE, 4));
         ITEMS.put("Gold Ore Vein", new ItemstackAPItem(Blocks.GOLD_ORE, 4));
+        ITEMS.put("Copper Ore Vein", new ItemstackAPItem(Blocks.COPPER_ORE, 6));
         ITEMS.put("Diamond Ore Vein", new ItemstackAPItem(Blocks.DIAMOND_ORE, 4));
         ITEMS.put("Emerald Ore Vein", new ItemstackAPItem(Blocks.EMERALD_ORE, 1));
 
         ITEMS.put("Large Coal Ore Vein", new ItemstackAPItem(Blocks.COAL_ORE, 12));
         ITEMS.put("Large Iron Ore Vein", new ItemstackAPItem(Blocks.IRON_ORE, 8));
         ITEMS.put("Large Gold Ore Vein", new ItemstackAPItem(Blocks.GOLD_ORE, 8));
+        ITEMS.put("Large Copper Ore Vein", new ItemstackAPItem(Blocks.COPPER_ORE, 12));
         ITEMS.put("Large Diamond Ore Vein", new ItemstackAPItem(Blocks.DIAMOND_ORE, 8));
         ITEMS.put("Large Emerald Ore Vein", new ItemstackAPItem(Blocks.EMERALD_ORE, 2));
 

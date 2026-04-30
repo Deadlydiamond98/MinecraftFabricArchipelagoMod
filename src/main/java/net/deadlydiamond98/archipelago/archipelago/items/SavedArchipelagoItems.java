@@ -51,6 +51,7 @@ public class SavedArchipelagoItems {
         registerWithJson("Resource Compacting Recipes", "compacting", true);
         registerWithJson("Shield Recipes", "shield", true);
         registerWithJson("Bundle Recipes", "bundles", true);
+        registerWithJson("TNT Recipes", "tnt", true);
 
         // Progressive Crafting
         registerWithJson("Progressive Tools", "tools", false);
@@ -59,6 +60,7 @@ public class SavedArchipelagoItems {
         registerWithJson("Progressive Armor", "armor", false);
         registerWithJson("Progressive Smelting", "smelting", false);
         registerWithJson("Progressive Dye Recipes", "dyes", false);
+        registerWithJson("Progressive Block Variants", "block_variants", false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CREATE //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,12 +68,14 @@ public class SavedArchipelagoItems {
 
         // Crafting Stations
         if (APMod.isModLoaded("create")) {
-            registerWithJson("Water Wheel Recipes", "water_wheel", true);
-            registerWithJson("Windmill Recipes", "windmill", true);
-            registerWithJson("Steam Engine Recipes", "steam_engine", true);
+            registerWithJson("Water Wheels", "water_wheel", true);
+            registerWithJson("Windmills", "windmill", true);
+            registerWithJson("Steam Engines", "steam_engine", true);
             registerWithJson("Mechanical Mixer Recipes", "mechanical_mixer", true);
             registerWithJson("Mechanical Press Recipes", "mechanical_press", true);
-            registerWithJson("Cogwheel Recipes", "cogwheel", true);
+            registerWithJson("Cogwheels", "cogwheel", true);
+            registerWithJson("Sand Paper", "sand_paper", true);
+            registerWithJson("Blaze Burners", "blaze_burner", true);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

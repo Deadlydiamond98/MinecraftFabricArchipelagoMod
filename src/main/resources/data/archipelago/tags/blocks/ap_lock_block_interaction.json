@@ -16,6 +16,14 @@
     "minecraft:barrel",
     "minecraft:furnace",
     "minecraft:blast_furnace",
-    "minecraft:smoker"
+    "minecraft:smoker",
+    {
+      "id": "create:empty_blaze_burner",
+      "required": false
+    },
+    {
+      "id": "create:blaze_burner",
+      "required": false
+    }
   ]
 }
