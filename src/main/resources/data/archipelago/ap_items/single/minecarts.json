@@ -6,6 +6,10 @@
     "minecraft:chest_minecart",
     "minecraft:furnace_minecart",
     "minecraft:tnt_minecart",
-    "#minecraft:rails"
+    "#minecraft:rails",
+    {
+      "id": "#c:minecarts",
+      "required": false
+    }
   ]
 }
