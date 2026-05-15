@@ -5,6 +5,10 @@
     "minecraft:trapped_chest",
     "minecraft:chest_minecart",
     "minecraft:barrel",
-    "#minecraft:chest_boats"
+    "#minecraft:chest_boats",
+    {
+      "id": "#c:chests",
+      "required": false
+    }
   ]
 }
