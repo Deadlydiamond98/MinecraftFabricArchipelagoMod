@@ -1,6 +1,10 @@
 {
   "mod": "archipelago",
   "entries": [
-    "minecraft:brush"
+    "minecraft:brush",
+    {
+      "id": "#c:tools/brush",
+      "required": false
+    }
   ]
 }
