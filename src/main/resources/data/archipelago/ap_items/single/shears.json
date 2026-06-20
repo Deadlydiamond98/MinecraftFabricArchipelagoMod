@@ -2,9 +2,6 @@
   "mod": "archipelago",
   "entries": [
     "minecraft:shears",
-    {
-      "id": "#c:shears",
-      "required": false
-    }
+    "#c:shears"
   ]
 }

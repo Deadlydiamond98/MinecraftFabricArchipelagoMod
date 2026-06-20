@@ -7,9 +7,6 @@
     "minecraft:furnace_minecart",
     "minecraft:tnt_minecart",
     "#minecraft:rails",
-    {
-      "id": "#c:minecarts",
-      "required": false
-    }
+    "#c:minecarts"
   ]
 }

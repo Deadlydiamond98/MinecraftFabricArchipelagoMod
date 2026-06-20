@@ -12,9 +12,6 @@
     "minecraft:pufferfish_bucket",
     "minecraft:tadpole_bucket",
     "minecraft:tropical_fish_bucket",
-    {
-      "id": "#c:buckets",
-      "required": false
-    }
+    "#c:buckets"
   ]
 }

@@ -2,9 +2,6 @@
   "mod": "archipelago",
   "entries": [
     "minecraft:shield",
-    {
-      "id": "#c:shields",
-      "required": false
-    }
+    "#c:shields"
   ]
 }

@@ -4,9 +4,6 @@
     "minecraft:glass_bottle",
     "minecraft:potion",
     "minecraft:honey_bottle",
-    {
-      "id": "#c:drink_containing/bottle",
-      "required": false
-    }
+    "#c:drink_containing/bottle"
   ]
 }

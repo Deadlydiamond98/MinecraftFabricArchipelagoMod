@@ -7,9 +7,6 @@
     "minecraft:barrel",
     "minecraft:ender_chest",
     "#minecraft:chest_boats",
-    {
-      "id": "#c:chests",
-      "required": false
-    }
+    "#c:chests"
   ]
 }
