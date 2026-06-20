@@ -60,7 +60,6 @@ public class SavedArchipelagoItems {
         registerWithJson("Progressive Armor", "armor", false);
         registerWithJson("Progressive Smelting", "smelting", false);
         registerWithJson("Progressive Dye Recipes", "dyes", false);
-        registerWithJson("Progressive Block Variants", "block_variants", false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CREATE //////////////////////////////////////////////////////////////////////////////////////////////////////

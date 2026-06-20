@@ -38,7 +38,7 @@ public class ItemTrackerScreen extends Screen {
             return;
         }
 
-        this.maxScroll = Math.max(((tracker().entries().size() * ENTRY_HEIGHT) + 10) - (ENTRY_HEIGHT * 7), 0);
+        this.maxScroll = Math.max(((tracker().entries().size() * ENTRY_HEIGHT) + 30) - (ENTRY_HEIGHT * 7), 0);
 
         this.guiX = (this.width - this.backgroundWidth) / 2;
         this.guiY = (this.height - this.backgroundHeight) / 2;
