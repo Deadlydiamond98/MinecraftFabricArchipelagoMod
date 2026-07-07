@@ -22,7 +22,7 @@ import java.util.List;
 
 public class APMod implements ModInitializer {
 	public static final String MOD_ID = "archipelago";
-	public static final String VALID_WORLD_VERSION = "1.1.1";
+	public static final String VALID_WORLD_VERSION = "1.1.2";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
